@@ -9,5 +9,9 @@ public class ApplicationDbContext : IdentityDbContext
         : base(options)
     {
     }
-    public DbSet<Trabajo_Final.Models.Cliente>DataCliente{get;set;}
+    public DbSet<Trabajo_Final.Models.Cliente> DataCliente { get; set; }
+    public DbSet<Trabajo_Final.Models.Categoria> DataCategoria { get; set; }
+    public DbSet<Trabajo_Final.Models.Contacto> DataContacto { get; set; }
+    public DbSet<Trabajo_Final.Models.Producto> DataProducto { get; set; }
+    public DbSet<Trabajo_Final.Models.Carrito> DataCarrito { get; set; }
 }
