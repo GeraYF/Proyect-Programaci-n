@@ -9,4 +9,5 @@ public class ApplicationDbContext : IdentityDbContext
         : base(options)
     {
     }
+    public DbSet<Trabajo_Final.Models.Cliente>DataCliente{get;set;}
 }
