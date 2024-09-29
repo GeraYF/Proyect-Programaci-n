@@ -11,5 +11,8 @@ namespace Trabajo_Final.Models
         public string? Apellidos { get; set; }
         public string? DNI { get; set; }
         public DateTime FechaNacimiento { get; set; }
+        public string? Email { get; set; }
+        public string? Contrasena { get; set; }
+
     }
 }

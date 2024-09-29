@@ -2,21 +2,18 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Trabajo_Final.Data;
 
 #nullable disable
 
-namespace Trabajo_Final.Data.Migrations
+namespace Trabajo_Final.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240921235614_MigrationTables1")]
-    partial class MigrationTables1
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -283,7 +280,13 @@ namespace Trabajo_Final.Data.Migrations
                     b.Property<string>("Apellidos")
                         .HasColumnType("text");
 
+                    b.Property<string>("Contrasena")
+                        .HasColumnType("text");
+
                     b.Property<string>("DNI")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Email")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("FechaNacimiento")
