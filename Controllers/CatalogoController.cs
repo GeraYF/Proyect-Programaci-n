@@ -17,7 +17,7 @@ namespace Trabajo_Final.Controllers
         {
             _logger = logger;
         }
-
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
