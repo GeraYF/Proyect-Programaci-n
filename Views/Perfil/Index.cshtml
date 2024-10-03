@@ -1,0 +1,133 @@
+@model Trabajo_Final.Models.Cliente
+
+<div class="account-container">
+    <h2>My Account</h2>
+
+    <div class="account-sections">
+        <nav class="account-sidebar">
+            <ul>
+                <li><a href="#">My Account</a></li>
+                <li><a href="#">Mis Pedidos</a></li>
+                <li><a href="#">Mi Dirección de Envío</a></li>
+                <li><a href="#">Métodos de Pago</a></li>
+                <li><a href="#">Boletines</a></li>
+                <li><a href="#">Centro de Ayuda</a></li>
+            </ul>
+        </nav>
+
+        <div class="account-content">
+            <h3>Información de la cuenta</h3>
+            <div class="account-details">
+                <div>
+                    <h4>Información del Contacto</h4>
+                    <p>@Model.Nombre @Model.Apellidos</p>
+                    <p>@Model.Email</p>
+                    <a href="#">Editar</a> | <a href="#">Cambiar contraseña</a>
+                </div>
+
+                <div>
+                    <h4>Boletines Informativos</h4>
+                    <p>No estás suscrito a ningún boletín informativo.</p>
+                </div>
+            </div>
+
+            <h3>Libreta de direcciones</h3>
+            <div class="address-details">
+                <div>
+                    <h4>Dirección de Facturación por Defecto</h4>
+                    <p>Aquí puedes agregar la dirección de facturación si está disponible.</p>
+                    <a href="#">Editar dirección</a>
+                </div>
+
+                <div>
+                    <h4>Dirección de Envío Predeterminada</h4>
+                    <p>No se ha establecido ninguna dirección de envío predeterminada.</p>
+                    <a href="#">Editar dirección</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .account-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h2 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    .account-sections {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .account-sidebar {
+        width: 25%;
+        background-color: #f7f7f7;
+        padding: 15px;
+        border-right: 1px solid #ccc;
+    }
+
+    .account-sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .account-sidebar ul li {
+        margin-bottom: 10px;
+    }
+
+    .account-sidebar ul li a {
+        color: #2980b9;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .account-content {
+        width: 70%;
+        padding: 20px;
+    }
+
+    .account-details,
+    .address-details {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+    }
+
+    .account-details div,
+    .address-details div {
+        width: 48%;
+        background-color: #f9f9f9;
+        padding: 15px;
+        border: 1px solid #ccc;
+    }
+
+    h3 {
+        color: #34495e;
+        margin-bottom: 15px;
+    }
+
+    h4 {
+        color: #2c3e50;
+    }
+
+    p {
+        color: #7f8c8d;
+    }
+
+    a {
+        color: #2980b9;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
