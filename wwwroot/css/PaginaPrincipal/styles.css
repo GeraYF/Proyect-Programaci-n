@@ -11303,7 +11303,7 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-image: url("../assets/img/header-bg.jpg");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/conexion-47095.appspot.com/o/TechnovaImages%2FPagina%20Principal%2Fbg_homr.jpg?alt=media&token=648a0281-5f4f-43f8-8b22-2c9daee63ebd");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -11636,7 +11636,7 @@ header.masthead .masthead-heading {
 
 section#contact {
   background-color: #212529;
-  background-image: url("../assets/img/map-image.png");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/conexion-47095.appspot.com/o/TechnovaImages%2FContacto%2Fcontact-bg.png?alt=media&token=de38cdb8-851d-4d9d-8100-93f88a415e52");
   background-repeat: no-repeat;
   background-position: center;
 }
