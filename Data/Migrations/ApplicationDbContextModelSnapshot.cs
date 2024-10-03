@@ -8,7 +8,7 @@ using Trabajo_Final.Data;
 
 #nullable disable
 
-namespace Trabajo_Final.Migrations
+namespace Trabajo_Final.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -315,6 +315,9 @@ namespace Trabajo_Final.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Nombre")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Numero")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
