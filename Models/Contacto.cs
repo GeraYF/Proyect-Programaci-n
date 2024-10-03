@@ -14,5 +14,7 @@ namespace Trabajo_Final.Models
         public string? Nombre { get; set; }
         public string? Email { get; set; }
         public string? Message { get; set; }
+        public string? Numero { get; set; }
+
     }
 }

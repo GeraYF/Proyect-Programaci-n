@@ -11636,9 +11636,10 @@ header.masthead .masthead-heading {
 
 section#contact {
   background-color: #212529;
-  background-image: url("../assets/img/map-image.png");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/conexion-47095.appspot.com/o/TechnovaImages%2FContacto%2Fcontact-bg.png?alt=media&token=de38cdb8-851d-4d9d-8100-93f88a415e52");
   background-repeat: no-repeat;
   background-position: center;
+  background-size: auto;
 }
 section#contact .section-heading {
   color: #fff;

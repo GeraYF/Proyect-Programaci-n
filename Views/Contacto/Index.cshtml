@@ -1,0 +1,65 @@
+@model Trabajo_Final.Models.Contacto;
+<div class="container">
+    <div class="text-center">
+        <h2 class="section-heading text-uppercase">Contactanos</h2>
+        <h3 class="section-subheading text-muted">Estamos interesados en escucharte.</h3>
+    </div>
+    <form method="post" asp-controller="Contacto" asp-action="Create" id="contactForm"
+        data-sb-form-api-token="API_TOKEN">
+        <div class="row align-items-stretch mb-5">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <!-- Name input-->
+                    <input asp-for="Nombre" class="form-control" id="name" type="text" placeholder="Tu Nombre *"
+                        data-sb-validations="required" />
+                    <div class="invalid-feedback" data-sb-feedback="name:required">Es requerido un Nombre.</div>
+                </div>
+                <div class="form-group">
+                    <!-- Email address input-->
+                    <input asp-for="Email" class="form-control" id="email" type="email" placeholder="Tu Email *"
+                        data-sb-validations="required,email" />
+                    <div class="invalid-feedback" data-sb-feedback="email:required">Un email es requerido.</div>
+                    <div class="invalid-feedback" data-sb-feedback="email:email">Email no valido.</div>
+                </div>
+                <div class="form-group mb-md-0">
+                    <!-- Phone number input-->
+                    <input asp-for="Numero" class="form-control" id="phone" type="tel" placeholder="Tu Telefono *"
+                        data-sb-validations="required" />
+                    <div class="invalid-feedback" data-sb-feedback="phone:required">Un nùmero de telefono es requerido.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group form-group-textarea mb-md-0">
+                    <!-- Message input-->
+                    <textarea asp-for="Message" class="form-control" id="message" placeholder="Tu Mensaje *"
+                        data-sb-validations="required"></textarea>
+                    <div class="invalid-feedback" data-sb-feedback="message:required">Un mensaje es requerido.</div>
+                </div>
+            </div>
+        </div>
+        <!-- Submit success message-->
+        <!---->
+        <!-- This is what your users will see when the form-->
+        <!-- has successfully submitted-->
+        <div class="d-none" id="submitSuccessMessage">
+            <div class="text-center text-white mb-3">
+                <div class="fw-bolder">Form submission successful!</div>
+                To activate this form, sign up at
+                <br />
+                <a
+                    href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+            </div>
+        </div>
+        <!-- Submit error message-->
+        <!---->
+        <!-- This is what your users will see when there is-->
+        <!-- an error submitting the form-->
+        <div class="d-none" id="submitErrorMessage">
+            <div class="text-center text-danger mb-3">Error enviando el mensaje!</div>
+        </div>
+        <!-- Submit Button-->
+        <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton"
+                type="submit">ENVIAR Mensaje</button></div>
+    </form>
+</div>

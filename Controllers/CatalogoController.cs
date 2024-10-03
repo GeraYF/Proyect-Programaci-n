@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Trabajo_Final.Controllers
 {
-    [Route("[controller]")]
     public class CatalogoController : Controller
     {
         private readonly ILogger<CatalogoController> _logger;
