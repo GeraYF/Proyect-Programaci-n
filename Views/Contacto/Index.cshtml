@@ -4,8 +4,7 @@
         <h2 class="section-heading text-uppercase">Contactanos</h2>
         <h3 class="section-subheading text-muted">Estamos interesados en escucharte.</h3>
     </div>
-    <form method="post" asp-controller="Contacto" asp-action="Create" id="contactForm"
-        data-sb-form-api-token="API_TOKEN">
+    <form method="post" asp-controller="Contacto" asp-action="Create" id="contactForm">
         <div class="row align-items-stretch mb-5">
             <div class="col-md-6">
                 <div class="form-group">
@@ -20,8 +19,8 @@
                 </div>
                 <div class="form-group mb-md-0">
                     <!-- Phone number input-->
-                    <input asp-for="Numero" class="form-control" id="phone" type="number" placeholder="Tu Telefono *"
-                        data-sb-validations="required" required />
+                    <input asp-for="Numero" class="form-control" id="phone" type="tel" placeholder="Tu Telefono *"
+                        pattern="[0-9]{9}" required />
                 </div>
             </div>
             <div class="col-md-6">
@@ -32,7 +31,6 @@
                 </div>
             </div>
         </div>
-
         <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton"
                 type="submit">ENVIAR Mensaje</button></div>
     </form>

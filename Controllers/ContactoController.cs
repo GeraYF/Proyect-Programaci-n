@@ -23,7 +23,6 @@ namespace Trabajo_Final.Controllers
 
         public IActionResult Index()
         {
-
             return View();
         }
         [HttpPost]
@@ -33,7 +32,7 @@ namespace Trabajo_Final.Controllers
             _context.Add(contacto);
             _context.SaveChanges();
             TempData["Confirm"] = true;
-            return View("Index", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
