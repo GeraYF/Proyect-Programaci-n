@@ -15,7 +15,12 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+
         return View("Home");
+    }
+    public IActionResult Cliente(Cliente cliente)
+    {
+        return View("Home", cliente);
     }
 
     public IActionResult Privacy()
