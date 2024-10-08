@@ -295,6 +295,9 @@ namespace Trabajo_Final.Data.Migrations
                     b.Property<string>("Nombre")
                         .HasColumnType("text");
 
+                    b.Property<string>("Telefono")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("t_cliente");
