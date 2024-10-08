@@ -1,217 +1,171 @@
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>HOME</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link rel="stylesheet" href="~/css/PaginaPrincipal/styles.css" asp-append-version="true" />
-    <!--<link href="css/styles.css" rel="stylesheet" />-->
-</head>
-
-<body id="page-top">
-    <!-- Navigation-->
-    <!--<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars ms-1"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
+<!-- Masthead-->
+<header class="masthead">
+    <div class="container">
+        <div class="masthead-subheading">Bienvenido a Infocom, tu tienda de tecnología</div>
+        <div class="masthead-heading text-uppercase">Explora nuestros productos y servicios</div>
+        <a class="btn btn-primary btn-xl text-uppercase" asp-controller="Catalogo" asp-action="Index">COMPRAR</a>
+    </div>
+</header>
+<!-- Services-->
+<section class="page-section" id="services">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Detalles</h2>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="my-3">Productos con garantia</h4>
+                <p class="text-muted">Destaca la garantía y el soporte que ofreces para tus productos, incluyendo la
+                    duración de la garantía y los canales de comunicación para obtener ayuda.</p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="my-3">Asesoramiento técnico</h4>
+                <p class="text-muted">Nuestros expertos en tecnología están disponibles para ayudarte a elegir el
+                    producto adecuado para tus necesidades.</p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="my-3">Seguridad y privacidad</h4>
+                <p class="text-muted">Garantiza la seguridad y privacidad de los datos de tus clientes, destacando
+                    las medidas de seguridad que tomas para proteger su información.</p>
             </div>
         </div>
-    </nav>-->
-    <!-- Masthead-->
-    <header class="masthead">
-        <div class="container">
-            <div class="masthead-subheading">Bienvenido a Infocom, tu tienda de tecnología</div>
-            <div class="masthead-heading text-uppercase">Explora nuestros productos y servicios</div>
-            <a class="btn btn-primary btn-xl text-uppercase" asp-controller="Catalogo" asp-action="Index">COMPRAR</a>
+    </div>
+</section>
+<!-- Portfolio Grid-->
+<section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Productos</h2>
         </div>
-    </header>
-    <!-- Services-->
-    <section class="page-section" id="services">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">Detalles</h2>
-            </div>
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="my-3">Productos con garantia</h4>
-                    <p class="text-muted">Destaca la garantía y el soporte que ofreces para tus productos, incluyendo la
-                        duración de la garantía y los canales de comunicación para obtener ayuda.</p>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="my-3">Asesoramiento técnico</h4>
-                    <p class="text-muted">Nuestros expertos en tecnología están disponibles para ayudarte a elegir el
-                        producto adecuado para tus necesidades.</p>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="my-3">Seguridad y privacidad</h4>
-                    <p class="text-muted">Garantiza la seguridad y privacidad de los datos de tus clientes, destacando
-                        las medidas de seguridad que tomas para proteger su información.</p>
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 1-->
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal"
+                        onclick="location.href='@Url.Action("Index", "Catalogo")'">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid"
+                            src="https://firebasestorage.googleapis.com/v0/b/conexion-47095.appspot.com/o/TechnovaImages%2FPagina%20Principal%2FProductos%2FIMPRESORAS.jpeg?alt=media&token=16f247be-ec96-417d-9545-0b8a02644786"
+                            alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">IMPRESORAS</div>
+                        <div class="portfolio-caption-subheading text-muted">Para imprimir documentos y fotos con
+                            precisión</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- Portfolio Grid-->
-    <section class="page-section bg-light" id="portfolio">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">Productos</h2>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 2-->
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal"
+                        onclick="location.href='@Url.Action("Index", "Catalogo")'">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid"
+                            src="https://firebasestorage.googleapis.com/v0/b/conexion-47095.appspot.com/o/TechnovaImages%2FPagina%20Principal%2FProductos%2FLAPTOPS.jpeg?alt=media&token=e8667777-c055-464a-ba4a-a21c897e6aa4"
+                            alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">LAPTOPS</div>
+                        <div class="portfolio-caption-subheading text-muted">Portátiles de alta performance</div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 1-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#"
-                            onclick="location.href='@Url.Action("Index", "Catalogo")'">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid"
-                                src="https://firebasestorage.googleapis.com/v0/b/conexion-47095.appspot.com/o/TechnovaImages%2FPagina%20Principal%2FProductos%2FIMPRESORAS.jpeg?alt=media&token=16f247be-ec96-417d-9545-0b8a02644786"
-                                alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">IMPRESORAS</div>
-                            <div class="portfolio-caption-subheading text-muted">Para imprimir documentos y fotos con
-                                precisión</div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 3-->
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal"
+                        onclick="location.href='@Url.Action("Index", "Catalogo")'">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid"
+                            src="https://firebasestorage.googleapis.com/v0/b/conexion-47095.appspot.com/o/TechnovaImages%2FPagina%20Principal%2FProductos%2FMONITORES.png?alt=media&token=8753c201-6371-44f4-a39d-a0b9508fe7bd"
+                            alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">MONITORES</div>
+                        <div class="portfolio-caption-subheading text-muted">Para una experiencia visual inmersiva
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 2-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal"
-                            onclick="location.href='@Url.Action("Index", "Catalogo")'">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid"
-                                src="https://firebasestorage.googleapis.com/v0/b/conexion-47095.appspot.com/o/TechnovaImages%2FPagina%20Principal%2FProductos%2FLAPTOPS.jpeg?alt=media&token=e8667777-c055-464a-ba4a-a21c897e6aa4"
-                                alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">LAPTOPS</div>
-                            <div class="portfolio-caption-subheading text-muted">Portátiles de alta performance</div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                <!-- Portfolio item 4-->
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal"
+                        onclick="location.href='@Url.Action("Index", "Catalogo")'">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
+                        <img class="img-fluid"
+                            src="https://firebasestorage.googleapis.com/v0/b/conexion-47095.appspot.com/o/TechnovaImages%2FPagina%20Principal%2FProductos%2FPC.jpeg?alt=media&token=0fa981ba-043e-4e5a-81fa-3537b3781e4b"
+                            alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">PC</div>
+                        <div class="portfolio-caption-subheading text-muted">Para trabajo y juego sin límites</div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 3-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal"
-                            onclick="location.href='@Url.Action("Index", "Catalogo")'">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid"
-                                src="https://firebasestorage.googleapis.com/v0/b/conexion-47095.appspot.com/o/TechnovaImages%2FPagina%20Principal%2FProductos%2FMONITORES.png?alt=media&token=8753c201-6371-44f4-a39d-a0b9508fe7bd"
-                                alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">MONITORES</div>
-                            <div class="portfolio-caption-subheading text-muted">Para una experiencia visual inmersiva
-                            </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 5-->
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal"
+                        onclick="location.href='@Url.Action("Index", "Catalogo")'">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
+                        <img class="img-fluid"
+                            src="https://firebasestorage.googleapis.com/v0/b/conexion-47095.appspot.com/o/TechnovaImages%2FPagina%20Principal%2FProductos%2FPERIFERICOS.jpg?alt=media&token=e74e9176-9cad-4fd1-aa61-8c8a160c3517"
+                            alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">PERIFÉRICOS</div>
+                        <div class="portfolio-caption-subheading text-muted">Para imprimir documentos y fotos con
+                            precisión</div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                    <!-- Portfolio item 4-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal"
-                            onclick="location.href='@Url.Action("Index", "Catalogo")'">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid"
-                                src="https://firebasestorage.googleapis.com/v0/b/conexion-47095.appspot.com/o/TechnovaImages%2FPagina%20Principal%2FProductos%2FPC.jpeg?alt=media&token=0fa981ba-043e-4e5a-81fa-3537b3781e4b"
-                                alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">PC</div>
-                            <div class="portfolio-caption-subheading text-muted">Para trabajo y juego sin límites</div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 6-->
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal"
+                        onclick="location.href='@Url.Action("Index", "Catalogo")'">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 5-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal"
-                            onclick="location.href='@Url.Action("Index", "Catalogo")'">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid"
-                                src="https://firebasestorage.googleapis.com/v0/b/conexion-47095.appspot.com/o/TechnovaImages%2FPagina%20Principal%2FProductos%2FPERIFERICOS.jpg?alt=media&token=e74e9176-9cad-4fd1-aa61-8c8a160c3517"
-                                alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">PERIFÉRICOS</div>
-                            <div class="portfolio-caption-subheading text-muted">Para imprimir documentos y fotos con
-                                precisión</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 6-->
-                    <div class="portfolio-item">
-                        <a href="#" class="portfolio-link" data-bs-toggle="modal"
-                            onclick="location.href='@Url.Action("Index", "Catalogo")'">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid"
-                                src="https://firebasestorage.googleapis.com/v0/b/conexion-47095.appspot.com/o/TechnovaImages%2FPagina%20Principal%2FProductos%2FALMACENAMIENTO.jpg?alt=media&token=8efefc0a-0faf-43b9-8cfb-f76c4d12d379"
-                                alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">ALMACENAMIENTO</div>
-                            <div class="portfolio-caption-subheading text-muted">Para imprimir documentos y fotos con
-                                precisión</div>
-                        </div>
+                        <img class="img-fluid"
+                            src="https://firebasestorage.googleapis.com/v0/b/conexion-47095.appspot.com/o/TechnovaImages%2FPagina%20Principal%2FProductos%2FALMACENAMIENTO.jpg?alt=media&token=8efefc0a-0faf-43b9-8cfb-f76c4d12d379"
+                            alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">ALMACENAMIENTO</div>
+                        <div class="portfolio-caption-subheading text-muted">Para imprimir documentos y fotos con
+                            precisión</div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Contacto -->
-    <section class="page-section" id="contact">
-        @Html.Partial("~/Views/Contacto/Index.cshtml")
-    </section>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+    </div>
+</section>
+<!-- Contacto -->
+<section class="page-section" id="contact">
+    @Html.Partial("~/Views/Contacto/Index.cshtml")
+</section>
