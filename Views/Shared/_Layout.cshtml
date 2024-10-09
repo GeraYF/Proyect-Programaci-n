@@ -18,7 +18,7 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark bg-black border-bottom box-shadow mb-3"
+        <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark bg-black border-bottom box-shadow"
             id="mainNav">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">INFOCOM TECHNOLOGY</a>
@@ -41,11 +41,10 @@
         </nav>
     </header>
 
+    @RenderBody()
 
-    @RenderBody() <!--RENDERIZACIÓN DEL CONTENIDO-->
 
-
-    <footer class="footer py-4 bg-black">
+    <footer class="footer py-4 bg-black border-top">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-4 text-lg-start text-white">Copyright &copy; TechNova 2024</div>
