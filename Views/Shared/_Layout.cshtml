@@ -20,8 +20,7 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark bg-black border-bottom box-shadow"
-            id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark bg-black" id="mainNav">
             <div class="container-fluid">
                 <!--Logo -->
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">INFOCOM</a>
@@ -33,21 +32,11 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-
                     <<!--Barra de busqueda-->
                         <form class="d-flex mx-auto search-bar" role="search">
                             <input class="form-control me-3" type="search" placeholder="Búsqueda" aria-label="Search">
                             <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
                         </form>
-                        <!--Iconos de favoritos y bolsa-->
-
-                        <div class="navbar-nav me-3">
-                            <a href="#" class="nav-link position-relative me-3"><i class="fas fa-heart"></i><span
-                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span></a>
-                            <a href="#" class="nav-link position-relative"><i class="fas fa-shopping-bag"></i><span
-                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span></a>
-                        </div>
-
                         <!--Logeo y registro-->
                         <div class="navbar-nav">
                             <partial name="_LoginPartial" />
@@ -55,25 +44,116 @@
                 </div>
             </div>
         </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black" id="categoryNav">
+            <div class="container-fluid">
+                <button class="navbar-toggler mb-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#categoriesToggle" aria-controls="categoriesToggle" aria-expanded="false"
+                    aria-label="Toggle categories">
+                    Categorías
+                    <i class="fas fa-list ms-1"></i> <!-- Ícono para las categorías -->
+                </button>
+                <div class="collapse navbar-collapse" id="categoriesToggle">
+                    <ul class="nav nav-pills justify-content-center w-100">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" asp-controller="Home"
+                                asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Catalogo" asp-action="Index">Catalogo</a>
+                        </li>
+                        <!--Iconos de favoritos y bolsa-->
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <i class="fas fa-shopping-bag"></i>
+                                Carrito
+                                <span class="badge bg-dark text-white rounded-pill">0</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <i class="fas fa-heart"></i>
+                                Lista de Deseos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
 
     @RenderBody()
+
+    @*<footer class="bg-black text-white">
+    <div class="container-fluid">
+    <div class="row py-4">
+    <!-- Sección de contacto -->
+    <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
+    <h5>CONTACTO</h5>
+    <p>960984854</p>
+    <p>lun-vie: 8:30 hrs. - 19:00 hrs</p>
+    <p><strong>EMAIL</strong></p>
+    <p>atencionalcliente1@infocom.com.pe</p>
+    </div>
+
+    <!-- Sección de información -->
+    <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
+    <h5>INFORMACIÓN</h5>
+    <ul class="list-unstyled">
+    <li><a href="#" class="text-white text-decoration-none">Nosotros</a></li>
+    <li><a href="#" class="text-white text-decoration-none">Nuestras tiendas</a></li>
+    <li><a href="#" class="text-white text-decoration-none">¿Cómo comprar?</a></li>
+    <li><a href="#" class="text-white text-decoration-none">Preguntas Frecuentes</a></li>
+    <li><a href="#" class="text-white text-decoration-none">Comprobantes Electrónicos</a></li>
+    </ul>
+    </div>
+
+    <!-- Sección de suscripción -->
+    <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
+    <h5>SUSCRÍBETE</h5>
+    <p>Suscríbete a nuestro Phantom News.</p>
+    <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Dirección de email">
+    <button class="btn btn-primary" type="button">IR</button>
+    </div>
+    </div>
+    </div>
+    </div>
+    </footer>*@
 
 
     <footer class="footer py-4 bg-black border-top">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-4 text-lg-start text-white">Copyright &copy; TechNova 2024</div>
+                <div class="col-lg-4 text-lg-start text-white">
+                    <strong>Contacto</strong>
+                    <p class="border-bottom">999-896-854 <br> lun-vie: 8:30 hrs. - 19:00 hrs </p>
+                    <strong>Email</strong>
+                    <p>atencionalcliente@infocom.com</p>
+                </div>
+
                 <div class="col-lg-4 my-3 my-lg-0">
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Nosotros</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Politicas y condiciones de uso</a></li>
+                    </ul>
                     <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i
                             class="fab fa-twitter"></i></a>
                     <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i
                             class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i
                             class="fab fa-linkedin-in"></i></a>
+                    <p class="text-white">Copyright &copy; Infocom Technology 2024</p>
+                </div>
+
+                <div class="col-lg-4 text-lg-start text-white">
+                    <h5>Inscribete</h5>
+                    <p>Suscríbete a nuestra plataforma.</p>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Dirección de email">
+                        <button class="btn btn-primary" type="button">IR</button>
+                    </div>
                 </div>
             </div>
-        </div>
     </footer>
 
     <!--<script src="~/lib/jquery/dist/jquery.min.js"></script>
