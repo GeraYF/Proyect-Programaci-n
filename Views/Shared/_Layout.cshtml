@@ -7,11 +7,13 @@
     <title>@ViewData["Title"] TechNova</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+
 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 
-    <!--<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />-->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
     <link rel="stylesheet" href="~/css/PaginaPrincipal/styles.css" asp-append-version="true" />
 </head>
@@ -21,21 +23,35 @@
         <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark bg-black border-bottom box-shadow"
             id="mainNav">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">INFOCOM TECHNOLOGY</a>
+                <!--Logo -->
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">INFOCOM</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                     aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
                 </button>
+
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#services">Detalles</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio">Productos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">Acerca de</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
-                    </ul>
-                    <partial name="_LoginPartial" />
+
+                    <<!--Barra de busqueda-->
+                        <form class="d-flex mx-auto search-bar" role="search">
+                            <input class="form-control me-3" type="search" placeholder="Búsqueda" aria-label="Search">
+                            <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+                        <!--Iconos de favoritos y bolsa-->
+
+                        <div class="navbar-nav me-3">
+                            <a href="#" class="nav-link position-relative me-3"><i class="fas fa-heart"></i><span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span></a>
+                            <a href="#" class="nav-link position-relative"><i class="fas fa-shopping-bag"></i><span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span></a>
+                        </div>
+
+                        <!--Logeo y registro-->
+                        <div class="navbar-nav">
+                            <partial name="_LoginPartial" />
+                        </div>
                 </div>
             </div>
         </nav>
