@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Trabajo_Final.Data;
+using Trabajo_Final.Helper;
 using Trabajo_Final.Models;
 
 namespace Trabajo_Final.Controllers
@@ -32,8 +33,13 @@ namespace Trabajo_Final.Controllers
             _context.Add(contacto);
             _context.SaveChanges();
             TempData["Confirm"] = true;
+
+
             return RedirectToAction("Index", "Home");
         }
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
