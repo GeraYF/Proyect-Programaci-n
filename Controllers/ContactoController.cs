@@ -28,7 +28,7 @@ namespace Trabajo_Final.Controllers
         [HttpPost]
         public IActionResult Create(Contacto contacto)
         {
-            _logger.LogDebug("Ingreso a envia mensaje");
+            _logger.LogDebug("Ingreso a enviar mensaje");
             _context.Add(contacto);
             _context.SaveChanges();
             TempData["Confirm"] = true;
