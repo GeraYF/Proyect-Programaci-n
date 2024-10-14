@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Trabajo_Final.Data;
+using Trabajo_Final.Helper;
 using Trabajo_Final.Models;
 
 namespace Trabajo_Final.Controllers
@@ -26,12 +27,14 @@ namespace Trabajo_Final.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Contacto contacto)
+        public async Task<IActionResult> Enviar(Contacto contacto)
         {
-            _logger.LogDebug("Ingreso a envia mensaje");
+            _logger.LogDebug("Ingreso a enviar mensaje");
             _context.Add(contacto);
             _context.SaveChanges();
             TempData["Confirm"] = true;
+            var emailService2 = new SendMailSendGrid();
+            await emailService2.EnviarCorreoAsync(contacto.Email, "Atención Infocom Technology", contacto.Message);
             return RedirectToAction("Index", "Home");
         }
 

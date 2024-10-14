@@ -4,7 +4,7 @@
         <h2 class="section-heading text-uppercase">Contactanos</h2>
         <h3 class="section-subheading text-muted">Estamos interesados en escucharte.</h3>
     </div>
-    <form method="post" asp-controller="Contacto" asp-action="Create" id="contactForm">
+    <form method="post" asp-controller="Contacto" asp-action="Enviar" id="contactForm">
         <div class="row align-items-stretch mb-5">
             <div class="col-md-6">
                 <div class="form-group">
@@ -30,6 +30,7 @@
                         required></textarea>
                 </div>
             </div>
+
         </div>
         <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton"
                 type="submit">ENVIAR Mensaje</button></div>
