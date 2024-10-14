@@ -27,19 +27,16 @@ namespace Trabajo_Final.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Contacto contacto)
+        public async Task<IActionResult> Enviar(Contacto contacto)
         {
             _logger.LogDebug("Ingreso a enviar mensaje");
             _context.Add(contacto);
             _context.SaveChanges();
             TempData["Confirm"] = true;
-
-
+            var emailService2 = new SendMailSendGrid();
+            await emailService2.EnviarCorreoAsync(contacto.Email, "Atención Infocom Technology", contacto.Message);
             return RedirectToAction("Index", "Home");
         }
-
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

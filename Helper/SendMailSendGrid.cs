@@ -9,12 +9,12 @@ namespace Trabajo_Final.Helper
 {
     public class SendMailSendGrid
     {
-        private readonly string apiKey = "TU_API_KEY_AQUI"; // Reemplaza con tu API Key
+        private readonly string _apiKey = Environment.GetEnvironmentVariable("SEND_GRID_KEY"); // Reemplaza con tu API Key
 
-        public async Task EnviarCorreoAsync(string emailTo, string subject, string body, string _apiKey)
+        public async Task EnviarCorreoAsync(string emailTo, string subject, string body)
         {
             var client = new SendGridClient(_apiKey);
-            var from = new EmailAddress("fduartej@usmp.pe", "App");
+            var from = new EmailAddress("jmguticasani1254@gmail.com", "Infocom Technology Soporte");
             var to = new EmailAddress(emailTo);
             var msg = MailHelper.CreateSingleEmail(from, to, subject, body, body);
 
