@@ -34,7 +34,7 @@ namespace Trabajo_Final.Controllers
             _context.SaveChanges();
             TempData["Confirm"] = true;
             var emailService2 = new SendMailSendGrid();
-            await emailService2.EnviarCorreoAsync(contacto.Email, "Atención Infocom Technology", contacto.Message);
+            await emailService2.EnviarCorreoAsync(contacto.Nombre, contacto.Email, "Atención Infocom Technology", contacto.Message);
             return RedirectToAction("Index", "Home");
         }
 
