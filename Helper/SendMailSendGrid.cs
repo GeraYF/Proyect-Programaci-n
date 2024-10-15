@@ -20,7 +20,7 @@ namespace Trabajo_Final.Helper
             var from = new EmailAddress("infocomtechnologysoport@gmail.com", "Infocom Technology Soporte");
             var to = new EmailAddress(emailTo);
             string msj_envio = $"Hola{nombre}  \n!Gracias por contactarte con nosotros! Hemos recibido tu mensaje y queremos asegurarte que estamos revisando tu solicitud con atención.\nNuestro equipo está trabajando para brindarte una respuesta lo antes posible. Si tu consulta está relacionada con alguno de nuestros productos o servicios, puedes estar seguro de que te proporcionaremos toda la información que necesitas para tomar la mejor decisión.\nSi tienes más detalles que quieras compartir mientras tanto, no dudes en responder a este correo. Estamos aquí para ayudarte.\n¡Gracias por confiar en INFOCOM Technology!\nQue tengas un excelente día.";
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, msj_envio, body);
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, msj_envio, msj_envio);
 
             var response = await client.SendEmailAsync(msg);
             Console.WriteLine($"Correo enviado con estado: {response.StatusCode}");
