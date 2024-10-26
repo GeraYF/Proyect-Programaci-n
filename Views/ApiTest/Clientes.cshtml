@@ -1,0 +1,27 @@
+@model List<Trabajo_Final.Models.Cliente>
+
+<h2>Clientes de la API Externa</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>DNI</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cliente in Model)
+        {
+            <tr>
+                <td>@cliente.Nombre</td>
+                <td>@cliente.Apellidos</td>
+                <td>@cliente.DNI</td>
+                <td>@cliente.Email</td>
+                <td>@cliente.Telefono</td>
+            </tr>
+        }
+    </tbody>
+</table>

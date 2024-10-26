@@ -1,23 +1,35 @@
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using Trabajo_Final.Models;
 
 public class ExternalApiService
 {
     private readonly HttpClient _httpClient;
-    private readonly string _baseUrl;
 
-    public ExternalApiService(HttpClient httpClient, IConfiguration configuration)
+    public ExternalApiService(HttpClient httpClient)
     {
         _httpClient = httpClient;
-        _baseUrl = configuration["ExternalApi:BaseUrl"] ?? throw new ArgumentNullException("External API Base URL not configured.");
+    }
+    // Método para obtener datos de productos desde una API externa
+    public async Task<List<Producto>> GetProductsDataAsync()
+    {
+        HttpResponseMessage response = await _httpClient.GetAsync("posts"); // Cambiado a "posts"
+        response.EnsureSuccessStatusCode();
+
+        var data = await response.Content.ReadAsStringAsync();
+        return JsonConvert.DeserializeObject<List<Producto>>(data) ?? new List<Producto>();
     }
 
-    public async Task<string> GetProductsDataAsync()
-{
-    var response = await _httpClient.GetAsync($"{_baseUrl}"); // Se conecta a https://api.tienda-ejemplo.com/products
-    response.EnsureSuccessStatusCode();
-    return await response.Content.ReadAsStringAsync();
-}
 
+    // Método para obtener datos de clientes desde una API externa
+    public async Task<List<Cliente>> GetClientesDataAsync()
+    {
+        HttpResponseMessage response = await _httpClient.GetAsync("users"); // Cambiado a "users"
+        response.EnsureSuccessStatusCode();
+
+        var data = await response.Content.ReadAsStringAsync();
+        return JsonConvert.DeserializeObject<List<Cliente>>(data) ?? new List<Cliente>();
+    }
 }

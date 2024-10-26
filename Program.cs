@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Trabajo_Final.Data;
+using Trabajo_Final.Models; // Asegúrate de que esto esté aquí para acceder a ExternalApiService
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,7 @@ builder.Services.AddControllersWithViews();
 // Configuración de HttpClient para ExternalApiService con URL base desde appsettings.json
 builder.Services.AddHttpClient<ExternalApiService>(client =>
 {
-    var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"];
+    var apiBaseUrl = builder.Configuration["ExternalApi:BaseUrl"]; // Cambiado a ExternalApi
     if (string.IsNullOrEmpty(apiBaseUrl))
     {
         throw new InvalidOperationException("Base URL for external API is not configured.");
