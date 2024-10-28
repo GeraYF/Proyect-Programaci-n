@@ -280,13 +280,7 @@ namespace Trabajo_Final.Data.Migrations
                     b.Property<string>("Apellidos")
                         .HasColumnType("text");
 
-                    b.Property<string>("Contrasena")
-                        .HasColumnType("text");
-
                     b.Property<string>("DNI")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Email")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("FechaNacimiento")
