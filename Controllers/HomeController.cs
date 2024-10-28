@@ -18,9 +18,11 @@ public class HomeController : Controller
 
         return View("Home");
     }
-    public IActionResult Cliente(Cliente cliente)
+
+    public IActionResult Admin()
     {
-        return View("Home", cliente);
+
+        return View("HomeAdmin");
     }
 
     public IActionResult Privacy()

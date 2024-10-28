@@ -15,16 +15,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
+
+
 namespace Trabajo_Final.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private UserManager<IdentityUser> UserManager;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+
+
+
+        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger, UserManager<IdentityUser> userManager)
         {
             _signInManager = signInManager;
+            UserManager = userManager;
             _logger = logger;
         }
 
@@ -115,7 +122,18 @@ namespace Trabajo_Final.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+
+                    IdentityUser myidentity = await Task.Run(() => UserManager.GetUserAsync(User));
+                    var roles = await Task.Run(() => UserManager.GetRolesAsync(myidentity));
+                    if (roles.Contains("admin"))
+                    {
+                        Console.WriteLine("Entrando a vista administrador");
+                        return Redirect("/Home/HomeAdmin");
+                    }
+                    else
+                    {
+                        return LocalRedirect(returnUrl);
+                    }
                 }
                 if (result.RequiresTwoFactor)
                 {
