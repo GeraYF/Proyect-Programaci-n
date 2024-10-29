@@ -22,7 +22,7 @@ public class HomeController : Controller
     public IActionResult IndexAdmin()
     {
 
-        return View("HomeAdmin");
+        return RedirectToAction("Index", "AccionesAdmin");
     }
 
     public IActionResult Privacy()
