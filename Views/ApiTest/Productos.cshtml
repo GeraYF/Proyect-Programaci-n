@@ -1,0 +1,27 @@
+@model List<Trabajo_Final.Models.Producto>
+
+<h2>Productos de la API Externa</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Calificación</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var producto in Model)
+        {
+            <tr>
+                <td>@producto.Nombre</td>
+                <td>@producto.Description</td>
+                <td>@producto.Precio</td>
+                <td>@producto.Calificacion</td>
+                <td>@producto.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
