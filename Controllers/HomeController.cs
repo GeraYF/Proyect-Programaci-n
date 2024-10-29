@@ -19,7 +19,7 @@ public class HomeController : Controller
         return View("Home");
     }
 
-    public IActionResult Admin()
+    public IActionResult IndexAdmin()
     {
 
         return View("HomeAdmin");

@@ -128,7 +128,7 @@ namespace Trabajo_Final.Areas.Identity.Pages.Account
                     if (roles.Contains("admin"))
                     {
                         Console.WriteLine("Entrando a vista administrador");
-                        return Redirect("/Home/Admin");
+                        return Redirect("/Home/IndexAdmin");
                     }
                     else
                     {

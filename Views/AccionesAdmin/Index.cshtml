@@ -1,0 +1,32 @@
+@model IEnumerable<Trabajo_Final.ViewModel.AdminViewModel>
+@{
+    Layout = "_LayoutAdmin";
+}
+<main>
+    <div class="container-fluid px-4">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Numero de telefono</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                        <td>
+                            <a asp-controller="AccionesAdmin" asp-action="Delete" asp-route-id="@item.Id"
+                                class="btn btn-success mb-3">Revocar y Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</main>
