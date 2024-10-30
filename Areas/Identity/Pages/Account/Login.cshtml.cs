@@ -118,31 +118,40 @@ namespace Trabajo_Final.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
+                var user = await UserManager.FindByEmailAsync(Input.Email);
+                if (user != null)
                 {
-                    _logger.LogInformation("User logged in.");
-
-                    IdentityUser myidentity = await Task.Run(() => UserManager.GetUserAsync(User));
-                    var roles = await Task.Run(() => UserManager.GetRolesAsync(myidentity));
-                    if (roles.Contains("admin"))
+                    var result = await _signInManager.PasswordSignInAsync(user.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                    if (result.Succeeded)
                     {
-                        Console.WriteLine("Entrando a vista administrador");
-                        return Redirect("/Home/IndexAdmin");
+                        _logger.LogInformation("User logged in.");
+
+                        IdentityUser myidentity = await Task.Run(() => UserManager.GetUserAsync(User));
+                        var roles = await Task.Run(() => UserManager.GetRolesAsync(myidentity));
+                        if (roles.Contains("admin"))
+                        {
+                            Console.WriteLine("Entrando a vista administrador");
+                            return Redirect("/Home/IndexAdmin");
+                        }
+                        else
+                        {
+                            return LocalRedirect(returnUrl);
+                        }
+                    }
+                    if (result.RequiresTwoFactor)
+                    {
+                        return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                    }
+                    if (result.IsLockedOut)
+                    {
+                        _logger.LogWarning("User account locked out.");
+                        return RedirectToPage("./Lockout");
                     }
                     else
                     {
-                        return LocalRedirect(returnUrl);
+                        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                        return Page();
                     }
-                }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToPage("./Lockout");
                 }
                 else
                 {
