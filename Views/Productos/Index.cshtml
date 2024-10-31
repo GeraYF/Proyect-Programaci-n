@@ -17,6 +17,7 @@
 
         <form asp-action=@ViewData["Action"] method="post">
             <input type="hidden" asp-for="FormProducto.Id" />
+            <input type="hidden" asp-for="FormProducto.ImageURL" />
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Nombre></label>
                 <input asp-for=FormProducto.Nombre class="form-control" required />
@@ -71,6 +72,7 @@
                     <th>Fecha Lanzamiento</th>
                     <th>Status</th>
                     <th>Categoria</th>
+                    <th>Imagen</th>
                 </tr>
             </thead>
             <tbody>
@@ -83,6 +85,7 @@
                         <td>@Html.DisplayFor(modelItem => item.FechaLanzamiento)</td>
                         <td>@Html.DisplayFor(modelItem => item.Status)</td>
                         <td>@Html.DisplayFor(modelItem => item.Categoria.Nombre)</td>
+                        <td><img src="@item.ImageURL" alt="Imagen no encontrada" width="100" /></td>
                         <td>
                             <a asp-controller="Productos" asp-action="Delete" asp-route-id="@item.Id"
                                 class="btn btn-danger mb-3">Eliminar</a>

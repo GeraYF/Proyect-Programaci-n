@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace Trabajo_Final.Models
 {
+    [Table("t_compra")]
     public class Compra
     {
+        
         public int Id { get; set; }
-        public int UsuarioId { get; set; }
-        public DateTime FechaCompra { get; set; }
+        public long ClienteId { get; set; }
+        public DateTime FechaCompra { get; set; } = DateTime.UtcNow;
         public decimal Total { get; set; }
-        public List<DetalleCompra>? Detalles { get; set; } // Relación con los detalles
+       public IEnumerable<DetalleCompra> Detalles { get; set; } = new List<DetalleCompra>();
+
     }
 
 }

@@ -1,104 +1,75 @@
-@model Trabajo_Final.Models.Carrito;
+@model IEnumerable<Trabajo_Final.Models.Carrito>
 @{
     ViewData["Title"] = "Carrito";
 }
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>@ViewData["Carrito"]</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>@ViewData["Carrito"]</title>
 
     <!-- Bootstrap icons-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link rel="stylesheet" href="~/css/Carrito/site.css" asp-append-version="true" />
-
-    <style>
-        body {
-            font-family: sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top: 110px;
-            /* Espacio entre encabezado y contenido */
-            margin-bottom: 150px;
-            /* Espacio entre contenido y pie de página */
-        }
-
-        h2 {
-            margin-bottom: 20px;
-        }
-
-        p {
-            margin-bottom: 30px;
-        }
-
-        .button-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .start-shopping {
-            background-color: #2b47c2;
-            color: white;
-        }
-
-        .sign-in {
-            background-color: #c9bd13;
-            color: white;
-        }
-
-        .footer {
-            background-color: black;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .nav-link.active {
-            background-color: #007bff;
-            /* Color azul para el estado activo */
-            color: white;
-        }
-    </style>
+        <link rel="stylesheet" href="~/css/Carrito/site.css" asp-append-version="true" />
 </head>
 
 <body>
-    <!-- Contenido centrado -->
-    <div class="content">
-        <h2>No tienes ningun articulo en tu carrito.</h2>
-        <p>Ya creaste tu cuenta? Ingresa y observa tus articulos comprados</p>
-        <div class="button-container">
-            <button class="start-shopping" onclick="window.location.href='/Catalogo/Index'">Comienza a Comprar</button>
-            <button class="sign-in" onclick="window.location.href='/Login/Index'">Ingresa</button>
-        </div>
+    <div class="container">
+        <h2>Tu Carrito de Compras</h2>
+        @if (!Model.Any())
+        {
+            <div class="content">
+                <h2>No tienes ningun articulo en tu carrito.</h2>
+                <p>Ya creaste tu cuenta? Ingresa y observa tus articulos comprados</p>
+                <div class="button-container">
+                    <button class="start-shopping" onclick="window.location.href='/Catalogo/Index'">Comienza a Comprar</button>
+                    <button class="sign-in" onclick="window.location.href='/Login/Index'">Ingresa</button>
+                </div>
+            </div>
+        }
+        else
+        {
+            <form id="carritoForm" method="post" asp-action="EliminarProducto">  
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Total</th>
+                            <th>Eliminar</th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(item.Producto != null ? item.Producto.Nombre : "Producto no disponible")</td>
+                                <td>@item.Cantidad</td>
+                                <td>@item.Precio</td>
+                                <td>@(item.Cantidad * item.Precio)</td>
+                                <td>
+                                    <button type="submit" name="id" value="@item.Id">  <i class="bi bi-trash"></i>  </button>
+                                </td>  
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="text-end">
+                    <button class="btn btn-success">Proceder al Pago</button>
+                </div>
+            </form>  
+        }
     </div>
 
-    <!-- Pie de página 
-    <footer class="footer">
-        <p>Contacto: 999-896-854 | lun-vie: 8:30 hrs. - 19:00 hrs.</p>
-        <p>Email: atencionalcliente@infocom.com</p>
-        <p>© Infocom Technology 2024</p>
-    </footer>-->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/Carrito/site.js"asp-append-version="true"></script>
 </body>
