@@ -79,7 +79,11 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ver Detalles</a>
+                                <div class="text-center">
+                                    <a class="btn btn-outline-dark mt-auto" asp-controller="Productos" asp-action="Details"
+                                        asp-route-id="@item.Id">Ver Detalles</a>
+                                    <a class="btn btn-outline-dark mt-auto" asp-controller="Carrito" asp-action="Agregar"
+                                        asp-route-id="@item.Id">Agregar al Carrito</a>
                                 </div>
                             </div>
                         </div>
