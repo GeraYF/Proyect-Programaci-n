@@ -27,6 +27,9 @@ namespace Trabajo_Final.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
+
+        private readonly IUserPhoneNumberStore<IdentityUser> _phoneStore;
+
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
@@ -35,11 +38,13 @@ namespace Trabajo_Final.Areas.Identity.Pages.Account
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender
+            )
         {
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
+            _phoneStore = GetPhoneNumberStore();
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
@@ -75,6 +80,10 @@ namespace Trabajo_Final.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
+            [Display(Name = "Nombre de usuario")]
+            public string UserName { get; set; }
+            /// 
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -97,6 +106,11 @@ namespace Trabajo_Final.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Phone] // Validación para que sea un número de teléfono
+            [Display(Name = "Número de teléfono")]
+            public string PhoneNumber { get; set; }
         }
 
 
@@ -114,8 +128,9 @@ namespace Trabajo_Final.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                await _phoneStore.SetPhoneNumberAsync(user, Input.PhoneNumber, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
@@ -175,6 +190,14 @@ namespace Trabajo_Final.Areas.Identity.Pages.Account
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
             return (IUserEmailStore<IdentityUser>)_userStore;
+        }
+        private IUserPhoneNumberStore<IdentityUser> GetPhoneNumberStore()
+        {
+            if (!_userManager.SupportsUserPhoneNumber)
+            {
+                throw new NotSupportedException("The default UI requires a user store with email support.");
+            }
+            return (IUserPhoneNumberStore<IdentityUser>)_userStore;
         }
     }
 }

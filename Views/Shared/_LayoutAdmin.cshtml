@@ -1,0 +1,72 @@
+@using Microsoft.AspNetCore.Identity
+@using System.Collections.Generic;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Infocom Administrador";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/PaginaPrincipal/styles.css" asp-append-version="true" />
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark bg-black" id="mainNav">
+            <div class="container-fluid">
+                <!--Logo -->
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="IndexAdmin">INFOCOM</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    Perfil
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <!--Logeo y registro-->
+                    <div class=" d-flex mx-auto navbar-nav">
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black mb-3" id="categoryNav">
+            <div class="container-fluid">
+
+                <button class="navbar-toggler mb-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#categoriesToggle" aria-controls="categoriesToggle" aria-expanded="false"
+                    aria-label="Toggle categories">
+                    Navega
+                    <i class="fas fa-list ms-1"></i> <!-- Ícono para las categorías -->
+                </button>
+                <div class="collapse navbar-collapse" id="categoriesToggle">
+                    <ul class="nav nav-pills justify-content-center w-100">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" asp-controller="Home"
+                                asp-action="IndexAdmin">Administradores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="AccionesAdmin" asp-action="IndexUsuario">Usuarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Productos" asp-action="Index">Agregar
+                                Producto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    @RenderBody()
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
