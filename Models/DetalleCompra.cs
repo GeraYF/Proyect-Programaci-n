@@ -14,6 +14,10 @@ namespace Trabajo_Final.Models
         public int ProductoId { get; set; }
         public int Cantidad { get; set; }
         public decimal Precio { get; set; }
+        
+        public Compra? Compra { get; set; } 
+        
+        public Producto? Producto { get; set;}
     }
 
 }
