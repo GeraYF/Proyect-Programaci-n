@@ -1,0 +1,59 @@
+@model IEnumerable<Trabajo_Final.Models.Compra>
+@using Trabajo_Final.Models
+
+@{
+    ViewBag.Title = "Historial de Compra";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Historial de Compra</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var compra in Model) // Itera sobre las compras
+            {
+                foreach (var detalle in compra.Detalles) // Itera sobre los detalles de cada compra
+                {
+                    <tr>
+                        <td>
+                            @if (detalle.Producto != null) 
+                            {
+                                @detalle.Producto.Nombre // Accede al nombre del producto
+                            }
+                            else 
+                            {
+                                <span class="text-danger">Producto no disponible</span> // Mensaje cuando el producto es nulo
+                            }
+                        </td>
+                        <td>@detalle.Cantidad</td> // Accede a la cantidad
+                        <td>@detalle.Precio.ToString("C")</td> // Formatea el precio
+                        <td>@(detalle.Cantidad * detalle.Precio).ToString("C")</td> // Calcula el total
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    /* Estilos adicionales */
+    .table th, .table td {
+        text-align: center; /* Centra el contenido de la tabla */
+    }
+
+    .text-danger {
+        font-weight: bold; /* Hace que el texto de error sea más prominente */
+    }
+
+    h2 {
+        color: rgb(209, 156, 9); /* Color azul para el título */
+    }
+</style>
