@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Trabajo_Final.Models;
 namespace Trabajo_Final.Data;
 
- public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
+public class ApplicationDbContext : IdentityDbContext
+{
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
@@ -19,9 +19,9 @@ namespace Trabajo_Final.Data;
     public DbSet<Trabajo_Final.Models.Carrito> DataCarrito { get; set; }
     public DbSet<Trabajo_Final.Models.Compra> DataCompra { get; set; }
     public DbSet<Trabajo_Final.Models.DetalleCompra> DataDetalleCompra { get; set; }
-    
 
-   protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Compra>()
