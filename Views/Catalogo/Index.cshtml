@@ -38,8 +38,12 @@
                         </ul>
                     </li>
                 </ul>
+                <form class="d-flex" method="get" asp-action="Index">
+                    <input class="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Search" name="searchString">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
                 <form class="d-flex">
-                    <button class="btn btn-outline-dark" type="submit" 
+                    <button class="btn btn-outline-dark" type="submit"
                         onclick="window.location.href='/view/Catalogo/carrito'">
                         <i class="bi-cart-fill me-1"></i>
                         Carrito
@@ -79,7 +83,9 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ver Detalles</a>
+                                <div class="text-center">
+                                    <a class="btn btn-outline-dark mt-auto" href="#">Ver Detalles</a>
+                                    <a class="btn btn-outline-dark mt-auto" asp-controller="Carrito" asp-action="Agregar" asp-route-id="@item.Id">Agregar al Carrito</a>
                                 </div>
                             </div>
                         </div>
