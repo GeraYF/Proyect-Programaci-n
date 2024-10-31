@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Trabajo_Final.Models
 {
+    [Table("t_detalleCompra")]
     public class DetalleCompra
     {
         public int Id { get; set; }
