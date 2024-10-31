@@ -34,7 +34,8 @@
         }
         else
         {
-            <form id="carritoForm" method="post">  <table class="table table-bordered">
+            <form id="carritoForm" method="post" asp-action="EliminarProducto">  
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Producto</th>
@@ -53,15 +54,17 @@
                                 <td>@item.Precio</td>
                                 <td>@(item.Cantidad * item.Precio)</td>
                                 <td>
-                                    <button type="submit" name="eliminarProducto" value="@item.Id">  <i class="bi bi-trash"></i>  </button>
-                                </td>  </tr>
+                                    <button type="submit" name="id" value="@item.Id">  <i class="bi bi-trash"></i>  </button>
+                                </td>  
+                            </tr>
                         }
                     </tbody>
                 </table>
                 <div class="text-end">
                     <button class="btn btn-success">Proceder al Pago</button>
                 </div>
-            </form>  }
+            </form>  
+        }
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

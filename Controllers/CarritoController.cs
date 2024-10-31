@@ -21,8 +21,7 @@ namespace Trabajo_Final.Controllers
 
         }
 
-        public IActionResult 
- Index(string mensaje)
+        public IActionResult Index(string mensaje)
         {
             var carritoItems = _context.DataCarrito
                 .Where(c => c.UserName == User.Identity.Name)
@@ -51,7 +50,25 @@ namespace Trabajo_Final.Controllers
             {
                 return NotFound();
             }
-            
+        }
+
+        public IActionResult Agregar(long id)
+        {
+            var producto = _context.DataProducto.Find(id);
+            if (producto != null)
+            {
+                var carritoItem = new Carrito
+                {
+                    UserName = User.Identity.Name,
+                    Producto = producto,
+                    Cantidad = 1,
+                    Precio = producto.Precio
+                };
+                _context.DataCarrito.Add(carritoItem);
+                _context.SaveChanges();
+                return RedirectToAction("Index", new { mensaje = "Producto agregado correctamente" });
+            }
+            return NotFound();
         }
     }
 }
