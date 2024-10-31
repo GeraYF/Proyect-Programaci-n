@@ -13,7 +13,7 @@ namespace Trabajo_Final.Models
         public int UsuarioId { get; set; }
         public DateTime FechaCompra { get; set; }
         public decimal Total { get; set; }
-        public List<DetalleCompra>? Detalles { get; set; } // Relación con los detalles
+        public List<DetalleCompra> Detalles { get; set; } = new List<DetalleCompra>(); // Relación con los detalles
     }
 
 }

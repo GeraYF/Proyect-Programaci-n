@@ -19,5 +19,7 @@ namespace Trabajo_Final.Models
         public string? Status { get; set; }
         public string? ImageURL { get; set; }
         public Categoria? Categoria { get; set; }
+
+        
     }
 }
