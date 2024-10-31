@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Trabajo_Final.Data;
 using Trabajo_Final.Models;
 
@@ -12,47 +13,45 @@ namespace Trabajo_Final.Controllers
 {
     public class CarritoController : Controller
     {
-        private readonly ILogger<CarritoController> _logger;
         private readonly ApplicationDbContext _context;
 
-        public CarritoController(ILogger<CarritoController> logger, ApplicationDbContext context)
+        public CarritoController(ApplicationDbContext context)
         {
-            _logger = logger;
-            _context = context;
+            _context = context; 
+
         }
 
-        public IActionResult Index()
+        public IActionResult 
+ Index(string mensaje)
         {
-            var carritoItems = _context.DataCarrito.Where(c => c.UserName == User.Identity.Name).ToList();
+            var carritoItems = _context.DataCarrito
+                .Where(c => c.UserName == User.Identity.Name)
+                .ToList();
+
+            ViewBag.Mensaje = mensaje; // Mostrar mensaje de éxito o error
+
             return View(carritoItems);
         }
 
-        public IActionResult Agregar(long id)
+        [HttpPost]
+        public IActionResult EliminarProducto(int id)
         {
-            var producto = _context.DataProducto.Find(id);
-            if (producto == null)
+            // Encuentra el elemento del carrito por ID y verifica que pertenezca al usuario actual
+            var carritoItem = _context.DataCarrito
+                .FirstOrDefault(c => c.Id == id && c.UserName == User.Identity.Name);
+
+            if (carritoItem != null)
+            {
+                _context.DataCarrito.Remove(carritoItem);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index", new { mensaje = "Producto eliminado correctamente" });
+            }
+            else
             {
                 return NotFound();
             }
-
-            var carrito = new Carrito
-            {
-                Producto = producto,
-                Cantidad = 1,
-                Precio = producto.Precio,
-                UserName = User.Identity.Name // Assuming user is logged in
-            };
-
-            _context.DataCarrito.Add(carrito);
-            _context.SaveChanges();
-
-            return RedirectToAction("Index", "Catalogo");
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View("Error!");
+            
         }
     }
 }
