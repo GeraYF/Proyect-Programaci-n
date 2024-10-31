@@ -2,18 +2,21 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Trabajo_Final.Data;
 
 #nullable disable
 
-namespace Trabajo_Final.Data.Migrations
+namespace Trabajo_Final.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241031035432_InitialCreateCompraDetalleCompra")]
+    partial class InitialCreateCompraDetalleCompra
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -297,28 +300,6 @@ namespace Trabajo_Final.Data.Migrations
                     b.ToTable("t_cliente");
                 });
 
-            modelBuilder.Entity("Trabajo_Final.Models.Compra", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("FechaCompra")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("numeric");
-
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("t_compra");
-                });
-
             modelBuilder.Entity("Trabajo_Final.Models.Contacto", b =>
                 {
                     b.Property<long>("Id")
@@ -342,33 +323,6 @@ namespace Trabajo_Final.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("t_contacto");
-                });
-
-            modelBuilder.Entity("Trabajo_Final.Models.DetalleCompra", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Cantidad")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("CompraId")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal>("Precio")
-                        .HasColumnType("numeric");
-
-                    b.Property<int>("ProductoId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompraId");
-
-                    b.ToTable("t_detalleCompra");
                 });
 
             modelBuilder.Entity("Trabajo_Final.Models.Producto", b =>
@@ -470,15 +424,6 @@ namespace Trabajo_Final.Data.Migrations
                     b.Navigation("Producto");
                 });
 
-            modelBuilder.Entity("Trabajo_Final.Models.DetalleCompra", b =>
-                {
-                    b.HasOne("Trabajo_Final.Models.Compra", null)
-                        .WithMany("Detalles")
-                        .HasForeignKey("CompraId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Trabajo_Final.Models.Producto", b =>
                 {
                     b.HasOne("Trabajo_Final.Models.Categoria", "Categoria")
@@ -486,11 +431,6 @@ namespace Trabajo_Final.Data.Migrations
                         .HasForeignKey("CategoriaId");
 
                     b.Navigation("Categoria");
-                });
-
-            modelBuilder.Entity("Trabajo_Final.Models.Compra", b =>
-                {
-                    b.Navigation("Detalles");
                 });
 #pragma warning restore 612, 618
         }
