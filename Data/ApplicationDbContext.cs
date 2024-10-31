@@ -19,8 +19,7 @@ namespace Trabajo_Final.Data;
     public DbSet<Trabajo_Final.Models.Carrito> DataCarrito { get; set; }
     public DbSet<Trabajo_Final.Models.Compra> DataCompra { get; set; }
     public DbSet<Trabajo_Final.Models.DetalleCompra> DataDetalleCompra { get; set; }
-    public DbSet<Trabajo_Final.Models.DetalleCompra> DataDetalleCompra { get; set; }
-
+    
 
    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
