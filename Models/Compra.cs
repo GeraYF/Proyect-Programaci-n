@@ -10,10 +10,11 @@ namespace Trabajo_Final.Models
     public class Compra
     {
         public int Id { get; set; }
-        public int UsuarioId { get; set; }
+        public long ClienteId { get; set; }
         public DateTime FechaCompra { get; set; }
         public decimal Total { get; set; }
-        public List<DetalleCompra>? Detalles { get; set; } // Relación con los detalles
+       public IEnumerable<DetalleCompra> Detalles { get; set; } = new List<DetalleCompra>();
+
     }
 
 }
