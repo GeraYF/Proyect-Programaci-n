@@ -21,10 +21,16 @@ namespace Trabajo_Final.Controllers
             _context = context;
         }
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
             var productos = from o in _context.DataProducto select o;
             var categorias = from o in _context.DataCategoria select o;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                productos = productos.Where(s => s.Nombre.Contains(searchString));
+            }
+
             var viewModel = new CatalogoViewModel
             {
                 ListCategoria = categorias,
