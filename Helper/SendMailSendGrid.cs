@@ -16,7 +16,6 @@ namespace Trabajo_Final.Helper
 
         public async Task EnviarCorreoAsync(Contacto contacto, string msj)
         {
-            Console.WriteLine($"KEY:{_apiKey}");
             var client = new SendGridClient(_apiKey);
             var from = new EmailAddress("infocomtechnologysoport@gmail.com", "Infocom Technology Soporte");
             var to = new EmailAddress(contacto.Email);
