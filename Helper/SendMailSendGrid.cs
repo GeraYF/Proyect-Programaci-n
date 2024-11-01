@@ -10,7 +10,7 @@ namespace Trabajo_Final.Helper
 {
     public class SendMailSendGrid
     {
-        private readonly string _apiKey = Environment.GetEnvironmentVariable("SENDGRID_KEY");
+        private readonly string _apiKey = Environment.GetEnvironmentVariable("KEY_SENDGRID");
 
         // Reemplaza con tu API Key
 
