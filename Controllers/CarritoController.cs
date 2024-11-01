@@ -39,7 +39,7 @@ namespace Trabajo_Final.Controllers
                 _context.DataCarrito.Remove(carritoItem);
                 _context.SaveChanges();
 
-                return RedirectToAction("Index", new { mensaje = "Producto eliminado correctamente" });
+                return RedirectToAction("Index", new { mensaje = "Producto eliminado correctamente." });
             }
 
             return NotFound();
@@ -81,6 +81,21 @@ namespace Trabajo_Final.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index", new { mensaje = "Producto agregado correctamente." });
+        }
+
+        public IActionResult ProcederAlPago()
+        {
+            // Puedes agregar lógica aquí para validar que hay productos en el carrito
+            var carritoItems = _context.DataCarrito
+                .Where(c => c.UserName == User.Identity.Name)
+                .ToList();
+
+            if (!carritoItems.Any())
+            {
+                return RedirectToAction("Index", new { mensaje = "No hay productos en el carrito para proceder al pago." });
+            }
+
+            return RedirectToAction("Index", "Pago"); // Asegúrate de que "Pago" es el nombre correcto de tu controlador de pago
         }
     }
 }
