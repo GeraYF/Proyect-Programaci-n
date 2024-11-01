@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Diagnostics;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Trabajo_Final.Data;
@@ -17,17 +13,17 @@ namespace Trabajo_Final.Controllers
 
         public CarritoController(ApplicationDbContext context)
         {
-            _context = context; 
-
+            _context = context;
         }
 
         public IActionResult Index(string mensaje)
         {
             var carritoItems = _context.DataCarrito
                 .Where(c => c.UserName == User.Identity.Name)
+                .Include(c => c.Producto)  // Asegura que se cargue el producto asociado
                 .ToList();
 
-            ViewBag.Mensaje = mensaje; // Mostrar mensaje de éxito o error
+            ViewBag.Mensaje = mensaje;
 
             return View(carritoItems);
         }
@@ -35,7 +31,6 @@ namespace Trabajo_Final.Controllers
         [HttpPost]
         public IActionResult EliminarProducto(int id)
         {
-            // Encuentra el elemento del carrito por ID y verifica que pertenezca al usuario actual
             var carritoItem = _context.DataCarrito
                 .FirstOrDefault(c => c.Id == id && c.UserName == User.Identity.Name);
 
@@ -44,18 +39,34 @@ namespace Trabajo_Final.Controllers
                 _context.DataCarrito.Remove(carritoItem);
                 _context.SaveChanges();
 
-                return RedirectToAction("Index", new { mensaje = "Producto eliminado correctamente" });
+                return RedirectToAction("Index", new { mensaje = "Producto eliminado correctamente." });
             }
-            else
-            {
-                return NotFound();
-            }
+
+            return NotFound();
         }
 
-        public IActionResult Agregar(long id)
+        public async Task<IActionResult> Agregar(long id)
         {
-            var producto = _context.DataProducto.Find(id);
-            if (producto != null)
+            if (id <= 0)
+            {
+                return BadRequest("ID de producto no válido.");
+            }
+
+            var producto = await _context.DataProducto.FindAsync(id);
+            if (producto == null)
+            {
+                return NotFound("Producto no encontrado.");
+            }
+
+            var carritoItemExistente = await _context.DataCarrito
+                .FirstOrDefaultAsync(c => c.Producto.Id == producto.Id && c.UserName == User.Identity.Name);
+
+            if (carritoItemExistente != null)
+            {
+                carritoItemExistente.Cantidad += 1;
+                _context.DataCarrito.Update(carritoItemExistente);
+            }
+            else
             {
                 var carritoItem = new Carrito
                 {
@@ -64,11 +75,27 @@ namespace Trabajo_Final.Controllers
                     Cantidad = 1,
                     Precio = producto.Precio
                 };
-                _context.DataCarrito.Add(carritoItem);
-                _context.SaveChanges();
-                return RedirectToAction("Index", new { mensaje = "Producto agregado correctamente" });
+                await _context.DataCarrito.AddAsync(carritoItem);
             }
-            return NotFound();
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index", new { mensaje = "Producto agregado correctamente." });
+        }
+
+        public IActionResult ProcederAlPago()
+        {
+            // Puedes agregar lógica aquí para validar que hay productos en el carrito
+            var carritoItems = _context.DataCarrito
+                .Where(c => c.UserName == User.Identity.Name)
+                .ToList();
+
+            if (!carritoItems.Any())
+            {
+                return RedirectToAction("Index", new { mensaje = "No hay productos en el carrito para proceder al pago." });
+            }
+
+            return RedirectToAction("Index", "Pago"); // Asegúrate de que "Pago" es el nombre correcto de tu controlador de pago
         }
     }
 }
