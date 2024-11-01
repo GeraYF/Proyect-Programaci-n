@@ -39,9 +39,6 @@ namespace Trabajo_Final.Controllers
             var sortedScoresWithLabel = MLModelSentimentAnalysis.PredictAllLabels(sampleData);
             var scoreValueFirst = sortedScoresWithLabel.ToList()[0].Value;
             var scoreKeyFirst = sortedScoresWithLabel.ToList()[0].Key;
-            var scoreValueSecond = sortedScoresWithLabel.ToList()[0].Value;
-            var scoreKeySecond = sortedScoresWithLabel.ToList()[0].Key;
-            Console.WriteLine($"{scoreKeyFirst,-40}{scoreValueFirst,-20}");
             string msj = "nulo";
             if (scoreKeyFirst == "0")
             {
@@ -66,21 +63,12 @@ namespace Trabajo_Final.Controllers
                 }
             }
             Console.WriteLine("Resultado: " + msj);
-
-
-            /*foreach (var score in sortedScoresWithLabel)
-            {
-                Console.WriteLine($"{score.Key,-40}{score.Value,-20}");
-            }*/
-            /*MLModelSentimentAnalysis.ModelOutput output = MLModelSentimentAnalysis.Predict(sampleData);
-            Console.WriteLine($"{output.Label}{output.PredictedLabel}");*/
-
-
-            /*_context.Add(contacto);
-            _context.SaveChanges();*/
+            _context.Add(contacto);
+            _context.SaveChanges();
             TempData["Confirm"] = true;
-            /*var emailService2 = new SendMailSendGrid();
-            await emailService2.EnviarCorreoAsync(contacto.Nombre, contacto.Email, "Atención Infocom Technology", contacto.Message);*/
+            var emailService2 = new SendMailSendGrid();
+            /*await emailService2.EnviarCorreoAsync(contacto.Nombre, contacto.Email, "Atención Infocom Technology", contacto.Message);*/
+            await emailService2.EnviarCorreoAsync(contacto, msj);
             return RedirectToAction("Index", "Home");
         }
 
