@@ -37,19 +37,24 @@ namespace Trabajo_Final.Controllers
                 Comentario = contacto.Message
             };
             var sortedScoresWithLabel = MLModelSentimentAnalysis.PredictAllLabels(sampleData);
-            foreach (var score in sortedScoresWithLabel)
+            var scoreValue = sortedScoresWithLabel.ToList()[0].Value;
+            var scoreKey = sortedScoresWithLabel.ToList()[0].Key;
+            Console.WriteLine($"{scoreKey,-40}{scoreValue,-20}");
+
+
+            /*foreach (var score in sortedScoresWithLabel)
             {
                 Console.WriteLine($"{score.Key,-40}{score.Value,-20}");
-            }
-            MLModelSentimentAnalysis.ModelOutput output = MLModelSentimentAnalysis.Predict(sampleData);
-            Console.WriteLine($"{output.Label}{output.PredictedLabel}");
-            output.Score.ToList().ForEach(score => Console.WriteLine(score));
+            }*/
+            /*MLModelSentimentAnalysis.ModelOutput output = MLModelSentimentAnalysis.Predict(sampleData);
+            Console.WriteLine($"{output.Label}{output.PredictedLabel}");*/
 
-            _context.Add(contacto);
-            _context.SaveChanges();
+
+            /*_context.Add(contacto);
+            _context.SaveChanges();*/
             TempData["Confirm"] = true;
-            var emailService2 = new SendMailSendGrid();
-            await emailService2.EnviarCorreoAsync(contacto.Nombre, contacto.Email, "Atención Infocom Technology", contacto.Message);
+            /*var emailService2 = new SendMailSendGrid();
+            await emailService2.EnviarCorreoAsync(contacto.Nombre, contacto.Email, "Atención Infocom Technology", contacto.Message);*/
             return RedirectToAction("Index", "Home");
         }
 
