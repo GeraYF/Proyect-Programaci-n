@@ -20,6 +20,7 @@ namespace Trabajo_Final.Controllers
             _logger = logger;
             _context = context;
         }
+
         [HttpGet]
         public IActionResult Index(string searchString)
         {
