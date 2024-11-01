@@ -58,7 +58,7 @@
                                     </div>
                                 </td>
                                 <td>@item.Precio.ToString("C")</td>
-                                <td id="total-@item.Id">@(item.Cantidad * item.Precio).ToString("C")</td>
+                                <td id="total-@item.Id" data-precio="@item.Precio">@((item.Cantidad * item.Precio).ToString("C"))</td>
                                 <td>
                                     <button type="submit" name="id" value="@item.Id" class="btn btn-sm btn-danger">
                                         <i class="bi bi-trash"></i>
