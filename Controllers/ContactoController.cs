@@ -37,9 +37,35 @@ namespace Trabajo_Final.Controllers
                 Comentario = contacto.Message
             };
             var sortedScoresWithLabel = MLModelSentimentAnalysis.PredictAllLabels(sampleData);
-            var scoreValue = sortedScoresWithLabel.ToList()[0].Value;
-            var scoreKey = sortedScoresWithLabel.ToList()[0].Key;
-            Console.WriteLine($"{scoreKey,-40}{scoreValue,-20}");
+            var scoreValueFirst = sortedScoresWithLabel.ToList()[0].Value;
+            var scoreKeyFirst = sortedScoresWithLabel.ToList()[0].Key;
+            var scoreValueSecond = sortedScoresWithLabel.ToList()[0].Value;
+            var scoreKeySecond = sortedScoresWithLabel.ToList()[0].Key;
+            Console.WriteLine($"{scoreKeyFirst,-40}{scoreValueFirst,-20}");
+            string msj = "nulo";
+            if (scoreKeyFirst == "0")
+            {
+                if (scoreValueFirst > 0.5)
+                {
+                    msj = "Positivo";
+                }
+                else
+                {
+                    msj = "Negativo";
+                }
+            }
+            else
+            {
+                if (scoreValueFirst > 0.5)
+                {
+                    msj = "Negativo";
+                }
+                else
+                {
+                    msj = "Positivo";
+                }
+            }
+            Console.WriteLine("Resultado: " + msj);
 
 
             /*foreach (var score in sortedScoresWithLabel)
