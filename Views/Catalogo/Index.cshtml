@@ -38,6 +38,10 @@
                         </ul>
                     </li>
                 </ul>
+                <form class="d-flex" method="get" asp-controller="Catalogo" asp-action="Index">
+                    <input class="form-control me-2" type="search" name="searchString" placeholder="Buscar productos" aria-label="Search">
+                    <button class="btn btn-outline-dark" type="submit">Buscar</button>
+                </form>
                 <form class="d-flex">
                     <button class="btn btn-outline-dark" type="submit"
                         onclick="window.location.href='/view/Catalogo/carrito'">
