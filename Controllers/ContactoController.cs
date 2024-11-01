@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Trabajo_Final.Data;
 using Trabajo_Final.Helper;
 using Trabajo_Final.Models;
+using SentimentAnalysis;
 
 namespace Trabajo_Final.Controllers
 {
@@ -30,6 +31,20 @@ namespace Trabajo_Final.Controllers
         public async Task<IActionResult> Enviar(Contacto contacto)
         {
             _logger.LogDebug("Ingreso a enviar mensaje");
+
+            MLModelSentimentAnalysis.ModelInput sampleData = new MLModelSentimentAnalysis.ModelInput()
+            {
+                Comentario = contacto.Message
+            };
+            var sortedScoresWithLabel = MLModelSentimentAnalysis.PredictAllLabels(sampleData);
+            foreach (var score in sortedScoresWithLabel)
+            {
+                Console.WriteLine($"{score.Key,-40}{score.Value,-20}");
+            }
+            MLModelSentimentAnalysis.ModelOutput output = MLModelSentimentAnalysis.Predict(sampleData);
+            Console.WriteLine($"{output.Label}{output.PredictedLabel}");
+            output.Score.ToList().ForEach(score => Console.WriteLine(score));
+
             _context.Add(contacto);
             _context.SaveChanges();
             TempData["Confirm"] = true;
