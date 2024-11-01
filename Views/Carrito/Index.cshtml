@@ -19,26 +19,27 @@
 </head>
 
 <body>
-    <div class="container">
-        <h2>Tu Carrito de Compras</h2>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Tu Carrito de Compras</h2>
         @if (!Model.Any())
         {
-            <div class="content">
+            <div class="content text-center">
                 <h2>No tienes ningún artículo en tu carrito.</h2>
                 <p>¿Ya creaste tu cuenta? Ingresa y observa tus artículos comprados.</p>
-                <div class="button-container">
-                    <button class="start-shopping" onclick="window.location.href='/Catalogo/Index'">Comienza a Comprar</button>
-                    <button class="sign-in" onclick="window.location.href='/Login/Index'">Ingresa</button>
+                <div class="button-container mt-4">
+                    <button class="btn btn-primary me-2" onclick="window.location.href='/Catalogo/Index'">Comienza a Comprar</button>
+                    <button class="btn btn-secondary" onclick="window.location.href='/Login/Index'">Ingresa</button>
                 </div>
             </div>
         }
         else
         {
             <form id="carritoForm" method="post" asp-action="EliminarProducto">
-                <table class="table table-bordered">
-                    <thead>
+                <table class="table table-bordered table-hover text-center">
+                    <thead class="table-dark">
                         <tr>
-                            <th>Producto</th>
+                            <th class="text-start">Producto</th>
+                            <th>Imagen</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
                             <th>Total</th>
@@ -49,12 +50,15 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@(item.Producto != null ? item.Producto.Nombre : "Producto no disponible")</td>
+                                <td class="text-start">@(item.Producto != null ? item.Producto.Nombre : "Producto no disponible")</td>
+                                <td class="text-center">
+                                    <img src="@item.Producto.ImageURL" alt="Imagen no encontrada" width="50" />
+                                </td>
                                 <td>
-                                    <div class="quantity-controls">
-                                        <button type="button" class="btn btn-sm btn-warning" onclick="decreaseQuantity(@item.Id)">-</button>
-                                        <input type="number" id="cantidad-@item.Id" name="Cantidad" value="@item.Cantidad" min="1" readonly class="quantity-input" style="width: 50px; text-align: center;" />
-                                        <button type="button" class="btn btn-sm btn-success" onclick="increaseQuantity(@item.Id)">+</button>
+                                    <div class="quantity-controls d-flex align-items-center justify-content-center">
+                                        <button type="button" class="btn btn-sm btn-warning me-2" onclick="decreaseQuantity(@item.Id)">-</button>
+                                        <input type="number" id="cantidad-@item.Id" name="Cantidad" value="@item.Cantidad" min="1" readonly class="quantity-input form-control text-center" style="width: 60px;" />
+                                        <button type="button" class="btn btn-sm btn-success ms-2" onclick="increaseQuantity(@item.Id)">+</button>
                                     </div>
                                 </td>
                                 <td>@item.Precio.ToString("C")</td>
@@ -68,7 +72,7 @@
                         }
                     </tbody>
                 </table>
-                <div class="text-end">
+                <div class="text-end mt-4">
                     <button class="btn btn-success" onclick="window.location.href='@Url.Action("ProcederAlPago", "Carrito")'; return false;">Proceder al Pago</button>
                 </div>
             </form>
@@ -107,3 +111,4 @@
         }
     </script>
 </body>
+</html>
