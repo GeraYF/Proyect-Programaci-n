@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Trabajo_Final.Data;
 using Trabajo_Final.Models;
+using Microsoft.AspNetCore.Authorization; // Add this using directive
 
 namespace Trabajo_Final.Controllers
 {
+    [Authorize] // Ensure the user is authenticated
     public class CarritoController : Controller
     {
         private readonly ApplicationDbContext _context;

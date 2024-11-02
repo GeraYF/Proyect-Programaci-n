@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Trabajo_Final.Data;
 using Trabajo_Final.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization; // Add this using directive
 
 namespace Trabajo_Final.Controllers
 {
@@ -23,7 +24,8 @@ namespace Trabajo_Final.Controllers
         }
 
         [HttpGet]
-      public async Task<IActionResult> Index(long? clienteId) // Mantener como long
+        [Authorize] // Ensure the user is authenticated
+        public async Task<IActionResult> Index(long? clienteId) // Mantener como long
         {
             if (clienteId == null)
             {
@@ -77,7 +79,6 @@ namespace Trabajo_Final.Controllers
                 await _context.SaveChangesAsync();
             }
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
