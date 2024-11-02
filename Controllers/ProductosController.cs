@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Trabajo_Final.Data;
 using Trabajo_Final.Models;
@@ -97,7 +98,24 @@ namespace Trabajo_Final.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Detalles(int id)
+        {
+            var producto = _context.DataProducto
+                .Include(p => p.Categoria)
+                .FirstOrDefault(p => p.Id == id);
 
+            if (producto == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new ProductoViewModel
+            {
+                FormProducto = producto
+            };
+
+            return View(viewModel);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

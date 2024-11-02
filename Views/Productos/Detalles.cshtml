@@ -1,0 +1,86 @@
+@model Trabajo_Final.ViewModel.ProductoViewModel
+@{
+    Layout = "_Layout"; // Cambiar a la barra de navegación de usuario
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 col-md-12 mb-4">
+            <div class="card shadow-sm">
+                <img src="@Model.FormProducto.ImageURL" alt="Imagen del Producto" class="card-img-top img-fluid rounded" />
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <h2 class="display-4">@Model.FormProducto.Nombre</h2>
+            <p class="lead">@Model.FormProducto.Description</p>
+            <ul class="list-group list-group-flush mb-3">
+                <li class="list-group-item"><strong>Precio:</strong> S/. @Model.FormProducto.Precio</li>
+                <li class="list-group-item"><strong>Fecha de Lanzamiento:</strong> @Model.FormProducto.FechaLanzamiento.ToShortDateString()</li>
+                <li class="list-group-item"><strong>Calificación:</strong> @Model.FormProducto.Calificacion</li>
+                <li class="list-group-item"><strong>Status:</strong> @Model.FormProducto.Status</li>
+                <li class="list-group-item"><strong>Categoría:</strong> @Model.FormProducto.Categoria.Nombre</li>
+            </ul>
+            <a href="@Url.Action("Index", "Catalogo")" class="btn btn-primary mt-3">Volver al listado</a>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="mb-4">Opiniones de los usuarios</h3>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Juan Pérez</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <span class="text-warning">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    </h6>
+                    <p class="card-text">¡Este producto es increíble! Superó todas mis expectativas.</p>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-outline-success btn-sm me-2">Útil</button>
+                        <button class="btn btn-outline-danger btn-sm">No útil</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">María López</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <span class="text-warning">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                    </h6>
+                    <p class="card-text">Muy buen producto, aunque podría mejorar en algunos aspectos.</p>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-outline-success btn-sm me-2">Útil</button>
+                        <button class="btn btn-outline-danger btn-sm">No útil</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Carlos García</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <span class="text-warning">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
+                    </h6>
+                    <p class="card-text">Es un producto decente, pero no es lo que esperaba.</p>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-outline-success btn-sm me-2">Útil</button>
+                        <button class="btn btn-outline-danger btn-sm">No útil</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="mb-4">Agregar un comentario</h3>
+            <form>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Tu nombre">
+                </div>
+                <div class="mb-3">
+                    <label for="comentario" class="form-label">Comentario</label>
+                    <textarea class="form-control" id="comentario" rows="3" placeholder="Tu comentario"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar comentario</button>
+            </form>
+        </div>
+    </div>
+</div>
