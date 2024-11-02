@@ -26,14 +26,14 @@ namespace Trabajo_Final.Controllers
 
         // POST: /Pago/ProcesarPago
         [HttpPost]
-        public async Task<IActionResult> ProcesarPago(string NombreCompleto, string CorreoElectronico, string Direccion, string Ciudad, string CodigoPostal, string NumeroTarjeta, string FechaExpiracion, string CVV)
+        public async Task<IActionResult> ProcesarPago(string NombreCompleto, string CorreoElectronico, string Direccion, string Ciudad, string CodigoPostal, string NumeroTarjeta, string FechaExpiracion, string CVV, string UserName)
         {
             // Aquí manejarías la lógica para procesar el pago
             // Por ahora, solo redirigimos a una vista de confirmación o a una página de éxito
 
             // Clear the cart after payment is processed
             var carritoItems = await _context.DataCarrito
-                .Where(c => c.UserName == User.Identity.Name)
+                .Where(c => c.UserName == UserName)
                 .ToListAsync();
             _context.DataCarrito.RemoveRange(carritoItems);
             await _context.SaveChangesAsync();

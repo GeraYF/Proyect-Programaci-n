@@ -14,6 +14,8 @@
                 <input type="text" class="form-control" id="NombreCompleto" name="NombreCompleto" required />
             </div>
         </div>
+        <!-- Add hidden input for UserName -->
+        <input type="hidden" name="UserName" value="@User.Identity.Name" />
 
         <div class="row mb-3">
             <label for="CorreoElectronico" class="col-sm-2 col-form-label">Correo Electrónico</label>
