@@ -16,26 +16,55 @@
 
     <!-- Core theme CSS (includes Bootstrap)-->
     <link rel="stylesheet" href="~/css/Carrito/site.css" asp-append-version="true" />
+
+    <style>
+        .cart-container {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .cart-header {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .cart-table th, .cart-table td {
+            vertical-align: middle;
+        }
+        .quantity-controls button {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        .total-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .btn-proceed {
+            font-size: 1.1rem;
+            padding: 10px 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container mt-5">
-        <h2 class="text-center mb-4">Tu Carrito de Compras</h2>
+    <div class="container mt-5 cart-container">
+        <h2 class="text-center mb-4 cart-header">Tu Carrito de Compras</h2>
         @if (!Model.Any())
         {
             <div class="content text-center">
                 <h2>No tienes ningún artículo en tu carrito.</h2>
-                <p>¿Ya creaste tu cuenta? Ingresa y observa tus artículos comprados.</p>
+                <p>Realiza tu primera compra en nuestro Catalogo</p>
                 <div class="button-container mt-4">
                     <button class="btn btn-primary me-2" onclick="window.location.href='/Catalogo/Index'">Comienza a Comprar</button>
-                    <button class="btn btn-secondary" onclick="window.location.href='/Login/Index'">Ingresa</button>
                 </div>
             </div>
         }
         else
         {
             <form id="carritoForm" method="post" asp-action="EliminarProducto">
-                <table class="table table-bordered table-hover text-center">
+                <table class="table table-bordered table-hover text-center cart-table">
                     <thead class="table-dark">
                         <tr>
                             <th class="text-start">Producto</th>
@@ -62,7 +91,7 @@
                                     </div>
                                 </td>
                                 <td>@item.Precio.ToString("C")</td>
-                                <td id="total-@item.Id" data-precio="@item.Precio">@((item.Cantidad * item.Precio).ToString("C"))</td>
+                                <td id="total-@item.Id" data-precio="@item.Precio" class="total-price">@((item.Cantidad * item.Precio).ToString("C"))</td>
                                 <td>
                                     <button type="submit" name="id" value="@item.Id" class="btn btn-sm btn-danger">
                                         <i class="bi bi-trash"></i>
@@ -73,7 +102,7 @@
                     </tbody>
                 </table>
                 <div class="text-end mt-4">
-                    <button class="btn btn-success" onclick="window.location.href='@Url.Action("ProcederAlPago", "Carrito")'; return false;">Proceder al Pago</button>
+                    <button class="btn btn-success btn-proceed" onclick="window.location.href='@Url.Action("ProcederAlPago", "Carrito")'; return false;">Proceder al Pago</button>
                 </div>
             </form>
         }
