@@ -12,35 +12,43 @@
             <h2 class="text-center mb-4">Novedades</h2>
             <div id="carouselExampleCaptions" class="carousel slide mb-5" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://leasein.pe/wp-content/uploads/2023/01/Ttendencias-laptop-2023.webp" class="d-block w-100" alt="Accesorios Tecnológicos 1">
+                        <img src="https://leasein.pe/wp-content/uploads/2023/01/Ttendencias-laptop-2023.webp"
+                            class="d-block w-100" alt="Accesorios Tecnológicos 1">
                         <div class="carousel-caption d-none d-md-block">
                             <p>Encuentra lo último en tecnología.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="https://image.made-in-china.com/202f0j00ECQVsrKkItfG/M41-Tws-Bt-5-3-Earphones-Touch-Control-HiFi-Bass-Music-Headsets-Gaming-in-Ear-Wireless-Earbuds.webp" class="d-block w-100" alt="Accesorios Tecnológicos 2">
+                        <img src="https://image.made-in-china.com/202f0j00ECQVsrKkItfG/M41-Tws-Bt-5-3-Earphones-Touch-Control-HiFi-Bass-Music-Headsets-Gaming-in-Ear-Wireless-Earbuds.webp"
+                            class="d-block w-100" alt="Accesorios Tecnológicos 2">
                         <div class="carousel-caption d-none d-md-block">
                             <p>Mejora tu experiencia con los mejores gadgets.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="https://i.ytimg.com/vi/TNdbHpWgrI4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAwLE1QARq2iCM9NTUmSMFmUqwWEg" class="d-block w-100" alt="Accesorios Tecnológicos 3">
+                        <img src="https://i.ytimg.com/vi/TNdbHpWgrI4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAwLE1QARq2iCM9NTUmSMFmUqwWEg"
+                            class="d-block w-100" alt="Accesorios Tecnológicos 3">
                         <div class="carousel-caption d-none d-md-block">
                             <p>Disfruta de la mejor calidad de sonido.</p>
                         </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Anterior</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Siguiente</span>
                 </button>
@@ -68,22 +76,23 @@
                             {
                                 <tr>
                                     <td>
-                                        @if (detalle.Producto != null) 
+                                        @if (detalle.Producto != null)
                                         {
                                             @detalle.Producto.Nombre
                                         }
-                                        else 
+                                        else
                                         {
                                             <span class="text-danger">Producto no disponible</span>
                                         }
                                     </td>
                                     <td>@detalle.Cantidad</td>
-                                    <td>@detalle.Precio.ToString("C")</td>
+                                    <td>@detalle.Precio</td>
                                     <td>@(detalle.Cantidad * detalle.Precio).ToString("C")</td>
                                 </tr>
                                 <tr>
                                     <td colspan="4" class="text-center">
-                                        <a href="/Compra/Detalle/@compra.Id" class="text-primary" style="text-decoration: underline;">Ver más detalles</a>
+                                        <a href="/Compra/Detalle/@compra.Id" class="text-primary"
+                                            style="text-decoration: underline;">Ver más detalles</a>
                                     </td>
                                 </tr>
                             }
@@ -91,7 +100,7 @@
                     </tbody>
                 </table>
             </div>
-            
+
             <!-- Paginación -->
             <nav aria-label="Page navigation" class="d-flex justify-content-center my-4">
                 <ul class="pagination">
@@ -119,7 +128,8 @@
     }
 
     /* Tabla */
-    .table th, .table td {
+    .table th,
+    .table td {
         text-align: center;
         vertical-align: middle;
     }
