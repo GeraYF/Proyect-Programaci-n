@@ -10,7 +10,6 @@ namespace Trabajo_Final.Models
         [ForeignKey("CompraId")]
         public Compra Compra { get; set; }
         public int ProductoId { get; set; }
-        [ForeignKey("ProductoId")]
         public Producto Producto { get; set; }
         public int Cantidad { get; set; }
         public decimal PrecioUnitario { get; set; }

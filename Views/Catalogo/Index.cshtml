@@ -39,22 +39,15 @@
                     </li>
                 </ul>
                 <form class="d-flex" method="get" asp-controller="Catalogo" asp-action="Index">
-                    <input class="form-control me-2" type="search" name="searchString" placeholder="Buscar productos" aria-label="Search">
+                    <input class="form-control me-2" type="search" name="searchString" placeholder="Buscar productos"
+                        aria-label="Search">
                     <button class="btn btn-outline-dark" type="submit">Buscar</button>
-                </form>
-                <form class="d-flex">
-                    <button class="btn btn-outline-dark" type="submit"
-                        onclick="window.location.href='/view/Catalogo/carrito'">
-                        <i class="bi-cart-fill me-1"></i>
-                        Carrito
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                    </button>
                 </form>
             </div>
         </div>
     </nav>
     <!-- Header-->
-    <header class="bg-dark py-5">
+    <header class="bg-black py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
                 <h1 class="display-4 fw-bolder">INFOCOM TECHNOLOGY</h1>
@@ -84,8 +77,6 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
-                                    <a class="btn btn-outline-dark mt-auto" asp-controller="Productos" asp-action="Details"
-                                        asp-route-id="@item.Id">Ver Detalles</a>
                                     <a class="btn btn-outline-dark mt-auto" asp-controller="Carrito" asp-action="Agregar"
                                         asp-route-id="@item.Id">Agregar al Carrito</a>
                                 </div>
