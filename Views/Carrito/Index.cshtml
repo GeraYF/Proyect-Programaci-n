@@ -49,7 +49,7 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@(item.Producto != null ? item.Producto.Nombre : "Producto no disponible")</td>
+                                <td>@(item.Producto != null ? item.Producto.Nombre : "Producto no disponible en catalogo")</td>
                                 <td>@item.Cantidad</td>
                                 <td>@item.Precio</td>
                                 <td>@(item.Cantidad * item.Precio)</td>
