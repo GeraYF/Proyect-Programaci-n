@@ -10,11 +10,10 @@ namespace Trabajo_Final.Helper
 {
     public class SendMailSendGrid
     {
-        private readonly string _apiKey/* = Environment.GetEnvironmentVariable("KEY_SENDGRID")*/;
+        private readonly string _apiKey = Environment.GetEnvironmentVariable("SENDGRID_KEY");
 
         public async Task EnviarCorreoAsync(Contacto contacto, string msj)
         {
-            var _apiKey = contacto.Codigo;
             var client = new SendGridClient(_apiKey);
             var from = new EmailAddress("infocomtechnologysoport@gmail.com", "Infocom Technology Soporte");
             var to = new EmailAddress(contacto.Email);
