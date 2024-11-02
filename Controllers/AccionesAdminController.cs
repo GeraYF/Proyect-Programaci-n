@@ -64,14 +64,17 @@ namespace Trabajo_Final.Controllers
             foreach (var miUser in users)
             {
                 var roles = await _userManager.GetRolesAsync(miUser);
-                listUsuario.Add(new UserViewModel
+                if (!roles.Contains("admin"))
                 {
-                    Id = miUser.Id,
-                    Name = miUser.UserName,
-                    Email = miUser.Email,
-                    EmailConfirmed = miUser.EmailConfirmed,
-                    PhoneNumber = miUser.PhoneNumber
-                });
+                    listUsuario.Add(new UserViewModel
+                    {
+                        Id = miUser.Id,
+                        Name = miUser.UserName,
+                        Email = miUser.Email,
+                        EmailConfirmed = miUser.EmailConfirmed,
+                        PhoneNumber = miUser.PhoneNumber
+                    });
+                }
 
             }
             _logger.LogDebug("Usuarios {Usuarios}", listUsuario);
