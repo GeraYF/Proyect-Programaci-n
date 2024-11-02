@@ -15,6 +15,8 @@ namespace Trabajo_Final.Models
         public string? Email { get; set; }
         public string? Message { get; set; }
         public string? Numero { get; set; }
+        [NotMapped]
+        public string? Codigo { get; set; }
 
     }
 }
