@@ -69,8 +69,8 @@ namespace Trabajo_Final.Controllers
                     FechaCompra = DateTime.UtcNow,
                     Detalles = new List<DetalleCompra>
                     {
-                        new DetalleCompra { ProductoId = 1, Cantidad = 2, Precio = 10.0M },
-                        new DetalleCompra { ProductoId = 2, Cantidad = 1, Precio = 20.0M }
+                        new DetalleCompra {  Cantidad = 2, Precio = 10.0M },
+                        new DetalleCompra {  Cantidad = 1, Precio = 20.0M }
                     }
                 };
                 await _context.DataCompra.AddAsync(compra);
