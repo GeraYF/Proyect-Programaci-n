@@ -16,7 +16,18 @@
             <ul class="list-group list-group-flush mb-3">
                 <li class="list-group-item"><strong>Precio:</strong> S/. @Model.FormProducto.Precio</li>
                 <li class="list-group-item"><strong>Fecha de Lanzamiento:</strong> @Model.FormProducto.FechaLanzamiento.ToShortDateString()</li>
-                <li class="list-group-item"><strong>Calificación:</strong> @Model.FormProducto.Calificacion</li>
+                <li class="list-group-item"><strong>Calificación:</strong> 
+                    <span class="text-warning">
+                        @for (int i = 0; i < @Model.FormProducto.Calificacion; i++)
+                        {
+                            <i class="bi bi-star-fill"></i>
+                        }
+                        @for (int i = @Model.FormProducto.Calificacion; i < 5; i++)
+                        {
+                            <i class="bi bi-star"></i>
+                        }
+                    </span>
+                </li>
                 <li class="list-group-item"><strong>Status:</strong> @Model.FormProducto.Status</li>
                 <li class="list-group-item"><strong>Categoría:</strong> @Model.FormProducto.Categoria.Nombre</li>
             </ul>
