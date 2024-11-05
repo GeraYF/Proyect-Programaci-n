@@ -1,7 +1,38 @@
 @page
 @model LoginModel
 
-
+<style>
+    body {
+        background: url('/path/to/background-image.jpg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .input-group-text {
+        background: #f1f1f1;
+        border: none;
+    }
+    .form-control {
+        border: none;
+        box-shadow: none;
+    }
+    .btn-primary {
+        background: #2575fc;
+        border: none;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .btn-primary:hover {
+        background: #6a11cb;
+        transform: scale(1.05);
+    }
+    .vh-100 {
+        min-height: 100vh;
+    }
+</style>
 
 <div class="d-flex justify-content-center align-items-center vh-100">
     <div class="card shadow-lg border-0 rounded-4" style="width: 28rem;">
