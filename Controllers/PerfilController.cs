@@ -8,27 +8,25 @@ using Microsoft.Extensions.Logging;
 
 namespace Trabajo_Final.Controllers
 {
-    [Route("[controller]")]
-public class PerfilController : Controller
-{
-    private readonly ILogger<PerfilController> _logger;
-
-    public PerfilController(ILogger<PerfilController> logger)
+    public class PerfilController : Controller
     {
-        _logger = logger;
-    }
+        private readonly ILogger<PerfilController> _logger;
 
-    [HttpGet("")]
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public PerfilController(ILogger<PerfilController> logger)
+        {
+            _logger = logger;
+        }
 
-    [HttpGet("error")]
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View("Error!");
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet("error")]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View("Error!");
+        }
     }
-}
 }

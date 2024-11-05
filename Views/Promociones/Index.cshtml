@@ -1,3 +1,67 @@
+@model Trabajo_Final.ViewModel.PromocionViewModel
 @{
     Layout = "_LayoutAdmin";
 }
+
+<div class="container">
+    <div class="row">
+        @if (ViewData["Action"].Equals("Actualizar"))
+        {
+            <h2>Editar Producto: @Model.FormPromociones.Nombre</h2>
+            <h2>ID: @Model.FormPromociones.Id</h2>
+        }
+        else
+        {
+            <h2>Crear un nuevo producto</h2>
+        }
+
+        <form asp-action=@ViewData["Action"] method="post">
+            <input type="hidden" asp-for="FormPromociones.Id" />
+            <div class="form-group mt-3">
+                <label asp-for=FormPromociones.Nombre></label>
+                <input asp-for=FormPromociones.Nombre class="form-control" required />
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for=FormPromociones.ValorDescuento></label>
+                <input asp-for=FormPromociones.ValorDescuento class="form-control" required>
+            </div>
+
+            <div class="form-group mt-3">
+                <label asp-for=FormPromociones.FechaInicio></label>
+                <input asp-for=FormPromociones.FechaInicio class="form-control" required />
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for=FormPromociones.FechaFin>Fecha de Lanzamiento</label>
+                <input asp-for=FormPromociones.FechaFin class="form-control" required />
+            </div>
+            @if (ViewData["Action"].Equals("Actualizar"))
+            {
+                <button type="submit" class="btn btn-success mt-3">Actualizar Productos</button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-success mt-3">Agregar Producto</button>
+            }
+        </form>
+    </div>
+    <div class="row">
+        <!-- Sección izquierda: Tabla de productos -->
+        @foreach (var item in Model.Promociones)
+        {
+            <div class="card w-50">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Nombre</h5>
+                    <p class="card-text">(@item.ValorDescuento) %</p>
+                    <a class="btn btn-primary">Editar</a>
+                </div>
+            </div>
+        }
+
+
+
+
+
+        <!-- Sección derecha: Formulario para agregar productos -->
+
+    </div>
+</div>
