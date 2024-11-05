@@ -92,6 +92,9 @@
             <h2>INFOCOM</h2>
         </div>
         <form id="account" method="post">
+            <div class="text-center mb-4">
+                <i class="bi bi-person-circle" style="font-size: 3rem; color: #000000;"></i>
+            </div>
             <h2 class="text-center mb-4">Iniciar Sesión</h2>
 
             <div class="input-group mb-3">
@@ -119,6 +122,7 @@
         </form>
 
         <div class="text-center mt-4">
+            <p>¿No tienes una cuenta? ¡Qué esperas!</p>
             <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-secondary w-100 py-2 shadow-sm">Regístrate</a>
         </div>
         <div class="text-center mt-2">
