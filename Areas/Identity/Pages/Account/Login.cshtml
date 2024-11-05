@@ -22,9 +22,9 @@
     }
     .modal-content {
         background-color: #fefefe;
-        padding: 20px;
+        padding: 40px; /* Increase padding for more vertical space */
         border: 1px solid #888;
-        width: 80%;
+        width: 80%; /* Adjust width */
         max-width: 500px;
         border-radius: 15px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -50,21 +50,23 @@
         border-radius: 5px;
     }
     .btn-primary {
-        background: #ffeb3b; /* Yellow color */
+        background: #fdd835; /* Darker yellow */
         border: none;
+        color: #000; /* Black text color */
         transition: background 0.3s ease, transform 0.3s ease;
     }
     .btn-primary:hover {
-        background: #fdd835; /* Darker yellow */
+        background: #fbc02d; /* Even darker yellow */
         transform: scale(1.05);
     }
     .btn-secondary {
-        background: #ff0000;
+        background: #000; /* Black color */
         border: none;
+        color: #fff; /* White text color */
         transition: background 0.3s ease, transform 0.3s ease;
     }
     .btn-secondary:hover {
-        background: #cc0000;
+        background: #333; /* Darker black */
         transform: scale(1.05);
     }
     .welcome-message {
@@ -107,8 +109,11 @@
                 <input asp-for="Input.Password" type="password" name="Password"
                     class="form-control border-0 shadow-sm" placeholder="Contraseña" aria-required="true"
                     autocomplete="current-password" />
-                <span asp-validation-for="Input.Password" class="text-danger mb-2"></span>
+                <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('Input_Password')">
+                    <i class="fas fa-eye"></i>
+                </button>
             </div>
+            <span asp-validation-for="Input.Password" class="text-danger mb-2"></span>
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <button type="submit" class="btn btn-primary w-100 py-2 shadow-sm">Iniciar Sesión</button>
         </form>
@@ -135,6 +140,15 @@
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
+            }
+        }
+
+        function togglePasswordVisibility(id) {
+            var input = document.getElementById(id);
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
             }
         }
     </script>
