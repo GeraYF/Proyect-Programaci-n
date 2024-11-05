@@ -49,6 +49,7 @@ namespace Trabajo_Final.Controllers
             }
             _context.Add(p.FormPromociones);
             _context.SaveChanges();
+            ViewData["Action"] = "Update";
             return RedirectToAction(nameof(Index));
         }
 

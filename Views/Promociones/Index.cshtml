@@ -5,14 +5,14 @@
 
 <div class="container">
     <div class="row">
-        @if (ViewData["Action"].Equals("Actualizar"))
+        @if (ViewData["Action"].Equals("Update"))
         {
             <h2>Editar Producto: @Model.FormPromociones.Nombre</h2>
             <h2>ID: @Model.FormPromociones.Id</h2>
         }
         else
         {
-            <h2>Crear un nuevo producto</h2>
+            <h1>Crear un nuevo producto</h1>
         }
 
         <form asp-action=@ViewData["Action"] method="post">
@@ -34,7 +34,7 @@
                 <label asp-for=FormPromociones.FechaFin>Fecha de Lanzamiento</label>
                 <input asp-for=FormPromociones.FechaFin class="form-control" required />
             </div>
-            @if (ViewData["Action"].Equals("Actualizar"))
+            @if (ViewData["Action"].Equals("Update"))
             {
                 <button type="submit" class="btn btn-success mt-3">Actualizar Productos</button>
             }
@@ -52,7 +52,8 @@
                 <div class="card-body">
                     <h5 class="card-title">@item.Nombre</h5>
                     <p class="card-text">(@item.ValorDescuento) %</p>
-                    <a class="btn btn-primary">Editar</a>
+                    <a asp-action="Update" class="btn btn-primary">Editar</a>
+                    <a asp-action="Delete" class="btn btn-danger">Eliminar</a>
                 </div>
             </div>
         }
