@@ -19,6 +19,7 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Trabajo_Final.Models.Carrito> DataCarrito { get; set; }
     public DbSet<Trabajo_Final.Models.Compra> DataCompra { get; set; }
     public DbSet<Trabajo_Final.Models.DetalleCompra> DataDetalleCompra { get; set; }
+    public DbSet<Trabajo_Final.Models.Promociones> DataPromociones { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
