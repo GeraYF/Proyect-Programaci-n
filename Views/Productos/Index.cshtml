@@ -21,32 +21,32 @@
             <input type="hidden" asp-for="FormProducto.ImageURL" />
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Nombre></label>
-                <input asp-for=FormProducto.Nombre class="form-control" required />
+                <input asp-for=FormProducto.Nombre class="form-control" placeholder="Ingrese el nombre del producto" required />
                 <span asp-validation-for="FormProducto.Nombre" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Description></label>
-                <textarea asp-for=FormProducto.Description class="form-control" required></textarea>
+                <textarea asp-for=FormProducto.Description class="form-control" placeholder="Ingrese la descripción del producto" required></textarea>
                 <span asp-validation-for="FormProducto.Description" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Precio></label>
-                <input asp-for=FormProducto.Precio class="form-control" required />
+                <input asp-for=FormProducto.Precio class="form-control" placeholder="Ingrese el precio del producto" required />
                 <span asp-validation-for="FormProducto.Precio" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.FechaLanzamiento>Fecha de Lanzamiento</label>
-                <input asp-for=FormProducto.FechaLanzamiento class="form-control" required />
+                <input asp-for=FormProducto.FechaLanzamiento class="form-control" placeholder="Ingrese la fecha de lanzamiento" required />
                 <span asp-validation-for="FormProducto.FechaLanzamiento" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Calificacion></label>
-                <input asp-for=FormProducto.Calificacion class="form-control" required />
+                <input asp-for=FormProducto.Calificacion class="form-control" placeholder="Ingrese la calificación del producto" required />
                 <span asp-validation-for="FormProducto.Calificacion" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Status></label>
-                <input asp-for=FormProducto.Status class="form-control" required />
+                <input asp-for=FormProducto.Status class="form-control" placeholder="Ingrese el estado del producto" required />
                 <span asp-validation-for="FormProducto.Status" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
@@ -72,15 +72,15 @@
         <div class="col-md-4 mb-3">
             <input type="text" id="search" class="form-control" placeholder="Buscar productos..." onkeyup="searchProducts()" />
         </div>
-        <table class="table table-bordered table-striped" id="productTable">
+        <table class="table table-bordered table-striped text-center" id="productTable">
             <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Precio</th>
-                    <th>Fecha Lanzamiento</th>
-                    <th>Status</th>
-                    <th>Categoria</th>
+                    <th>Fecha de Lanzamiento</th>
+                    <th>Estado</th>
+                    <th>Categoría</th>
                     <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
