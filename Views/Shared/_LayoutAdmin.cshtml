@@ -57,15 +57,19 @@
                             <a class="nav-link" asp-controller="AccionesAdmin" asp-action="IndexUsuario">Usuarios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Productos" asp-action="Index">Agregar
-                                Producto</a>
+                            <a class="nav-link" asp-controller="Productos" asp-action="Index">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Promociones" asp-action="Index">Promociones</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    @RenderBody()
+    <main class="content-wrapper" style="flex: 1;">
+        @RenderBody()
+    </main>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

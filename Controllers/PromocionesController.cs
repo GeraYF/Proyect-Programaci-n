@@ -24,8 +24,14 @@ namespace Trabajo_Final.Controllers
 
         public IActionResult Index()
         {
+
+            PromocionViewModel model = new PromocionViewModel
+            {
+                Promociones = from o in _context.DataPromociones select o,
+                FormPromociones = new Promociones()
+            };
             ViewData["Action"] = "Create";
-            return View();
+            return View(model);
         }
         [HttpPost]
         public IActionResult Create(PromocionViewModel p)
@@ -39,6 +45,18 @@ namespace Trabajo_Final.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult IndexUpdate(long id)
+        {
+            var ListPromos = from o in _context.DataPromociones select o;
+            var promo = _context.DataPromociones.Find(id);
+            PromocionViewModel model = new PromocionViewModel
+            {
+                Promociones = ListPromos,
+                FormPromociones = promo
+            };
+            ViewData["Action"] = "Update";
+            return View("Index", model);
+        }
         [HttpPost]
         public IActionResult Update(PromocionViewModel p)
         {
@@ -47,9 +65,8 @@ namespace Trabajo_Final.Controllers
                 p.FormPromociones.FechaInicio = DateTime.SpecifyKind(p.FormPromociones.FechaInicio, DateTimeKind.Utc);
                 p.FormPromociones.FechaFin = DateTime.SpecifyKind(p.FormPromociones.FechaFin, DateTimeKind.Utc);
             }
-            _context.Add(p.FormPromociones);
+            _context.Update(p.FormPromociones);
             _context.SaveChanges();
-            ViewData["Action"] = "Update";
             return RedirectToAction(nameof(Index));
         }
 

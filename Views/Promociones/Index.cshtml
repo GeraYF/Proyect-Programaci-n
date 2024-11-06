@@ -7,7 +7,7 @@
     <div class="row">
         @if (ViewData["Action"].Equals("Update"))
         {
-            <h2>Editar Producto: @Model.FormPromociones.Nombre</h2>
+            <h2>Editar Promoción: @Model.FormPromociones.Nombre</h2>
             <h2>ID: @Model.FormPromociones.Id</h2>
         }
         else
@@ -22,21 +22,27 @@
                 <input asp-for=FormPromociones.Nombre class="form-control" required />
             </div>
             <div class="form-group mt-3">
-                <label asp-for=FormPromociones.ValorDescuento></label>
+                <label asp-for=FormPromociones.ValorDescuento> Valor de descuento</label>
                 <input asp-for=FormPromociones.ValorDescuento class="form-control" required>
             </div>
 
             <div class="form-group mt-3">
-                <label asp-for=FormPromociones.FechaInicio></label>
+                <label asp-for=FormPromociones.FechaInicio>Fecha Inicio</label>
                 <input asp-for=FormPromociones.FechaInicio class="form-control" required />
             </div>
             <div class="form-group mt-3">
-                <label asp-for=FormPromociones.FechaFin>Fecha de Lanzamiento</label>
+                <label asp-for=FormPromociones.FechaFin>Fecha Fin</label>
                 <input asp-for=FormPromociones.FechaFin class="form-control" required />
             </div>
             @if (ViewData["Action"].Equals("Update"))
             {
-                <button type="submit" class="btn btn-success mt-3">Actualizar Productos</button>
+                <div class="form-group mt-3">
+                    <label asp-for=FormPromociones.Activo>Activar</label>
+                    <input type="checkbox" asp-for="FormPromociones.Activo" class="form-check-input"
+                        checked="@Model.FormPromociones.Activo" />
+
+                </div>
+                <button type="submit" class="btn btn-success mt-3">Actualizar Promoción</button>
             }
             else
             {
@@ -51,8 +57,9 @@
             <div class="card w-50">
                 <div class="card-body">
                     <h5 class="card-title">@item.Nombre</h5>
-                    <p class="card-text">(@item.ValorDescuento) %</p>
-                    <a asp-action="Update" class="btn btn-primary">Editar</a>
+                    <p class="card-text">@item.ValorDescuento %</p>
+                    <p class="card-text">@(item.Activo == true ? "Activo" : "Pendiente") </p>
+                    <a asp-action="IndexUpdate" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
                     <a asp-action="Delete" class="btn btn-danger">Eliminar</a>
                 </div>
             </div>
@@ -62,7 +69,6 @@
 
 
 
-        <!-- Sección derecha: Formulario para agregar productos -->
 
     </div>
 </div>

@@ -15,7 +15,7 @@ namespace Trabajo_Final.Models
         public decimal? ValorDescuento { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
-        public bool? Activo { get; set; } = true;
+        public bool Activo { get; set; } = true;
 
     }
 }
