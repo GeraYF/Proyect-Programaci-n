@@ -7,8 +7,8 @@
     <div class="row justify-content-center">
         @if (ViewData["Action"].Equals("Actualizar"))
         {
-            <h2 class="mb-4">Editar Producto: @Model.FormProducto.Nombre</h2>
-            <h2>ID: @Model.FormProducto.Id</h2>
+            <h2 class="mb-4 text-center">Editar Producto: @Model.FormProducto.Nombre</h2>
+            <h2 class="text-center">ID: @Model.FormProducto.Id</h2>
         }
         else
         {
@@ -21,37 +21,37 @@
             <input type="hidden" asp-for="FormProducto.ImageURL" />
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Nombre></label>
-                <input asp-for=FormProducto.Nombre class="form-control" placeholder="Ingrese el nombre del producto" required />
+                <input asp-for=FormProducto.Nombre class="form-control" placeholder="Ingrese el nombre del producto" required style="font-weight: bold;" />
                 <span asp-validation-for="FormProducto.Nombre" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Description></label>
-                <textarea asp-for=FormProducto.Description class="form-control" placeholder="Ingrese la descripción del producto" required></textarea>
+                <textarea asp-for=FormProducto.Description class="form-control" placeholder="Ingrese la descripción del producto" required style="font-weight: bold;"></textarea>
                 <span asp-validation-for="FormProducto.Description" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Precio></label>
-                <input asp-for=FormProducto.Precio class="form-control" placeholder="Ingrese el precio del producto" required />
+                <input asp-for=FormProducto.Precio class="form-control" placeholder="Ingrese el precio del producto" required style="font-weight: bold;" />
                 <span asp-validation-for="FormProducto.Precio" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.FechaLanzamiento>Fecha de Lanzamiento</label>
-                <input asp-for=FormProducto.FechaLanzamiento class="form-control" placeholder="Ingrese la fecha de lanzamiento" required />
+                <input asp-for=FormProducto.FechaLanzamiento class="form-control" placeholder="Ingrese la fecha de lanzamiento" required style="font-weight: bold;" />
                 <span asp-validation-for="FormProducto.FechaLanzamiento" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Calificacion></label>
-                <input asp-for=FormProducto.Calificacion class="form-control" placeholder="Ingrese la calificación del producto" required />
+                <input asp-for=FormProducto.Calificacion class="form-control" placeholder="Ingrese la calificación del producto" required style="font-weight: bold;" />
                 <span asp-validation-for="FormProducto.Calificacion" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Status></label>
-                <input asp-for=FormProducto.Status class="form-control" placeholder="Ingrese el estado del producto" required />
+                <input asp-for=FormProducto.Status class="form-control" placeholder="Ingrese el estado del producto" required style="font-weight: bold;" />
                 <span asp-validation-for="FormProducto.Status" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for="CategoriaId">Categoría</label>
-                <select asp-for="CategoriaId" class="form-control" asp-items="@(new SelectList(Model.ListCategoria, "Id", "Nombre"))" required>
+                <select asp-for="CategoriaId" class="form-control" asp-items="@(new SelectList(Model.ListCategoria, "Id", "Nombre"))" required style="font-weight: bold;">
                     <option value="">Seleccione una categoría</option>
                 </select>
                 <span asp-validation-for="CategoriaId" class="text-danger"></span>
@@ -67,8 +67,8 @@
         </form>
     </div>
     <div class="row mt-5">
-        <h2>Listado de Productos</h2>
-        <p>A continuación se muestra una lista de todos los productos disponibles.</p>
+        <h2 class="text-center">Listado de Productos</h2>
+        <p class="text-center">A continuación se muestra una lista de todos los productos disponibles.</p>
         <div class="col-md-4 mb-3">
             <input type="text" id="search" class="form-control" placeholder="Buscar productos..." onkeyup="searchProducts()" />
         </div>
