@@ -38,6 +38,7 @@ namespace Trabajo_Final.Controllers
         {
             Console.WriteLine("ENTRANDO A CREATE");
             var categoria = _context.DataCategoria.Find(model.CategoriaId);
+
             model.FormPromociones.Categoria = categoria;
             if (model.FormPromociones.FechaInicio.Kind == DateTimeKind.Unspecified || model.FormPromociones.FechaFin.Kind == DateTimeKind.Unspecified)
             {
