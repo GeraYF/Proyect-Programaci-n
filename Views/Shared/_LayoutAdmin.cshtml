@@ -7,6 +7,8 @@
     ViewData["Title"] = "Infocom Administrador";
 }
 
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,33 +16,39 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/PaginaPrincipal/styles.css" asp-append-version="true" />
-
+    <style>
+        .navbar-nav .nav-link:hover {
+            background-color: #343a40;
+            color: #fff;
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+    <title>@ViewData["Title"]</title>
 </head>
-
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark bg-black" id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav">
             <div class="container-fluid">
                 <!--Logo -->
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="IndexAdmin">INFOCOM</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                     aria-label="Toggle navigation">
-                    Perfil
-                    <i class="fas fa-bars ms-1"></i>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <!--Logeo y registro-->
-                    <div class=" d-flex mx-auto navbar-nav">
+                    <div class="d-flex mx-auto navbar-nav">
                         <partial name="_LoginPartial" />
                     </div>
                 </div>
             </div>
         </nav>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-black mb-3" id="categoryNav">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3" id="categoryNav">
             <div class="container-fluid">
-
                 <button class="navbar-toggler mb-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#categoriesToggle" aria-controls="categoriesToggle" aria-expanded="false"
                     aria-label="Toggle categories">
@@ -65,8 +73,10 @@
             </div>
         </nav>
     </header>
-    @RenderBody()
+    <main class="container mt-4">
+        @RenderBody()
+    </main>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</html>

@@ -3,52 +3,58 @@
     Layout = "_LayoutAdmin";
 }
 
-<div class="container">
-    <div class="row">
+<div class="container mt-5">
+    <div class="row justify-content-center">
         @if (ViewData["Action"].Equals("Actualizar"))
         {
-            <h2>Editar Producto: @Model.FormProducto.Nombre</h2>
-            <h2>ID: @Model.FormProducto.Id</h2>
+            <h2 class="mb-4 text-center text-primary">Editar Producto: @Model.FormProducto.Nombre</h2>
+            <h2 class="text-center text-secondary">ID: @Model.FormProducto.Id</h2>
         }
         else
         {
-            <h2>Crear un nuevo producto</h2>
+            <h2 class="mb-4 text-center text-primary">Crear un nuevo producto</h2>
+            <p class="text-center text-secondary">Complete el siguiente formulario para agregar un nuevo producto a la lista.</p>
         }
 
-        <form asp-action=@ViewData["Action"] method="post">
+        <form asp-action=@ViewData["Action"] method="post" class="col-md-6">
             <input type="hidden" asp-for="FormProducto.Id" />
             <input type="hidden" asp-for="FormProducto.ImageURL" />
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Nombre></label>
-                <input asp-for=FormProducto.Nombre class="form-control" required />
+                <input asp-for=FormProducto.Nombre class="form-control" placeholder="Ingrese el nombre del producto" required />
+                <span asp-validation-for="FormProducto.Nombre" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Description></label>
-                <textarea asp-for=FormProducto.Description class="form-control" required></textarea>
+                <textarea asp-for=FormProducto.Description class="form-control" placeholder="Ingrese la descripción del producto" required></textarea>
+                <span asp-validation-for="FormProducto.Description" class="text-danger"></span>
             </div>
-
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Precio></label>
-                <input asp-for=FormProducto.Precio class="form-control" required />
+                <input asp-for=FormProducto.Precio class="form-control" placeholder="Ingrese el precio del producto" required />
+                <span asp-validation-for="FormProducto.Precio" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.FechaLanzamiento>Fecha de Lanzamiento</label>
-                <input asp-for=FormProducto.FechaLanzamiento class="form-control" required />
+                <input asp-for=FormProducto.FechaLanzamiento class="form-control" placeholder="Ingrese la fecha de lanzamiento" required />
+                <span asp-validation-for="FormProducto.FechaLanzamiento" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Calificacion></label>
-                <input asp-for=FormProducto.Calificacion class="form-control" required />
+                <input asp-for=FormProducto.Calificacion class="form-control" placeholder="Ingrese la calificación del producto" required />
+                <span asp-validation-for="FormProducto.Calificacion" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for=FormProducto.Status></label>
-                <input asp-for=FormProducto.Status class="form-control" required />
+                <input asp-for=FormProducto.Status class="form-control" placeholder="Ingrese el estado del producto" required />
+                <span asp-validation-for="FormProducto.Status" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <label asp-for="CategoriaId">Categoría</label>
-                <select asp-for="CategoriaId" class="form-control"
-                    asp-items="@(new SelectList(Model.ListCategoria, "Id", "Nombre"))" required>
+                <select asp-for="CategoriaId" class="form-control" asp-items="@(new SelectList(Model.ListCategoria, "Id", "Nombre"))" required>
                     <option value="">Seleccione una categoría</option>
                 </select>
+                <span asp-validation-for="CategoriaId" class="text-danger"></span>
             </div>
             @if (ViewData["Action"].Equals("Actualizar"))
             {
@@ -60,19 +66,23 @@
             }
         </form>
     </div>
-    <div class="row">
-        <!-- Sección izquierda: Tabla de productos -->
-        <h2>Listado de Productos</h2>
-        <table class="table table-bordered">
-            <thead>
+    <div class="row mt-5">
+        <h2 class="text-center text-primary">Listado de Productos</h2>
+        <p class="text-center text-secondary">A continuación se muestra una lista de todos los productos disponibles.</p>
+        <div class="col-md-4 mb-3">
+            <input type="text" id="search" class="form-control" placeholder="Buscar productos..." onkeyup="searchProducts()" />
+        </div>
+        <table class="table table-bordered table-striped text-center" id="productTable">
+            <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Precio</th>
-                    <th>Fecha Lanzamiento</th>
-                    <th>Status</th>
-                    <th>Categoria</th>
+                    <th>Fecha de Lanzamiento</th>
+                    <th>Estado</th>
+                    <th>Categoría</th>
                     <th>Imagen</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -87,19 +97,37 @@
                         <td>@Html.DisplayFor(modelItem => item.Categoria.Nombre)</td>
                         <td><img src="@item.ImageURL" alt="Imagen no encontrada" width="100" /></td>
                         <td>
-                            <a asp-controller="Productos" asp-action="Delete" asp-route-id="@item.Id"
-                                class="btn btn-danger mb-3">Eliminar</a>
-                            <a asp-controller="Productos" asp-action="Editar" asp-route-id="@item.Id"
-                                class="btn btn-warning mb-3">Editar</a>
-                            <a asp-controller="Productos" asp-action="Detalles" asp-route-id="@item.Id"
-                                class="btn btn-info mb-3">Detalles del producto</a>
+                            <a asp-controller="Productos" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger mb-3">Eliminar</a>
+                            <a asp-controller="Productos" asp-action="Editar" asp-route-id="@item.Id" class="btn btn-warning mb-3">Editar</a>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-
-        <!-- Sección derecha: Formulario para agregar productos -->
-
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        function searchProducts() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("search");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("productTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 1; i < tr.length; i++) {
+                tr[i].style.display = "none";
+                td = tr[i].getElementsByTagName("td");
+                for (var j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+}
