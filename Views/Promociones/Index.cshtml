@@ -12,7 +12,7 @@
         }
         else
         {
-            <h1>Crear un nuevo producto</h1>
+            <h1>Crear una nueva Promoción</h1>
         }
 
         <form asp-action=@ViewData["Action"] method="post">
@@ -60,7 +60,7 @@
                     <p class="card-text">@item.ValorDescuento %</p>
                     <p class="card-text">@(item.Activo == true ? "Activo" : "Pendiente") </p>
                     <a asp-action="IndexUpdate" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
-                    <a asp-action="Delete" class="btn btn-danger">Eliminar</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
                 </div>
             </div>
         }

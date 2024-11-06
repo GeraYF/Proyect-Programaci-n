@@ -70,6 +70,23 @@ namespace Trabajo_Final.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Delete(long id)
+        {
+            Console.WriteLine("ENTRABDO AL METODO DELETE");
+            var promocion = _context.DataPromociones.Find(id);
+            if (promocion == null)
+            {
+                return View("Error");
+            }
+            else
+            {
+                _context.Remove(promocion);
+                _context.SaveChanges();
+            }
+            _logger.LogDebug($"Producto {id} eliminado");
+            return RedirectToAction(nameof(Index));
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
