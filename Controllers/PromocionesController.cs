@@ -36,9 +36,7 @@ namespace Trabajo_Final.Controllers
         [HttpPost]
         public IActionResult Create(PromocionViewModel model)
         {
-            Console.WriteLine("ENTRANDO A CREATE");
             var categoria = _context.DataCategoria.Find(model.CategoriaId);
-
             model.FormPromociones.Categoria = categoria;
             if (model.FormPromociones.FechaInicio.Kind == DateTimeKind.Unspecified || model.FormPromociones.FechaFin.Kind == DateTimeKind.Unspecified)
             {
@@ -46,15 +44,11 @@ namespace Trabajo_Final.Controllers
                 model.FormPromociones.FechaFin = DateTime.SpecifyKind(model.FormPromociones.FechaFin, DateTimeKind.Utc);
             }
             _context.Add(model.FormPromociones);
-            Console.WriteLine("GUARDADNDO OBJETO");
-            Console.WriteLine("OBTENIENDO LISTA");
             var prod = _context.DataProducto
                             .Where(p => p.Categoria.Id == model.CategoriaId)
                             .ToList();
             foreach (var item in prod)
             {
-                Console.WriteLine("ITERANDO");
-                Console.WriteLine("HACIENDO VALIDACION");
                 item.Precio = (decimal)(item.Precio - (item.Precio * (model.FormPromociones.ValorDescuento / 100)));
                 _context.Update(item);
 
@@ -78,14 +72,24 @@ namespace Trabajo_Final.Controllers
             return View("Index", model);
         }
         [HttpPost]
-        public IActionResult Update(PromocionViewModel p)
+        public IActionResult Update(PromocionViewModel model)
         {
-            if (p.FormPromociones.FechaInicio.Kind == DateTimeKind.Unspecified || p.FormPromociones.FechaFin.Kind == DateTimeKind.Unspecified)
+            var categoria = _context.DataCategoria.Find(model.CategoriaId);
+            model.FormPromociones.Categoria = categoria;
+            if (model.FormPromociones.FechaInicio.Kind == DateTimeKind.Unspecified || model.FormPromociones.FechaFin.Kind == DateTimeKind.Unspecified)
             {
-                p.FormPromociones.FechaInicio = DateTime.SpecifyKind(p.FormPromociones.FechaInicio, DateTimeKind.Utc);
-                p.FormPromociones.FechaFin = DateTime.SpecifyKind(p.FormPromociones.FechaFin, DateTimeKind.Utc);
+                model.FormPromociones.FechaInicio = DateTime.SpecifyKind(model.FormPromociones.FechaInicio, DateTimeKind.Utc);
+                model.FormPromociones.FechaFin = DateTime.SpecifyKind(model.FormPromociones.FechaFin, DateTimeKind.Utc);
             }
-            _context.Update(p.FormPromociones);
+            if (!model.FormPromociones.Activo)
+            {
+                var prod = _context.DataProducto.Where(p => p.Categoria.Id == model.CategoriaId).ToList();
+                foreach (var item in prod)
+                {
+                    item.Precio = (decimal)(item.Precio * ((model.FormPromociones.ValorDescuento / 100) + 1));
+                    _context.Update(item);
+                }
+            }
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
