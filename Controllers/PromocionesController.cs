@@ -108,6 +108,7 @@ namespace Trabajo_Final.Controllers
             }
             else
             {
+                Console.WriteLine($"LA CATEGORIA ES {promocion.Categoria.Id}");
                 _context.Remove(promocion);
                 _context.SaveChanges();
             }
