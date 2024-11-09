@@ -2,8 +2,22 @@
     ViewData["Title"] = "Confirmación de Pago";
 }
 
-<div class="container">
-    <h2>Pago Procesado con Éxito</h2>
-    <p>Gracias por tu compra. Tu pago ha sido procesado correctamente.</p>
-    <a href="/Catalogo/Index" class="btn btn-primary">Volver al Catálogo</a>
+<div class="container mt-5">
+    <div class="card shadow-lg p-4 mb-4 bg-white rounded">
+        <div class="text-center">
+            <h2 class="text-success mb-3">¡Pago Procesado con Éxito!</h2>
+            <p class="lead">Gracias por tu compra. Tu pago ha sido procesado correctamente.</p>
+            <div class="my-4">
+                <i class="bi bi-check-circle-fill" style="font-size: 3rem; color: #28a745;"></i>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <a href="/Catalogo/Index" class="btn btn-outline-primary btn-lg">
+                <i class="bi bi-arrow-left-circle"></i> Volver al Catálogo
+            </a>
+            <a asp-controller="Carrito" asp-action="DescargarFactura" class="btn btn-success btn-lg">
+                <i class="bi bi-file-earmark-arrow-down"></i> Descargar Factura
+            </a>
+        </div>
+    </div>
 </div>
