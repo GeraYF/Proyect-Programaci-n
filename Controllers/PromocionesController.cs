@@ -49,7 +49,8 @@ namespace Trabajo_Final.Controllers
                             .ToList();
             foreach (var item in prod)
             {
-                item.Precio = (decimal)(item.Precio - (item.Precio * (model.FormPromociones.ValorDescuento / 100)));
+                item.Descuento = true;
+                item.PrecioAlternativo = (decimal)(item.Precio * ((model.FormPromociones.ValorDescuento / 100) + 1));
                 _context.Update(item);
 
             }
