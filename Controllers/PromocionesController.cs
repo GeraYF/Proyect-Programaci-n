@@ -26,7 +26,6 @@ namespace Trabajo_Final.Controllers
         {
             PromocionViewModel model = new PromocionViewModel
             {
-                Promociones = from o in _context.DataPromociones select o,
                 Categorias = from o in _context.DataCategoria select o,
                 FormPromociones = new Promociones()
             };
@@ -58,7 +57,7 @@ namespace Trabajo_Final.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
-        public IActionResult IndexUpdate(long id)
+        /*public IActionResult IndexUpdate(long id)
         {
             var ListPromos = from o in _context.DataPromociones select o;
             var promo = _context.DataPromociones.Find(id);
@@ -71,7 +70,7 @@ namespace Trabajo_Final.Controllers
             };
             ViewData["Action"] = "Update";
             return View("Index", model);
-        }
+        }*/
         [HttpPost]
         public IActionResult Update(PromocionViewModel model)
         {
@@ -98,7 +97,7 @@ namespace Trabajo_Final.Controllers
 
 
 
-        public IActionResult Delete(long id)
+        /*public IActionResult Delete(long id)
         {
             Console.WriteLine("ENTRABDO AL METODO DELETE");
             var promocion = _context.DataPromociones.Find(id);
@@ -114,7 +113,7 @@ namespace Trabajo_Final.Controllers
             }
             _logger.LogDebug($"Producto {id} eliminado");
             return RedirectToAction(nameof(Index));
-        }
+        }*/
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
