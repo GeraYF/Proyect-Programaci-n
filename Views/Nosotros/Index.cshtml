@@ -1,0 +1,217 @@
+@{
+    Layout = Layout;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principios de Liderazgo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Fuente moderna */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Encabezado con imagen de fondo */
+        .header {
+            background-image: url('https://img.freepik.com/fotos-premium/hombre-negocios-usando-dispositivos-tecnologia-e-iconos-interfaz-linea-delgada_117023-904.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: #fff;
+        }
+
+        .header h1 {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px 40px;
+            border-radius: 10px;
+            font-size: 28px;
+            font-weight: 600;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Sección de títulos */
+        .section-title {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #cca000;
+        }
+
+        /* Estilos de las tarjetas */
+        .card-principle .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: white;
+        }
+
+        .card-principle .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-body {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #cca000;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Estilos del botón */
+        .btn-primary {
+            background-color: #cca000;
+            border-color: #cca000;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #b88b00;
+            transform: scale(1.05);
+        }
+
+        /* Galería de imágenes */
+        .footer-section {
+            padding: 50px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .image-gallery {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .image-gallery figure {
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+            width: 250px;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .image-gallery figcaption {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header con imagen de fondo -->
+    <div class="header">
+        <h1>Nuestra misión es crear conexiones significativas entre nuestros socios y nuestra comunidad.</h1>
+    </div>
+
+    <!-- Sección de principios de liderazgo -->
+    <div class="container">
+        <div class="section-title">
+            <h2>Principios de Liderazgo</h2>
+        </div>
+
+        <div class="row principles-row">
+            <div class="col-md-4 card-principle">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Principios de Liderazgo</h5>
+                        <p class="card-text">Nuestros 16 Principios de liderazgo son más que frases inspiradoras pintadas en la pared. Estos principios guían nuestras discusiones y decisiones a diario.</p>
+                        <a href="#" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 card-principle">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Principios de Liderazgo</h5>
+                        <p class="card-text">Nuestros 16 Principios de liderazgo son más que frases inspiradoras pintadas en la pared. Estos principios guían nuestras discusiones y decisiones a diario.</p>
+                        <a href="#" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 card-principle">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Principios de Liderazgo</h5>
+                        <p class="card-text">Nuestros 16 Principios de liderazgo son más que frases inspiradoras pintadas en la pared. Estos principios guían nuestras discusiones y decisiones a diario.</p>
+                        <a href="#" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Galería de imágenes -->
+        <div class="footer-section">
+            <h3>Esto es lo que aportamos</h3>
+            <div class="image-gallery">
+                <figure>
+                    <img src="https://th.bing.com/th/id/OIP.3uMQE7-3bO1KILYZ75CH-QHaEd?rs=1&pid=ImgDetMain" alt="Imagen 1">
+                    <figcaption>Envios Internacionales</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://www.obsbusiness.school/sites/obsbusiness.school/files/images/istock-675661214.jpg" alt="Imagen 2">
+                    <figcaption>Compras por Internet</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://ccnadesdecero.es/wp-content/uploads/2023/07/Seguridad-para-compras-online.jpg" alt="Imagen 3">
+                    <figcaption>Compras Online Seguras</figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
