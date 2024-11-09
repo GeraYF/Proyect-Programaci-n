@@ -7,7 +7,10 @@ namespace Trabajo_Final.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
+        
+        public int CompraId { get; set; }
         public Compra? Compra { get; set; }
+        public long ProductoId { get; set;}
         public Producto? Producto { get; set; }
         public int? Cantidad { get; set; }
         public decimal? PrecioUnitario { get; set; }
