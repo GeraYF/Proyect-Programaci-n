@@ -14,6 +14,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link rel="stylesheet" href="~/css/Catalogo/site.css" asp-append-version="true" />
+    <style>
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+    </style>
 </head>
 
 <body>
@@ -63,14 +70,38 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" src="@item.ImageURL" alt="Imagen no encontrada" />
+                            <div class="position-relative">
+                                <img class="card-img-top" src="@item.ImageURL" alt="Imagen no encontrada" />
+                                <span class="position-absolute top-0 start-0 bg-success text-white px-2 py-1">NUEVO</span>
+                            </div>
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
+                                    <!-- Product availability-->
+                                    <div class="d-flex justify-content-between">
+                                        <p class="text-success">Disponible</p>
+                                        <a href="javascript:void(0);" class="text-danger" onclick="toggleFavorite(this)">
+                                            <i class="bi bi-heart"></i>
+                                        </a>
+                                    </div>
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">@Html.DisplayFor(modelItem => item.Nombre)</h5>
+                                    <h5 class="fw-bolder mt-2">@Html.DisplayFor(modelItem => item.Nombre)</h5>
+                                    <!-- Product rating-->
+                                    <div class="mb-2">
+                                        @for (int i = 1; i <= 5; i++)
+                                        {
+                                            if (i <= item.Calificacion)
+                                            {
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="bi bi-star text-warning"></i>
+                                            }
+                                        }
+                                    </div>
                                     <!-- Product price-->
-                                    S/. @Html.DisplayFor(modelItem => item.Precio)
+                                    <div class="fw-bold text-dark">S/. @Html.DisplayFor(modelItem => item.Precio)</div>
                                 </div>
                             </div>
                             <!-- Product actions-->
@@ -98,4 +129,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="~/js/Catalogo/site.js" asp-append-version="true"></script>
+    <script>
+        function toggleFavorite(element) {
+            element.querySelector('i').classList.toggle('bi-heart-fill');
+            element.querySelector('i').classList.toggle('bi-heart');
+        }
+    </script>
 </body>
