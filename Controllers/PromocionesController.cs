@@ -86,7 +86,8 @@ namespace Trabajo_Final.Controllers
                 var prod = _context.DataProducto.Where(p => p.Categoria.Id == model.CategoriaId).ToList();
                 foreach (var item in prod)
                 {
-                    item.Precio = (decimal)(item.Precio * ((model.FormPromociones.ValorDescuento / 100) + 1));
+                    item.Descuento = true;
+                    item.PrecioAlternativo = (decimal)(item.Precio * ((model.FormPromociones.ValorDescuento / 100) + 1));
                     _context.Update(item);
                 }
             }
