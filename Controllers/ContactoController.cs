@@ -33,7 +33,7 @@ namespace Trabajo_Final.Controllers
         {
             _logger.LogDebug("Ingreso a enviar mensaje");
             Log.Debug($"INTENTANDO ENVIAR MENSAJE");
-            MLModelSentimentAnalysis.ModelInput sampleData = new MLModelSentimentAnalysis.ModelInput()
+            /*MLModelSentimentAnalysis.ModelInput sampleData = new MLModelSentimentAnalysis.ModelInput()
             {
                 Comentario = contacto.Message
             };
@@ -62,8 +62,8 @@ namespace Trabajo_Final.Controllers
                 {
                     msj = "Positivo";
                 }
-            }
-            Console.WriteLine("Resultado: " + msj);
+            }*/
+            //Console.WriteLine("Resultado: " + msj);
             _context.Add(contacto);
             _context.SaveChanges();
             TempData["Confirm"] = true;
