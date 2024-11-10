@@ -9,6 +9,7 @@ using Trabajo_Final.Data;
 using Trabajo_Final.Helper;
 using Trabajo_Final.Models;
 using SentimentAnalysis;
+using Serilog;
 
 namespace Trabajo_Final.Controllers
 {
@@ -31,7 +32,7 @@ namespace Trabajo_Final.Controllers
         public async Task<IActionResult> Enviar(Contacto contacto)
         {
             _logger.LogDebug("Ingreso a enviar mensaje");
-
+            Log.Debug($"INTENTANDO ENVIAR MENSAJE");
             MLModelSentimentAnalysis.ModelInput sampleData = new MLModelSentimentAnalysis.ModelInput()
             {
                 Comentario = contacto.Message
