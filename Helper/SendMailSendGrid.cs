@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using Serilog;
 using Trabajo_Final.Models;
 
 namespace Trabajo_Final.Helper
@@ -14,13 +15,14 @@ namespace Trabajo_Final.Helper
 
         public async Task EnviarCorreoAsync(Contacto contacto, string msj)
         {
+            Log.Debug($"Leyendo la variable de entorno KEYSEND: {_apiKey}"); // Mensaje de depuración
             _apiKey = Environment.GetEnvironmentVariable("KEYSEND");
             var client = new SendGridClient(_apiKey);
             var from = new EmailAddress("infocomtechnologysoport@gmail.com", "Infocom Technology Soporte");
             var to = new EmailAddress(contacto.Email);
             string subject = "";
             string envio = "";
-            Console.WriteLine("EL MENSAJE A SIDO ENVIADO");
+            Log.Information("Preparando el mensaje para el contacto: {Nombre}", contacto.Nombre);
             if (msj.Equals("Positivo"))
             {
                 subject = "¡Gracias por tu comentario!";
