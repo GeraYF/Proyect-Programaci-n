@@ -11,12 +11,12 @@ namespace Trabajo_Final.Helper
 {
     public class SendMailSendGrid
     {
-        private string _apiKey;
+        private string _apiKey = Environment.GetEnvironmentVariable("KEYSEND");
 
         public async Task EnviarCorreoAsync(Contacto contacto, string msj)
         {
             Log.Debug($"Leyendo la variable de entorno KEYSEND: {_apiKey}"); // Mensaje de depuración
-            _apiKey = Environment.GetEnvironmentVariable("KEYSEND");
+                                                                             // _apiKey = Environment.GetEnvironmentVariable("KEYSEND");
             var client = new SendGridClient(_apiKey);
             var from = new EmailAddress("infocomtechnologysoport@gmail.com", "Infocom Technology Soporte");
             var to = new EmailAddress(contacto.Email);

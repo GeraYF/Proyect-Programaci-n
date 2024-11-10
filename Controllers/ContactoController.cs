@@ -64,8 +64,8 @@ namespace Trabajo_Final.Controllers
                 }
             }
             Console.WriteLine("Resultado: " + msj);
-            // _context.Add(contacto);
-            //_context.SaveChanges();
+            _context.Add(contacto);
+            _context.SaveChanges();
             TempData["Confirm"] = true;
             var emailService2 = new SendMailSendGrid();
             _logger.LogDebug($"ESTE ENSAJE DEBE APARECER EN RENDER");
