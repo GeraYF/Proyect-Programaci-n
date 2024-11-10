@@ -28,6 +28,7 @@ namespace Trabajo_Final.Controllers
             PromocionViewModel model = new PromocionViewModel
             {
                 Categorias = from o in _context.DataCategoria select o,
+                Promociones = from o in _context.DataPromociones select o,
                 FormPromociones = new Promociones()
             };
             ViewData["Action"] = "Create";
@@ -50,7 +51,7 @@ namespace Trabajo_Final.Controllers
             foreach (var item in prod)
             {
                 item.Descuento = true;
-                item.PrecioAlternativo = (decimal)(item.Precio * ((model.FormPromociones.ValorDescuento / 100) + 1));
+                item.PrecioAlternativo = (decimal)(item.Precio - (item.Precio * (model.FormPromociones.ValorDescuento / 100)));
                 _context.Update(item);
 
             }
@@ -58,7 +59,7 @@ namespace Trabajo_Final.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
-        /*public IActionResult IndexUpdate(long id)
+        public IActionResult IndexUpdate(long id)
         {
             var ListPromos = from o in _context.DataPromociones select o;
             var promocion = _context.DataPromociones.Include(p => p.Categoria).FirstOrDefault(p => p.Id == id);
@@ -73,7 +74,7 @@ namespace Trabajo_Final.Controllers
             };
             ViewData["Action"] = "Update";
             return View("Index", model);
-        }*/
+        }
         [HttpPost]
         public IActionResult Update(PromocionViewModel model)
         {
@@ -89,8 +90,8 @@ namespace Trabajo_Final.Controllers
                 var prod = _context.DataProducto.Where(p => p.Categoria.Id == model.CategoriaId).ToList();
                 foreach (var item in prod)
                 {
-                    item.Descuento = true;
-                    item.PrecioAlternativo = (decimal)(item.Precio * ((model.FormPromociones.ValorDescuento / 100) + 1));
+                    item.Descuento = false;
+                    item.PrecioAlternativo = null;
                     _context.Update(item);
                 }
             }
@@ -100,19 +101,21 @@ namespace Trabajo_Final.Controllers
 
 
 
-        /*public IActionResult Delete(long id)
+        public IActionResult Delete(long id)
         {
             Console.WriteLine("ENTRABDO AL METODO DELETE");
-            var promocion = _context.DataPromociones.Find(id);
+            var promocion = _context.DataPromociones.Include(p => p.Categoria).FirstOrDefault(p => p.Id == id);
             if (promocion == null)
             {
                 return View("Error");
             }
             else
             {
+                Console.WriteLine($"LA CATEGORIA ES {promocion.Categoria.Id}");
                 var prod = _context.DataProducto.Where(p => p.Categoria.Id == promocion.Categoria.Id).ToList();
                 foreach (var item in prod)
                 {
+                    Console.WriteLine("PROCESANDO");
                     item.Descuento = false;
                     item.PrecioAlternativo = null;
                     _context.Update(item);
@@ -122,7 +125,7 @@ namespace Trabajo_Final.Controllers
             }
             _logger.LogDebug($"Producto {id} eliminado");
             return RedirectToAction(nameof(Index));
-        }*/
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

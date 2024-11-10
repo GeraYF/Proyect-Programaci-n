@@ -16,7 +16,7 @@ namespace Trabajo_Final.Models
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
         public bool Activo { get; set; } = true;
-        public Categoria? Categoria { get; set; }
+        public Categoria Categoria { get; set; }
 
     }
 }

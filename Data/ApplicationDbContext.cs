@@ -18,6 +18,7 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Trabajo_Final.Models.Producto> DataProducto { get; set; }
     public DbSet<Trabajo_Final.Models.Carrito> DataCarrito { get; set; }
     public DbSet<Trabajo_Final.Models.Compra> DataCompra { get; set; }
+    public DbSet<Trabajo_Final.Models.Promociones> DataPromociones { get; set; }
     public DbSet<Trabajo_Final.Models.DetalleCompra> DataDetalleCompra { get; set; }
     public DbSet<Trabajo_Final.Models.Comentario> DataComentario { get; set; }
 
@@ -27,17 +28,17 @@ public class ApplicationDbContext : IdentityDbContext
         base.OnModelCreating(modelBuilder);
 
         // Configuración de la relación entre Compra y DetalleCompra
-            modelBuilder.Entity<DetalleCompra>()
-                .HasOne(dc => dc.Compra)                // Relación entre DetalleCompra y Compra
-                .WithMany(c => c.Detalles)             // Relación inversa entre Compra y DetalleCompra
-                .HasForeignKey(dc => dc.CompraId)      // CompraId en DetalleCompra es la clave foránea
-                .OnDelete(DeleteBehavior.Cascade);     // Comportamiento de eliminación (opcional)
+        modelBuilder.Entity<DetalleCompra>()
+            .HasOne(dc => dc.Compra)                // Relación entre DetalleCompra y Compra
+            .WithMany(c => c.Detalles)             // Relación inversa entre Compra y DetalleCompra
+            .HasForeignKey(dc => dc.CompraId)      // CompraId en DetalleCompra es la clave foránea
+            .OnDelete(DeleteBehavior.Cascade);     // Comportamiento de eliminación (opcional)
 
-            // Configuración de la relación entre DetalleCompra y Producto
-            modelBuilder.Entity<DetalleCompra>()
-                .HasOne(dc => dc.Producto)              // Relación entre DetalleCompra y Producto
-                .WithMany()                            // Relación inversa no configurada explícitamente en Producto
-                .HasForeignKey(dc => dc.ProductoId);   // ProductoId en DetalleCompra es la clave foránea
+        // Configuración de la relación entre DetalleCompra y Producto
+        modelBuilder.Entity<DetalleCompra>()
+            .HasOne(dc => dc.Producto)              // Relación entre DetalleCompra y Producto
+            .WithMany()                            // Relación inversa no configurada explícitamente en Producto
+            .HasForeignKey(dc => dc.ProductoId);   // ProductoId en DetalleCompra es la clave foránea
 
 
         modelBuilder.Entity<Compra>()

@@ -9,6 +9,7 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,12 +22,14 @@
             background-color: #343a40;
             color: #fff;
         }
+
         .btn:hover {
             opacity: 0.8;
         }
     </style>
     <title>@ViewData["Title"]</title>
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav">
@@ -75,14 +78,11 @@
             </div>
         </nav>
     </header>
-<<<<<<< HEAD
-    <main class="content-wrapper" style="flex: 1;">
-=======
     <main class="container mt-4">
->>>>>>> 0e1ea173af4483af082734b6403d961bdcae1ea1
         @RenderBody()
     </main>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
 </html>
