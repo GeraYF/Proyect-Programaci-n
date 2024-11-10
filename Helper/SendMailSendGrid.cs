@@ -22,6 +22,7 @@ namespace Trabajo_Final.Helper
             var to = new EmailAddress(contacto.Email);
             string subject = "";
             string envio = "";
+            Console.WriteLine("EL MENSAJE A SIDO ENVIADO");
             if (msj.Equals("Positivo"))
             {
                 subject = "¡Gracias por tu comentario!";
