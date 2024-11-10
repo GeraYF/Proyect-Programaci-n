@@ -25,6 +25,21 @@ public class ApplicationDbContext : IdentityDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        // Configuración de la relación entre Compra y DetalleCompra
+            modelBuilder.Entity<DetalleCompra>()
+                .HasOne(dc => dc.Compra)                // Relación entre DetalleCompra y Compra
+                .WithMany(c => c.Detalles)             // Relación inversa entre Compra y DetalleCompra
+                .HasForeignKey(dc => dc.CompraId)      // CompraId en DetalleCompra es la clave foránea
+                .OnDelete(DeleteBehavior.Cascade);     // Comportamiento de eliminación (opcional)
+
+            // Configuración de la relación entre DetalleCompra y Producto
+            modelBuilder.Entity<DetalleCompra>()
+                .HasOne(dc => dc.Producto)              // Relación entre DetalleCompra y Producto
+                .WithMany()                            // Relación inversa no configurada explícitamente en Producto
+                .HasForeignKey(dc => dc.ProductoId);   // ProductoId en DetalleCompra es la clave foránea
+
+
         modelBuilder.Entity<Compra>()
             .Property(c => c.FechaCompra)
             .HasConversion(
