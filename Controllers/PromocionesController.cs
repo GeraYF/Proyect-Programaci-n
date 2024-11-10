@@ -108,7 +108,13 @@ namespace Trabajo_Final.Controllers
             }
             else
             {
-                Console.WriteLine($"LA CATEGORIA ES {promocion.Categoria.Id}");
+                var prod = _context.DataProducto.Where(p => p.Categoria.Id == promocion.Categoria.Id).ToList();
+                foreach (var item in prod)
+                {
+                    item.Descuento = false;
+                    item.PrecioAlternativo = null;
+                    _context.Update(item);
+                }
                 _context.Remove(promocion);
                 _context.SaveChanges();
             }
