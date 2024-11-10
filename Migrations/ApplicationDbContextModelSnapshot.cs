@@ -421,6 +421,9 @@ namespace Trabajo_Final.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
+                    b.Property<bool>("Descuento")
+                        .HasColumnType("boolean");
+
                     b.Property<DateTime>("FechaLanzamiento")
                         .HasColumnType("timestamp with time zone");
 
@@ -431,6 +434,9 @@ namespace Trabajo_Final.Migrations
                         .HasColumnType("text");
 
                     b.Property<decimal>("Precio")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal?>("PrecioAlternativo")
                         .HasColumnType("numeric");
 
                     b.Property<string>("Status")
