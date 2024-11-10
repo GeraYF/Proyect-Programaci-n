@@ -70,7 +70,7 @@ namespace Trabajo_Final.Controllers
             var emailService2 = new SendMailSendGrid();
             _logger.LogDebug($"ESTE ENSAJE DEBE APARECER EN RENDER");
             /*await emailService2.EnviarCorreoAsync(contacto.Nombre, contacto.Email, "Atención Infocom Technology", contacto.Message);*/
-            await emailService2.EnviarCorreoAsync(contacto, msj);
+            await emailService2.EnviarCorreoAsync(contacto);
             return RedirectToAction("Index", "Home");
         }
 
