@@ -37,7 +37,7 @@
             <div class="form-group mt-3">
                 <label asp-for="CategoriaId">Categoría</label>
                 <select asp-for="CategoriaId" class="form-control"
-                    asp-items="@(new SelectList(Model.Categorias, "Id", "Nombre"))" required>
+                    asp-items="@(new SelectList(Model.Categorias, "Id", "Nombre",Model.CategoriaId))" required>
                     <option value="">Seleccione una categoría para aplicar</option>
                 </select>
             </div>
