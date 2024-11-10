@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Trabajo_Final.Data;
 using Trabajo_Final.Models;
@@ -61,13 +62,15 @@ namespace Trabajo_Final.Controllers
         public IActionResult IndexUpdate(long id)
         {
             var ListPromos = from o in _context.DataPromociones select o;
-            var promo = _context.DataPromociones.Find(id);
+            var promocion = _context.DataPromociones.Include(p => p.Categoria).FirstOrDefault(p => p.Id == id);
+
 
             PromocionViewModel model = new PromocionViewModel
             {
                 Promociones = ListPromos,
                 Categorias = from o in _context.DataCategoria select o,
-                FormPromociones = promo
+                FormPromociones = promocion,
+                CategoriaId = promocion.Categoria.Id
             };
             ViewData["Action"] = "Update";
             return View("Index", model);
