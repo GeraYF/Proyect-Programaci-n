@@ -55,7 +55,6 @@ namespace Trabajo_Final.Controllers
                 _context.Update(item);
 
             }
-            Console.WriteLine("APLICACIÓN TERMINADA");
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
@@ -103,7 +102,6 @@ namespace Trabajo_Final.Controllers
 
         public IActionResult Delete(long id)
         {
-            Console.WriteLine("ENTRABDO AL METODO DELETE");
             var promocion = _context.DataPromociones.Include(p => p.Categoria).FirstOrDefault(p => p.Id == id);
             if (promocion == null)
             {
@@ -111,11 +109,9 @@ namespace Trabajo_Final.Controllers
             }
             else
             {
-                Console.WriteLine($"LA CATEGORIA ES {promocion.Categoria.Id}");
                 var prod = _context.DataProducto.Where(p => p.Categoria.Id == promocion.Categoria.Id).ToList();
                 foreach (var item in prod)
                 {
-                    Console.WriteLine("PROCESANDO");
                     item.Descuento = false;
                     item.PrecioAlternativo = null;
                     _context.Update(item);
