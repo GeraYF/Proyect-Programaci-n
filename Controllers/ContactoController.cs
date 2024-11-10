@@ -67,6 +67,7 @@ namespace Trabajo_Final.Controllers
             //_context.SaveChanges();
             TempData["Confirm"] = true;
             var emailService2 = new SendMailSendGrid();
+            _logger.LogDebug($"ESTE ENSAJE DEBE APARECER EN RENDER");
             /*await emailService2.EnviarCorreoAsync(contacto.Nombre, contacto.Email, "Atención Infocom Technology", contacto.Message);*/
             await emailService2.EnviarCorreoAsync(contacto, msj);
             return RedirectToAction("Index", "Home");
