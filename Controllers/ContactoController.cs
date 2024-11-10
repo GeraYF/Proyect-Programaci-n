@@ -33,7 +33,7 @@ namespace Trabajo_Final.Controllers
         {
             _logger.LogDebug("Ingreso a enviar mensaje");
             Log.Debug($"INTENTANDO ENVIAR MENSAJE");
-            /*MLModelSentimentAnalysis.ModelInput sampleData = new MLModelSentimentAnalysis.ModelInput()
+            MLModelSentimentAnalysis.ModelInput sampleData = new MLModelSentimentAnalysis.ModelInput()
             {
                 Comentario = contacto.Message
             };
@@ -62,7 +62,7 @@ namespace Trabajo_Final.Controllers
                 {
                     msj = "Positivo";
                 }
-            }*/
+            }
             //Console.WriteLine("Resultado: " + msj);
             _context.Add(contacto);
             _context.SaveChanges();
@@ -70,7 +70,7 @@ namespace Trabajo_Final.Controllers
             var emailService2 = new SendMailSendGrid();
             _logger.LogDebug($"ESTE ENSAJE DEBE APARECER EN RENDER");
             /*await emailService2.EnviarCorreoAsync(contacto.Nombre, contacto.Email, "Atención Infocom Technology", contacto.Message);*/
-            await emailService2.EnviarCorreoAsync(contacto);
+            await emailService2.EnviarCorreoAsync(contacto, msj);
             return RedirectToAction("Index", "Home");
         }
 
