@@ -20,8 +20,7 @@ namespace Trabajo_Final.Helper
             var client = new SendGridClient(_apiKey);
             var from = new EmailAddress("infocomtechnologysoport@gmail.com", "Infocom Technology Soporte");
             var to = new EmailAddress(contacto.Email);
-            string subject = "";
-            string envio = "";
+            string subject = "ESETE ES EL ASUNTO";
             Log.Information("Preparando el mensaje para el contacto: {Nombre}", contacto.Nombre);
             /*if (msj.Equals("Positivo"))
             {
@@ -36,7 +35,7 @@ namespace Trabajo_Final.Helper
                 Console.WriteLine("NEGATIVO");
 
             }*/
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, envio, envio);
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, contacto.Message, contacto.Message);
 
             var response = await client.SendEmailAsync(msg);
             Console.WriteLine($"Correo enviado con estado: {response.StatusCode}");
