@@ -102,10 +102,10 @@
                 <div class="col-lg-4 text-lg-start text-white">
                     <h5>Inscribete</h5>
                     <p>Suscríbete a nuestra plataforma.</p>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Dirección de email">
-                        <button class="btn btn-primary" type="button">IR</button>
-                    </div>
+                    <form asp-controller="Suscripcion" asp-action="Suscribir" method="post">
+                        <input type="email" name="email" required placeholder="Ingresa tu correo">
+                        <button type="submit">Suscribirse</button>
+                    </form>
                 </div>
             </div>
     </footer>
