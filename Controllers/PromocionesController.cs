@@ -62,8 +62,6 @@ namespace Trabajo_Final.Controllers
         {
             var ListPromos = from o in _context.DataPromociones select o;
             var promocion = _context.DataPromociones.Include(p => p.Categoria).FirstOrDefault(p => p.Id == id);
-
-
             PromocionViewModel model = new PromocionViewModel
             {
                 Promociones = ListPromos,
@@ -94,9 +92,14 @@ namespace Trabajo_Final.Controllers
                     _context.Update(item);
                 }
             }
+            _context.Update(model.FormPromociones);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
+            /*ayuy*/
+
+            /*hayyy*/
         }
+
 
 
 

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Trabajo_Final.Controllers
 {
-    [Authorize] 
+    [Authorize]
     public class CarritoController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -100,7 +100,7 @@ namespace Trabajo_Final.Controllers
             return RedirectToAction("Index", "Pago");
         }
 
-         public IActionResult DescargarFactura()
+        public IActionResult DescargarFactura()
         {
             var carritoItems = _context.DataCarrito
                 .Where(c => c.UserName == User.Identity.Name)
@@ -168,6 +168,8 @@ namespace Trabajo_Final.Controllers
                 document.Add(thankYou);
 
                 document.Close();
+                _context.DataCarrito.RemoveRange(carritoItems);
+                _context.SaveChanges();
 
                 // Descargar el archivo PDF
                 return File(memoryStream.ToArray(), "application/pdf", "Factura.pdf");

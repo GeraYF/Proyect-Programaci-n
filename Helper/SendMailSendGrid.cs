@@ -35,7 +35,7 @@ namespace Trabajo_Final.Helper
                 Console.WriteLine("NEGATIVO");
 
             }
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, contacto.Message, contacto.Message);
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, envio, envio);
 
             var response = await client.SendEmailAsync(msg);
             Console.WriteLine($"Correo enviado con estado: {response.StatusCode}");

@@ -8,6 +8,7 @@ using Trabajo_Final.Data;
 using Trabajo_Final.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Trabajo_Final.Controllers
 {
@@ -25,20 +26,20 @@ namespace Trabajo_Final.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> Index(long? clienteId, string categoria, string ordenar)
+        public async Task<IActionResult> Index(string categoria, string ordenar)
         {
-            if (clienteId == null)
+            /*if (clienteId == null)
             {
                 await CrearDatosDePrueba();
                 var cliente = await _context.DataCliente.FirstOrDefaultAsync();
-                if (cliente != null)
+                /*if (cliente != null)
                 {
                     clienteId = cliente.Id; // Obtener el ID del cliente creado
                 }
-            }
-
+            }*/
+            string clienteId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var comprasQuery = _context.DataCompra
-                .Where(c => c.ClienteId == clienteId)
+                .Where(c => c.ClienteId.Equals(clienteId))
                 .Include(c => c.Detalles)
                 .ThenInclude(d => d.Producto)
                 .AsQueryable();
@@ -89,18 +90,18 @@ namespace Trabajo_Final.Controllers
                 await _context.SaveChangesAsync();
 
                 // Crear una compra de prueba
-                var compra = new Compra
-                {
-                    ClienteId = cliente.Id,
-                    FechaCompra = DateTime.UtcNow,
-                    Estado = "Entregado", // Set the order status
-                    Detalles = new List<DetalleCompra>
-                    {
-                        new DetalleCompra { Producto = productos[0], Cantidad = 2, PrecioUnitario = 10.0M },
-                        new DetalleCompra { Producto = productos[1], Cantidad = 1, PrecioUnitario = 20.0M }
-                    }
-                };
-                await _context.DataCompra.AddAsync(compra);
+                /* var compra = new Compra
+                 {
+                     ClienteId = //cliente.Id,
+                     FechaCompra = DateTime.UtcNow,
+                     Estado = "Entregado", // Set the order status
+                     Detalles = new List<DetalleCompra>
+                     {
+                         new DetalleCompra { Producto = productos[0], Cantidad = 2, PrecioUnitario = 10.0M },
+                         new DetalleCompra { Producto = productos[1], Cantidad = 1, PrecioUnitario = 20.0M }
+                     }
+                 };*/
+                // await _context.DataCompra.AddAsync(compra);
                 await _context.SaveChangesAsync();
             }
         }

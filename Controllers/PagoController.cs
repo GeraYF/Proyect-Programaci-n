@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Trabajo_Final.Data;
 using Trabajo_Final.Models;
-using Microsoft.EntityFrameworkCore; // Add this using directive
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims; // Add this using directive
 
 namespace Trabajo_Final.Controllers
 {
@@ -32,13 +33,35 @@ namespace Trabajo_Final.Controllers
             // Por ahora, solo redirigimos a una vista de confirmación o a una página de éxito
 
             // Clear the cart after payment is processed
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var carritoItems = await _context.DataCarrito
-                .Where(c => c.UserName == UserName)
-                .ToListAsync();
-            _context.DataCarrito.RemoveRange(carritoItems);
-            await _context.SaveChangesAsync();
+                .Where(c => c.UserName == UserName).Include(c => c.Producto).ToListAsync();
 
-            return RedirectToAction("Confirmacion");
+            Compra compra = new Compra()
+            {
+                ClienteId = userId,
+                Total = carritoItems.Sum(c => c.Precio)
+            };
+            List<DetalleCompra> listDet = new List<DetalleCompra>();
+            foreach (var c in carritoItems)
+            {
+                DetalleCompra det = new DetalleCompra()
+                {
+                    CompraId = compra.Id,
+                    Compra = compra,
+                    ProductoId = c.Producto.Id,
+                    Producto = c.Producto,
+                    Cantidad = c.Cantidad,
+
+                    PrecioUnitario = c.Precio
+                };
+                listDet.Add(det);
+            }
+            compra.Detalles = listDet;
+            _context.Add(compra);
+            _context.SaveChanges();
+
+            return View("Confirmacion");
         }
 
         // GET: /Pago/Confirmacion

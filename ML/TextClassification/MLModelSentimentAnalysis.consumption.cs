@@ -54,7 +54,7 @@ namespace SentimentAnalysis
 
         #endregion
 
-        private static string MLNetModelPath = Path.GetFullPath("./ML/TextClassification/");
+        private static string MLNetModelPath = Path.GetFullPath("./ML/TextClassification/MLModelSentimentAnalysis.mlnet");
 
         public static readonly Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(() => CreatePredictEngine(), true);
 
