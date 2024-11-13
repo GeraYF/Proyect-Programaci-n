@@ -20,6 +20,6 @@ namespace Trabajo_Final.Models
         public string? ImageURL { get; set; }
         public Categoria? Categoria { get; set; }
         public Decimal? PrecioAlternativo { get; set; }
-        public bool Descuento { get; set; } = false;
+        public bool? Descuento { get; set; } = false;
     }
 }
