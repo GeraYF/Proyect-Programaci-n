@@ -12,8 +12,31 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/PaginaPrincipal/styles.css" asp-append-version="true" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" /> <!-- Añadir esta línea -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <!-- Estilos para el cuadro de confirmación -->
+    <style>
+        .suscripcion-mensaje {
+            display: none; /* Inicialmente oculto */
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #28a745; /* Color verde */
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+            font-size: 16px;
+        }
+
+        .suscripcion-mensaje i {
+            margin-right: 10px;
+        }
+    </style>
 </head>
+
 
 <body style="display: flex; flex-direction: column; min-height: 100vh;">
     <header>
@@ -116,5 +139,26 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<!-- Código JavaScript para mostrar el mensaje de suscripción exitosa -->
+<script>
+    // Verificar si la suscripción fue exitosa
+    @if (TempData["SuscripcionExitosa"] != null)
+    {
+        <text>
+            $(document).ready(function() {
+                $('#mensajeSuscripcion').fadeIn();
+                setTimeout(function() {
+                    $('#mensajeSuscripcion').fadeOut();
+                }, 3000); // El mensaje desaparece después de 3 segundos
+            });
+        </text>
+    }
+</script>
 
 </html>

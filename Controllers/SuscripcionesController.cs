@@ -21,6 +21,7 @@ namespace Trabajo_Final.Controllers
 
             // Obtén la clave API de SendGrid de la variable de entorno
             var apiKey = Environment.GetEnvironmentVariable("KEYSEND");
+            Console.WriteLine("SendGrid API Key: " + apiKey); // Esto imprimirá la clave en la consola
             if (string.IsNullOrEmpty(apiKey))
                 throw new ArgumentNullException(nameof(apiKey), "La clave API de SendGrid no puede estar vacía.");
 
@@ -33,7 +34,8 @@ namespace Trabajo_Final.Controllers
         {
             if (string.IsNullOrEmpty(email) || !new EmailAddressAttribute().IsValid(email))
             {
-                return BadRequest("Correo electrónico no válido.");
+                TempData["ErrorMessage"] = "Correo electrónico no válido.";
+                return RedirectToAction("Index", "Home"); // Redirigir a la página principal (puedes cambiar esto según tu vista)
             }
 
             // Crear la nueva suscripción y solo asignar el email
@@ -44,10 +46,13 @@ namespace Trabajo_Final.Controllers
             await _context.SaveChangesAsync();
 
             // Enviar el correo de confirmación con SendGrid
-            string msj = "Gracias por suscribirte"; // Mensaje de confirmación
+            string msj = "Gracias por suscribirte. Te enviaremos más información sobre nuestros productos"; // Mensaje de confirmación
             await _emailService.EnviarCorreoDeSuscripcionAsync(email, msj);
 
-            return Ok("Suscripción exitosa.");
+            // Guardar un mensaje de suscripción exitosa en TempData
+            TempData["SuscripcionExitosa"] = "¡Gracias por suscribirte! Te enviaremos más información por correo.";
+
+            return RedirectToAction("Index", "Home"); // Redirigir a la página principal para mostrar el mensaje
         }
     }
 }
