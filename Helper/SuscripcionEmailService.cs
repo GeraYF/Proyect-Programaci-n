@@ -18,20 +18,27 @@ namespace Trabajo_Final.Helper
         }
 
         public async Task EnviarCorreoDeSuscripcionAsync(string email, string mensaje)
-        {
-            var client = new SendGridClient(_apiKey);
-            var from = new EmailAddress("no-reply@tu-dominio.com", "Infocom Technology");
-            var to = new EmailAddress(email);
-            var subject = "Confirmación de Suscripción";
-            var contenido = mensaje ?? "Gracias por suscribirte a nuestro boletín.";
+{
+    var client = new SendGridClient(_apiKey);
+    var from = new EmailAddress("infocomtechnologysoport@gmail.com", "Infocom Technology Suscripcion");
+    var to = new EmailAddress(email);
+    var subject = "Confirmación de Suscripción";
+    var contenido = mensaje ?? "Gracias por suscribirte a  nuestro boletín.";
 
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, contenido, contenido);
-            var response = await client.SendEmailAsync(msg);
-            
-            if (response.StatusCode != System.Net.HttpStatusCode.Accepted)
-            {
-                throw new Exception("Error al enviar el correo de suscripción.");
-            }
-        }
+    var msg = MailHelper.CreateSingleEmail(from, to, subject, contenido, contenido);
+    var response = await client.SendEmailAsync(msg);
+
+    // Imprimir el código de estado y el cuerpo de la respuesta
+    Console.WriteLine($"Status Code: {response.StatusCode}");
+    var responseBody = await response.Body.ReadAsStringAsync();
+    Console.WriteLine($"Response Body: {responseBody}");
+
+    if (response.StatusCode != System.Net.HttpStatusCode.Accepted)
+    {
+        throw new Exception("Error al enviar el correo de suscripción.");
+    }
+
+}
     }
 }
+
