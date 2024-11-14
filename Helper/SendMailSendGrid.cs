@@ -40,5 +40,24 @@ namespace Trabajo_Final.Helper
             var response = await client.SendEmailAsync(msg);
             Console.WriteLine($"Correo enviado con estado: {response.StatusCode}");
         }
+
+        public async Task EnviarCorreoDeSuscripcionAsync(string email, string msj)
+        {
+            var client = new SendGridClient(_apiKey);
+            var from = new EmailAddress("no-reply@tu-dominio.com", "Infocom Technology");
+            var to = new EmailAddress(email);
+            string subject = "Confirmación de Suscripción";
+            string envio = $"Hola,\nGracias por suscribirte a nuestro boletín. ¡Estás registrado con éxito!";
+
+            if (!string.IsNullOrEmpty(msj))
+            {
+                envio = $"{msj}\n\nEstamos felices de tenerte con nosotros.";
+            }
+
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, envio, envio);
+
+            var response = await client.SendEmailAsync(msg);
+            Log.Information($"Correo enviado con estado: {response.StatusCode}");
+        }
     }
 }

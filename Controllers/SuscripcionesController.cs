@@ -1,16 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 using Trabajo_Final.Data;
-using Trabajo_Final.ViewModel;
-using SendGrid;
-using SendGrid.Helpers.Mail;
-using Trabajo_Final.Models; 
-using System.ComponentModel.DataAnnotations; 
+using Trabajo_Final.Helper;
+using Trabajo_Final.Models;
 
 namespace Trabajo_Final.Controllers
 {
@@ -18,12 +13,19 @@ namespace Trabajo_Final.Controllers
     public class SuscripcionController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly IConfiguration _configuration;
+        private readonly SuscripcionEmailService _emailService;
 
         public SuscripcionController(ApplicationDbContext context, IConfiguration configuration)
         {
             _context = context;
-            _configuration = configuration;
+
+            // Obtén la clave API de SendGrid de la variable de entorno
+            var apiKey = Environment.GetEnvironmentVariable("KEYSEND");
+            if (string.IsNullOrEmpty(apiKey))
+                throw new ArgumentNullException(nameof(apiKey), "La clave API de SendGrid no puede estar vacía.");
+
+            // Inicializa el servicio de envío de correo con la clave API
+            _emailService = new SuscripcionEmailService(apiKey);
         }
 
         [HttpPost]
@@ -34,24 +36,16 @@ namespace Trabajo_Final.Controllers
                 return BadRequest("Correo electrónico no válido.");
             }
 
-            // Guardar en la base de datos
+            // Crear la nueva suscripción y solo asignar el email
             var suscripcion = new Suscripciones { Email = email };
+
+            // El campo Id se generará automáticamente
             _context.DataSuscripciones.Add(suscripcion);
             await _context.SaveChangesAsync();
 
-            // Enviar confirmación con SendGrid
-            var sendGridKey = _configuration["SendGrid:ApiKey"];
-            if (!string.IsNullOrEmpty(sendGridKey))
-            {
-                var client = new SendGridClient(sendGridKey);
-                var from = new EmailAddress("no-reply@tu-dominio.com", "Tienda Ejemplo");
-                var subject = "Gracias por suscribirse";
-                var to = new EmailAddress(email);
-                var plainTextContent = "Gracias por suscribirte a nuestra tienda.";
-                var htmlContent = "<strong>Gracias por suscribirte a nuestra tienda.</strong>";
-                var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-                await client.SendEmailAsync(msg);
-            }
+            // Enviar el correo de confirmación con SendGrid
+            string msj = "Gracias por suscribirte"; // Mensaje de confirmación
+            await _emailService.EnviarCorreoDeSuscripcionAsync(email, msj);
 
             return Ok("Suscripción exitosa.");
         }
