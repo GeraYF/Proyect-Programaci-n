@@ -26,6 +26,23 @@
         .btn:hover {
             opacity: 0.8;
         }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
     </style>
     <title>@ViewData["Title"]</title>
 </head>
@@ -80,6 +97,11 @@
     <main class="container mt-4">
         @RenderBody()
     </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Infocom. Todos los derechos reservados.</p>
+        </div>
+    </footer>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

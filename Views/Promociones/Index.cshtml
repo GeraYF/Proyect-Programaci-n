@@ -26,11 +26,22 @@
         background-color: #d4a017;
         color: white;
     }
+    .btn-green {
+        background-color: #28a745;
+        color: white;
+    }
+    .form-container {
+        display: flex;
+        justify-content: center;
+    }
+    .heading-yellow {
+        color: #d4a017;
+    }
 </style>
 
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
+    <div class="row form-container">
+        <div class="col-md-8">
             @if (ViewData["Action"].Equals("Update"))
             {
                 <h2 class="mb-4">Editar Promoción: @Model.FormPromociones.Nombre</h2>
@@ -38,7 +49,7 @@
             }
             else
             {
-                <h2 class="mb-4 text-center">Crear una nueva Promoción</h2>
+                <h2 class="mb-4 text-center heading-yellow">Crear una nueva Promoción</h2>
             }
 
             <form asp-action=@ViewData["Action"] method="post">
@@ -78,7 +89,7 @@
                 }
                 else
                 {
-                    <button type="submit" class="btn btn-primary mt-3">Agregar Promoción</button>
+                    <button type="submit" class="btn btn-green mt-3">Agregar Promoción</button>
                 }
             </form>
         </div>
