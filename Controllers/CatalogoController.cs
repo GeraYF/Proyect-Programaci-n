@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Trabajo_Final.Data;
 using Trabajo_Final.ViewModel;
@@ -38,6 +39,26 @@ namespace Trabajo_Final.Controllers
                 ListProducto = productos
             };
             _logger.LogDebug("Producto {productos}", productos);
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Detalles(int id)
+        {
+            var producto = _context.DataProducto
+                .Include(p => p.Categoria)
+                .FirstOrDefault(p => p.Id == id);
+
+            if (producto == null)
+            {
+                return NotFound("Producto no encontrado.");
+            }
+
+            var viewModel = new ProductoViewModel
+            {
+                FormProducto = producto
+            };
+
             return View(viewModel);
         }
 

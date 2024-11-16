@@ -1,10 +1,10 @@
-@model Trabajo_Final.Models.Contacto;
-<div class="container">
+@model Trabajo_Final.Models.Contacto
+<div class="container mt-5">
     <div class="text-center">
         <h2 class="section-heading text-uppercase">Contactanos</h2>
         <h3 class="section-subheading text-muted">Estamos interesados en escucharte.</h3>
     </div>
-    <form method="post" asp-controller="Contacto" asp-action="Enviar" id="contactForm">
+    <form method="post" asp-controller="Contacto" asp-action="Enviar" id="contactForm" class="mx-auto col-md-8">
         <div class="row align-items-stretch mb-5">
             <div class="col-md-6">
                 <div class="form-group">
@@ -32,7 +32,25 @@
             </div>
 
         </div>
-        <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton"
-                type="submit">ENVIAR MENSAJE</button></div>
+        <div class="text-center mt-4">
+            <button class="btn btn-custom btn-xl text-uppercase" id="submitButton" type="submit">Enviar Mensaje</button>
+        </div>
     </form>
 </div>
+
+<style>
+    .btn-custom {
+        background-color: #cca000;
+        border: none;
+    }
+    .btn-custom:hover {
+        background-color: #b88b00;
+    }
+    .form-control {
+        border-radius: 0;
+    }
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #cca000;
+    }
+</style>

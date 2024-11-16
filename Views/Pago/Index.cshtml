@@ -26,18 +26,28 @@
             font-size: 1.1rem;
             padding: 10px 20px;
         }
+        /* Añadir estilos responsivos */
+        @@media (max-width: 576px) {
+            .payment-container {
+                padding: 15px;
+            }
+            .payment-header {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 
 <div class="container payment-container">
     <h2 class="payment-header">Formulario de Pago</h2>
 
-    <form method="post" action="/Pago/ProcesarPago">
+    <form method="post" action="/Pago/ProcesarPago" id="paymentForm">
+        @Html.AntiForgeryToken()
         <!-- Información del comprador -->
         <div class="row mb-3">
             <label for="NombreCompleto" class="col-sm-4 col-form-label form-label">Nombre Completo</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="NombreCompleto" name="NombreCompleto" required />
+                <input type="text" class="form-control" id="NombreCompleto" name="NombreCompleto" required aria-required="true" aria-label="Nombre Completo" />
             </div>
         </div>
         <!-- Add hidden input for UserName -->
@@ -76,24 +86,26 @@
         <!-- Información de la tarjeta de crédito -->
         <h4 class="text-center">Detalles de la Tarjeta</h4>
 
+        <!-- Añadir placeholders y máscaras de entrada -->
         <div class="row mb-3">
             <label for="NumeroTarjeta" class="col-sm-4 col-form-label form-label">Número de Tarjeta</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="NumeroTarjeta" name="NumeroTarjeta" required />
+                <input type="text" class="form-control" id="NumeroTarjeta" name="NumeroTarjeta" required pattern="\d{16}" maxlength="19" aria-required="true" aria-label="Número de Tarjeta" placeholder="1234 5678 9012 3456" />
+                <small class="form-text text-muted">Ingrese 16 dígitos sin espacios.</small>
             </div>
         </div>
 
         <div class="row mb-3">
             <label for="FechaExpiracion" class="col-sm-4 col-form-label form-label">Fecha de Expiración (MM/AA)</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="FechaExpiracion" name="FechaExpiracion" required placeholder="MM/AA" />
+                <input type="text" class="form-control" id="FechaExpiracion" name="FechaExpiracion" required placeholder="MM/AA" aria-required="true" aria-label="Fecha de Expiración" />
             </div>
         </div>
 
         <div class="row mb-3">
             <label for="CVV" class="col-sm-4 col-form-label form-label">CVV</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="CVV" name="CVV" required />
+                <input type="text" class="form-control" id="CVV" name="CVV" required maxlength="4" aria-required="true" aria-label="CVV" placeholder="123" />
             </div>
         </div>
 
@@ -103,3 +115,48 @@
         </div>
     </form>
 </div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#NumeroTarjeta').mask('0000 0000 0000 0000');
+            $('#FechaExpiracion').mask('00/00');
+            $('#CVV').mask('0000');
+        });
+
+        document.getElementById('paymentForm').addEventListener('submit', function(event) {
+            // Validación avanzada
+            const numeroTarjeta = document.getElementById('NumeroTarjeta').value.replace(/\s+/g, '');
+            const fechaExpiracion = document.getElementById('FechaExpiracion').value;
+            const cvv = document.getElementById('CVV').value;
+            const tarjetaRegex = /^\d{16}$/;
+            const fechaRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+            const cvvRegex = /^\d{3,4}$/;
+
+            let isValid = true;
+            let errorMessage = '';
+
+            if (!tarjetaRegex.test(numeroTarjeta)) {
+                errorMessage += 'Por favor, ingrese un número de tarjeta válido de 16 dígitos.\n';
+                isValid = false;
+            }
+
+            if (!fechaRegex.test(fechaExpiracion)) {
+                errorMessage += 'Por favor, ingrese una fecha de expiración válida en formato MM/AA.\n';
+                isValid = false;
+            }
+
+            if (!cvvRegex.test(cvv)) {
+                errorMessage += 'Por favor, ingrese un CVV válido de 3 o 4 dígitos.\n';
+                isValid = false;
+            }
+
+            if (!isValid) {
+                alert(errorMessage);
+                event.preventDefault();
+            }
+        });
+    </script>
+}

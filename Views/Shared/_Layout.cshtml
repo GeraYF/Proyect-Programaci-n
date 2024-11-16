@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/PaginaPrincipal/styles.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
     <!-- Estilos para el cuadro de confirmación -->
     <style>
@@ -137,7 +138,45 @@
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollout/2.0.2/scrollout.min.js"></script> <!-- Nuevo script -->
+    <script>
+        AOS.init({
+            duration: 800, // Duración de la animación
+            easing: 'ease-in-out', // Efecto de la animación
+            once: true, // Animar solo una vez mientras se desplaza
+        });
+
+        ScrollOut({
+            targets: '[data-scrollout]', // Elementos con este atributo tendrán animaciones de salida
+            onShown: function(element) {
+                // Elemento entra en vista
+                element.classList.add('aos-animate');
+            },
+            onHidden: function(element) {
+                // Elemento sale de vista
+                element.classList.remove('aos-animate');
+                element.classList.add('aos-animate-out'); // Clase para animación de salida
+            }
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
+<style>
+    /* Estilos para animación de salida */
+    .aos-animate-out {
+        animation: fadeOut 0.8s forwards;
+    }
+
+    @@keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+</style>
+
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
