@@ -3,81 +3,117 @@
     Layout = "_LayoutAdmin";
 }
 
-<div class="container">
-    <div class="row">
-        @if (ViewData["Action"].Equals("Update"))
-        {
-            <h2>Editar Promoción: @Model.FormPromociones.Nombre</h2>
-            <h2>ID: @Model.FormPromociones.Id</h2>
-        }
-        else
-        {
-            <h1>Crear una nueva Promoción</h1>
-        }
+<style>
+    .promocion-card {
+        margin: auto;
+        float: none;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+    .promocion-card .card-body {
+        padding: 1.25rem;
+    }
+    .promocion-card .card-title {
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+    .promocion-card .card-text {
+        margin-bottom: 0.75rem;
+    }
+    .btn-dark-yellow {
+        background-color: #d4a017;
+        color: white;
+    }
+    .btn-green {
+        background-color: #28a745;
+        color: white;
+    }
+    .form-container {
+        display: flex;
+        justify-content: center;
+    }
+    .heading-yellow {
+        color: #d4a017;
+    }
+</style>
 
-        <form asp-action=@ViewData["Action"] method="post">
-            <input type="hidden" asp-for="FormPromociones.Id" />
-            <div class="form-group mt-3">
-                <label asp-for=FormPromociones.Nombre></label>
-                <input asp-for=FormPromociones.Nombre class="form-control" required />
-            </div>
-            <div class="form-group mt-3">
-                <label asp-for=FormPromociones.ValorDescuento> Valor de descuento</label>
-                <input asp-for=FormPromociones.ValorDescuento class="form-control" required>
-            </div>
-
-            <div class="form-group mt-3">
-                <label asp-for=FormPromociones.FechaInicio>Fecha Inicio</label>
-                <input asp-for=FormPromociones.FechaInicio class="form-control" required />
-            </div>
-            <div class="form-group mt-3">
-                <label asp-for=FormPromociones.FechaFin>Fecha Fin</label>
-                <input asp-for=FormPromociones.FechaFin class="form-control" required />
-            </div>
-            <div class="form-group mt-3">
-                <label asp-for="CategoriaId">Categoría</label>
-                <select asp-for="CategoriaId" class="form-control"
-                    asp-items="@(new SelectList(Model.Categorias, "Id", "Nombre"))" required>
-                    <option value="">Seleccione una categoría para aplicar</option>
-                </select>
-            </div>
+<div class="container mt-5">
+    <div class="row form-container">
+        <div class="col-md-8">
             @if (ViewData["Action"].Equals("Update"))
             {
-                <div class="form-group mt-3">
-                    <label asp-for=FormPromociones.Activo>Activar</label>
-                    <input type="checkbox" asp-for="FormPromociones.Activo" class="form-check-input"
-                        checked="@Model.FormPromociones.Activo" />
-
-                </div>
-                <button type="submit" class="btn btn-success mt-3">Actualizar Promoción</button>
+                <h2 class="mb-4">Editar Promoción: @Model.FormPromociones.Nombre</h2>
+                <h4>ID: @Model.FormPromociones.Id</h4>
             }
             else
             {
-                <button type="submit" class="btn btn-success mt-3">Agregar Promoción</button>
+                <h2 class="mb-4 text-center heading-yellow">Crear una nueva Promoción</h2>
             }
-        </form>
+
+            <form asp-action=@ViewData["Action"] method="post">
+                <input type="hidden" asp-for="FormPromociones.Id" />
+                <div class="form-group mt-3">
+                    <label asp-for=FormPromociones.Nombre></label>
+                    <input asp-for=FormPromociones.Nombre class="form-control" required />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for=FormPromociones.ValorDescuento> Valor de descuento</label>
+                    <input asp-for=FormPromociones.ValorDescuento class="form-control" required>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label asp-for=FormPromociones.FechaInicio>Fecha Inicio</label>
+                    <input asp-for=FormPromociones.FechaInicio class="form-control" required />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for=FormPromociones.FechaFin>Fecha Fin</label>
+                    <input asp-for=FormPromociones.FechaFin class="form-control" required />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="CategoriaId">Categoría</label>
+                    <select asp-for="CategoriaId" class="form-control"
+                        asp-items="@(new SelectList(Model.Categorias, "Id", "Nombre"))" required>
+                        <option value="">Seleccione una categoría para aplicar</option>
+                    </select>
+                </div>
+                @if (ViewData["Action"].Equals("Update"))
+                {
+                    <div class="form-group mt-3">
+                        <label asp-for=FormPromociones.Activo>Activar</label>
+                        <input type="checkbox" asp-for="FormPromociones.Activo" class="form-check-input"
+                            checked="@Model.FormPromociones.Activo" />
+                    </div>
+                    <button type="submit" class="btn btn-dark-yellow mt-3">Actualizar Promoción</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-green mt-3">Agregar Promoción</button>
+                }
+            </form>
+        </div>
     </div>
-    <h1>Listado de Promociones</h1>
-    <div class="row">
-        <!-- Sección izquierda: Tabla de productos -->
+
+    <h2 class="mt-5 text-center">Listado de Promociones</h2>
+    <div class="row justify-content-center">
         @foreach (var item in Model.Promociones)
         {
-            <div class="card w-50">
-                <div class="card-body">
-                    <h5 class="card-title">@item.Nombre</h5>
-                    <p class="card-text">@item.ValorDescuento %</p>
-                    <p class="card-text">@(item.Activo == true ? "Activo" : "Pendiente") </p>
-                    <p class="card-text">@item.FechaInicio - @item.FechaFin </p>
-                    <a asp-action="IndexUpdate" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
+            <div class="col-md-4 mb-4">
+                <div class="card promocion-card">
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>Nombre:</strong> @item.Nombre</h5>
+                        <p class="card-text"><strong>Valor de descuento:</strong> @item.ValorDescuento %</p>
+                        <p class="card-text"><strong>Estado de la promoción:</strong> @(item.Activo ? "Activo" : "Pendiente")</p>
+                        <p class="card-text"><strong>Fecha Inicio:</strong> @item.FechaInicio</p>
+                        <p class="card-text"><strong>Fecha Fin:</strong> @item.FechaFin</p>
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="IndexUpdate" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         }
-
-
-
-
-
-
     </div>
 </div>
