@@ -33,7 +33,7 @@
                 <li class="list-group-item"><strong>Status:</strong> @Model.FormProducto.Status</li>
                 <li class="list-group-item"><strong>Categoría:</strong> @Model.FormProducto.Categoria.Nombre</li>
             </ul>
-            <a href="@Url.Action("Index", "Catalogo")" class="btn btn-primary mt-3">Volver al listado</a>
+            <a href="@Url.Action("Index", "Catalogo")" class="btn btn-custom mt-3">Volver al listado</a>
         </div>
     </div>
     <div class="row mt-5">
@@ -97,3 +97,17 @@
         </div>
     </div>
 </div>
+
+<style>
+    .btn-custom {
+        background-color: #cca000;
+        border: none;
+    }
+    .btn-custom:hover {
+        background-color: #b88b00;
+    }
+    .card:hover {
+        transform: scale(1.02);
+        transition: transform 0.3s ease-in-out;
+    }
+</style>

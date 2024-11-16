@@ -3,7 +3,34 @@
     Layout = "_LayoutAdmin";
 }
 
-<div class="container mt-5">
+<style>
+    /* Estilos personalizados */
+    .card-form {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .btn-custom {
+        background-color: #cca000;
+        border: none;
+    }
+    .btn-custom:hover {
+        background-color: #b88b00;
+    }
+    .table-hover tbody tr:hover {
+        background-color: #f2f2f2;
+    }
+    .fade-in {
+        animation: fadeIn 1s ease-in-out;
+    }
+    @@keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+
+<div class="container mt-5 fade-in">
     <div class="row justify-content-center">
         @if (ViewData["Action"].Equals("Actualizar"))
         {
@@ -16,7 +43,7 @@
             <p class="text-center text-secondary">Complete el siguiente formulario para agregar un nuevo producto a la lista.</p>
         }
 
-        <form asp-action=@ViewData["Action"] method="post" class="col-md-6">
+        <form asp-action=@ViewData["Action"] method="post" class="col-md-6 card-form mx-auto">
             <input type="hidden" asp-for="FormProducto.Id" />
             <input type="hidden" asp-for="FormProducto.ImageURL" />
             <div class="form-group mt-3">
@@ -58,11 +85,11 @@
             </div>
             @if (ViewData["Action"].Equals("Actualizar"))
             {
-                <button type="submit" class="btn btn-success mt-3">Actualizar Productos</button>
+                <button type="submit" class="btn btn-custom mt-3 w-100">Actualizar Producto</button>
             }
             else
             {
-                <button type="submit" class="btn btn-success mt-3">Agregar Producto</button>
+                <button type="submit" class="btn btn-custom mt-3 w-100">Agregar Producto</button>
             }
         </form>
     </div>
@@ -72,7 +99,7 @@
         <div class="col-md-4 mb-3">
             <input type="text" id="search" class="form-control" placeholder="Buscar productos..." onkeyup="searchProducts()" />
         </div>
-        <table class="table table-bordered table-striped text-center" id="productTable">
+        <table class="table table-hover text-center mt-5" id="productTable">
             <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
