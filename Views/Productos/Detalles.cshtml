@@ -16,6 +16,7 @@
         border: none;
         display: flex;
         align-items: center;
+        justify-content: center;
         transition: background-color 0.3s ease, transform 0.3s ease;
     }
     .btn-custom:hover {
@@ -93,6 +94,10 @@
         transform: translateY(-3px);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
+    .list-group-item strong {
+        width: 150px;
+        display: inline-block;
+    }
 </style>
 
 <div class="container mt-5">
@@ -123,13 +128,13 @@
                 <li class="list-group-item"><strong>Status:</strong> @Model.FormProducto.Status</li>
                 <li class="list-group-item"><strong>Categoría:</strong> @Model.FormProducto.Categoria.Nombre</li>
             </ul>
-            <a href="@Url.Action("Index", "Catalogo")" class="btn btn-custom mt-3">
-                <i class="bi bi-arrow-left"></i> Volver al listado
+            <a href="@Url.Action("Index", "Catalogo")" class="btn btn-custom mt-3" aria-label="Volver al listado">
+                <i class="bi bi-arrow-left" aria-hidden="true"></i> Volver al listado
             </a>
-            <form asp-controller="Carrito" asp-action="AgregarAlCarrito" method="post" class="d-inline">
+            <form asp-controller="Carrito" asp-action="AgregarAlCarrito" method="post" class="d-inline" id="addToCartForm">
                 @Html.AntiForgeryToken()
                 <input type="hidden" name="productoId" value="@Model.FormProducto.Id" />
-                <button type="submit" class="btn btn-success mt-3 btn-custom">
+                <button type="submit" class="btn btn-success mt-3 btn-custom" aria-label="Agregar @Model.FormProducto.Nombre al carrito">
                     <i class="bi bi-cart-plus"></i> Agregar al Carrito
                 </button>
             </form>
@@ -218,3 +223,12 @@
         background-color: #f9f9f9;
     }
 </style>
+
+@section Scripts {
+    <script>
+        document.getElementById('addToCartForm').addEventListener('submit', function(event) {
+            // Validación adicional si es necesario
+            // Por ejemplo, verificar stock disponible
+        });
+    </script>
+}

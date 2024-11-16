@@ -36,6 +36,7 @@
             width: 30px;
             height: 30px;
             border-radius: 50%;
+            outline: none;
         }
         .total-price {
             font-size: 1.2rem;
@@ -61,6 +62,17 @@
         }
         .btn-proceed {
             font-size: 1.1rem;
+        }
+        /* Mejorar la visibilidad de los controles de cantidad */
+        .quantity-controls button {
+            background-color: #ffc107;
+            border: none;
+        }
+        .quantity-controls button.btn-success {
+            background-color: #28a745;
+        }
+        .quantity-controls button:focus {
+            outline: 2px solid #0056b3;
         }
     </style>
 </head>
@@ -103,7 +115,7 @@
                                 <td>
                                     <div class="quantity-controls d-flex align-items-center justify-content-center">
                                         <button type="button" class="btn btn-sm btn-warning me-2" onclick="decreaseQuantity(@item.Id)">-</button>
-                                        <input type="number" id="cantidad-@item.Id" name="Cantidad" value="@item.Cantidad" min="1" readonly class="quantity-input form-control text-center" style="width: 60px;" />
+                                        <input type="number" id="cantidad-@item.Id" name="Cantidad" value="@item.Cantidad" min="1" readonly class="quantity-input form-control text-center" style="width: 60px;" aria-label="Cantidad de @item.Producto.Nombre" />
                                         <button type="button" class="btn btn-sm btn-success ms-2" onclick="increaseQuantity(@item.Id)">+</button>
                                     </div>
                                 </td>
@@ -141,6 +153,7 @@
             cantidadInput.value = currentQuantity + 1;
 
             updateTotal(id);
+            // Opcional: enviar AJAX para actualizar cantidad en el carrito
         }
 
         function decreaseQuantity(id) {
@@ -150,6 +163,7 @@
             if (currentQuantity > 1) {
                 cantidadInput.value = currentQuantity - 1;
                 updateTotal(id);
+                // Opcional: enviar AJAX para actualizar cantidad en el carrito
             }
         }
 
@@ -159,7 +173,16 @@
             let total = cantidadInput.value * precio;
 
             document.getElementById('total-' + id).innerText = total.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
+            // Actualizar el total general si es necesario
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mejorar accesibilidad de botones
+            const buttons = document.querySelectorAll('.quantity-controls button');
+            buttons.forEach(button => {
+                button.setAttribute('aria-label', button.textContent.trim());
+            });
+        });
     </script>
 </body>
 </html>

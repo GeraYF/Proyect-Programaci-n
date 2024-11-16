@@ -43,6 +43,9 @@
             transform: translateY(-3px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+        .text-danger {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -95,7 +98,7 @@
                             <div class="card h-100 card-custom">
                                 <!-- Product image-->
                                 <div class="position-relative">
-                                    <img class="card-img-top" src="@item.ImageURL" alt="Imagen no encontrada" />
+                                    <img class="card-img-top" src="@item.ImageURL" alt="Imagen de @item.Nombre" loading="lazy" />
                                     <span class="position-absolute top-0 start-0 bg-success text-white px-2 py-1">NUEVO</span>
                                 </div>
                                 <!-- Product details-->
@@ -149,8 +152,10 @@
     <script src="~/js/Catalogo/site.js" asp-append-version="true"></script>
     <script>
         function toggleFavorite(element) {
-            element.querySelector('i').classList.toggle('bi-heart-fill');
-            element.querySelector('i').classList.toggle('bi-heart');
+            const icon = element.querySelector('i');
+            icon.classList.toggle('bi-heart-fill');
+            icon.classList.toggle('bi-heart');
+            // Opcional: enviar una solicitud al servidor para actualizar favoritos
         }
     </script>
 </body>

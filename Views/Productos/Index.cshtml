@@ -29,6 +29,7 @@
         border-radius: 20px;
         padding: 8px 16px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        color: #fff;
     }
     .btn-custom i {
         margin-right: 6px;
@@ -36,6 +37,9 @@
     .btn-custom:hover {
         background-color: #b88b00;
         transform: translateY(-3px);
+    }
+    .btn-custom:focus {
+        outline: 2px solid #0056b3;
     }
     .table-hover tbody tr:hover {
         background-color: #dee2e6;
@@ -77,6 +81,7 @@
         background-color: #343a40;
         color: #fff;
         border-bottom: 2px solid #dee2e6;
+        scope: "col";
     }
     .table tbody tr {
         transition: background-color 0.3s ease;
@@ -86,6 +91,9 @@
     .table img {
         border-radius: 8px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        width: 100px;
+        height: auto;
+        loading: lazy;
     }
     .table img:hover {
         transform: scale(1.1);
@@ -114,6 +122,13 @@
         justify-content: center;
         gap: 10px;
     }
+    /* Añadir clases responsivas adicionales */
+    @@media (max-width: 768px) {
+        .acciones-btn {
+            flex-direction: column;
+            gap: 5px;
+        }
+    }
 </style>
 
 <div class="container mt-5 fade-in">
@@ -137,17 +152,17 @@
         <div class="col-md-4 mb-3">
             <input type="text" id="search" class="form-control" placeholder="Buscar productos..." onkeyup="searchProducts()" />
         </div>
-        <table class="table table-hover table-responsive text-center mt-5" id="productTable">
+        <table class="table table-hover table-responsive text-center mt-5" id="productTable" aria-label="Listado de Productos">
             <thead class="thead-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Fecha de Lanzamiento</th>
-                    <th>Estado</th>
-                    <th>Categoría</th>
-                    <th>Imagen</th>
-                    <th>Acciones</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Fecha de Lanzamiento</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -160,16 +175,18 @@
                         <td>@Html.DisplayFor(modelItem => item.FechaLanzamiento)</td>
                         <td>@Html.DisplayFor(modelItem => item.Status)</td>
                         <td>@Html.DisplayFor(modelItem => item.Categoria.Nombre)</td>
-                        <td><img src="@item.ImageURL" alt="Imagen no encontrada" width="100" /></td>
+                        <td>
+                            <img src="@item.ImageURL" alt="Imagen de @item.Nombre" width="100" loading="lazy" />
+                        </td>
                         <td>
                             <div class="acciones-btn">
-                                <a asp-controller="Productos" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-custom">
+                                <a asp-controller="Productos" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-custom" aria-label="Eliminar @item.Nombre">
                                     <i class="bi bi-trash"></i> Eliminar
                                 </a>
-                                <a asp-controller="Productos" asp-action="Editar" asp-route-id="@item.Id" class="btn btn-warning btn-custom">
+                                <a asp-controller="Productos" asp-action="Editar" asp-route-id="@item.Id" class="btn btn-warning btn-custom" aria-label="Editar @item.Nombre">
                                     <i class="bi bi-pencil"></i> Editar
                                 </a>
-                                <a asp-controller="Productos" asp-action="Detalles" asp-route-id="@item.Id" class="btn btn-info btn-custom">
+                                <a asp-controller="Productos" asp-action="Detalles" asp-route-id="@item.Id" class="btn btn-info btn-custom" aria-label="Ver detalles de @item.Nombre">
                                     <i class="bi bi-eye"></i> Detalles
                                 </a>
                             </div>
