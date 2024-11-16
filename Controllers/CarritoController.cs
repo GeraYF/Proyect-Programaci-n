@@ -49,21 +49,23 @@ namespace Trabajo_Final.Controllers
             return NotFound();
         }
 
-        public async Task<IActionResult> Agregar(long id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AgregarAlCarrito(long productoId)
         {
-            if (id <= 0)
+            if (productoId <= 0)
             {
                 return BadRequest("ID de producto no válido.");
             }
 
-            var producto = await _context.DataProducto.FindAsync(id);
+            var producto = _context.DataProducto.Find(productoId);
             if (producto == null)
             {
                 return NotFound("Producto no encontrado.");
             }
 
-            var carritoItemExistente = await _context.DataCarrito
-                .FirstOrDefaultAsync(c => c.Producto.Id == producto.Id && c.UserName == User.Identity.Name);
+            var carritoItemExistente = _context.DataCarrito
+                .FirstOrDefault(c => c.Producto.Id == producto.Id && c.UserName == User.Identity.Name);
 
             if (carritoItemExistente != null)
             {
@@ -79,10 +81,10 @@ namespace Trabajo_Final.Controllers
                     Cantidad = 1,
                     Precio = producto.Precio
                 };
-                await _context.DataCarrito.AddAsync(carritoItem);
+                _context.DataCarrito.Add(carritoItem);
             }
 
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
             return RedirectToAction("Index", new { mensaje = "Producto agregado correctamente." });
         }
 

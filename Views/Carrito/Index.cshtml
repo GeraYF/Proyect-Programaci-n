@@ -45,6 +45,23 @@
             font-size: 1.1rem;
             padding: 10px 20px;
         }
+        .btn-custom {
+            border-radius: 20px;
+            padding: 8px 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+        .btn-custom i {
+            margin-right: 6px;
+        }
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .btn-proceed {
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 
@@ -93,16 +110,21 @@
                                 <td>@item.Precio.ToString("C")</td>
                                 <td id="total-@item.Id" data-precio="@item.Precio" class="total-price">@((item.Cantidad * item.Precio).ToString("C"))</td>
                                 <td>
-                                    <button type="submit" name="id" value="@item.Id" class="btn btn-sm btn-danger">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
+                                    <form method="post" asp-action="EliminarProducto" asp-controller="Carrito">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" name="id" value="@item.Id" class="btn btn-sm btn-danger btn-custom">
+                                            <i class="bi bi-trash"></i> Eliminar
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
                 <div class="text-end mt-4">
-                    <button class="btn btn-success btn-proceed" onclick="window.location.href='@Url.Action("ProcederAlPago", "Carrito")'; return false;">Proceder al Pago</button>
+                    <button class="btn btn-success btn-proceed btn-custom" onclick="window.location.href='@Url.Action("ProcederAlPago", "Carrito")'; return false;">
+                        <i class="bi bi-credit-card"></i> Proceder al Pago
+                    </button>
                 </div>
             </form>
         }
