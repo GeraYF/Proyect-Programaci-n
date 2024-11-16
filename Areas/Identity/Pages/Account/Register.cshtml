@@ -7,6 +7,8 @@
 <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f2f5; /* Light background */
+        transition: background-color 0.3s ease;
     }
     .modal {
         display: block; /* Show modal by default */
@@ -17,92 +19,170 @@
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(5px); /* Apply blur effect */
+        background-color: rgba(255, 255, 255, 0.9); /* Lighter background for better contrast */
+        backdrop-filter: blur(10px); /* Apply blur effect */
         display: flex;
         justify-content: center;
         align-items: center;
+        animation: fadeIn 0.5s ease;
     }
     .modal-content {
         background-color: #fefefe;
-        padding: 40px; /* Increase padding for more vertical space */
+        padding: 50px; /* Increase padding for more vertical space */
         border: 1px solid #888;
         width: 80%; /* Adjust width */
         max-width: 500px;
-        border-radius: 15px;
+        border-radius: 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: slideIn 0.5s ease;
+        position: relative; /* Añadido para posicionamiento absoluto de .close */
     }
     .close {
         color: #aaa;
         float: right;
-        font-size: 28px;
+        font-size: 28px; /* Tamaño aumentado para mejor visibilidad */
         font-weight: bold;
+        transition: color 0.3s ease, transform 0.3s ease;
+        position: absolute; /* Posicionamiento absoluto */
+        top: 15px; /* Espacio desde la parte superior */
+        right: 20px; /* Espacio desde la derecha */
+        cursor: pointer;
     }
     .close:hover,
     .close:focus {
         color: black;
         text-decoration: none;
         cursor: pointer;
+        transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
     }
     .input-group-text {
-        background: #f1f1f1;
+        background: #e9ecef;
         border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
     }
     .form-control {
         border: 1px solid #ccc;
         border-radius: 5px;
+        padding: 12px;
+        flex: 1;
+        transition: border-color 0.3s ease;
+        aria-label: "Input Field";
+    }
+    .form-control:focus {
+        border-color: #fdd835; /* Amarillo en lugar de verde */
+        box-shadow: 0 0 5px rgba(253, 216, 53, 0.5);
     }
     .btn-primary {
-        background: #fdd835; /* Darker yellow */
-        border: none;
-        color: #000; /* Black text color */
+        background: #fdd835; /* Amarillo oscuro */
+        color: #000; /* Texto negro */
         transition: background 0.3s ease, transform 0.3s ease;
     }
     .btn-primary:hover {
-        background: #fbc02d; /* Even darker yellow */
+        background: #fbc02d; /* Amarillo aún más oscuro */
         transform: scale(1.05);
     }
+    .btn-primary:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(253, 216, 53, 0.5);
+    }
     .btn-secondary {
-        background: #000; /* Black color */
-        border: none;
-        color: #fff; /* White text color */
+        background: #000; /* Fondo negro */
+        color: #fff; /* Texto blanco */
         transition: background 0.3s ease, transform 0.3s ease;
     }
     .btn-secondary:hover {
-        background: #333; /* Darker black */
+        background: #333; /* Negro más oscuro */
         transform: scale(1.05);
     }
     .btn-register {
-        background: #fdd835; /* Darker yellow */
-        color: #000; /* Black text */
+        background: #fdd835; /* Amarillo oscuro */
+        color: #000; /* Texto negro */
         border: none;
         border-radius: 5px;
-        padding: 10px 20px;
-        font-size: 1.2rem;
+        padding: 12px 24px; /* Ajuste de padding para igualar tamaño */
+        font-size: 1rem; /* Ajuste de tamaño de fuente */
         transition: background 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     .btn-register:hover {
-        background: #fbc02d; /* Even darker yellow */
+        background: #fbc02d; /* Amarillo aún más oscuro */
         transform: scale(1.05);
+    }
+    .btn-register:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(253, 216, 53, 0.5);
+    }
+    .btn-outline-secondary {
+        background: transparent;
+        border: none;
+        color: #fdd835; /* Amarillo oscuro */
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+    .btn-outline-secondary:hover {
+        color: #fbc02d; /* Amarillo aún más oscuro */
     }
     .register-message {
         text-align: center;
         margin-bottom: 20px;
     }
     .register-message h2 {
-        font-size: 3rem; /* Larger size */
-        color: #000; /* Black color */
+        font-size: 2.5rem; /* Larger size */
+        color: #000; /* Cambiado de verde a negro */
         text-transform: uppercase; /* Uppercase text */
+        margin-bottom: 20px;
+        letter-spacing: 1.5px;
+    }
+    form {
+        width: 100%;
+    }
+    .input-group {
+        display: flex;
+        align-items: center;
+    }
+    .text-danger {
+        font-size: 0.9rem;
+    }
+    @@media (max-width: 600px) {
+        .modal-content {
+            padding: 30px;
+            width: 90%;
+        }
+
+        .btn-register {
+            padding: 12px 24px;
+            font-size: 1rem;
+        }
+
+        .form-control {
+            font-size: 1rem;
+        }
+    }
+
+    @@keyframes fadeIn {
+        from { background-color: rgba(255, 255, 255, 0); }
+        to { background-color: rgba(255, 255, 255, 0.9); }
+    }
+
+    @@keyframes slideIn {
+        from { transform: translateY(-50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
     }
 </style>
 
-<div id="registerModal" class="modal">
+<div id="registerModal" class="modal" role="dialog" aria-labelledby="registerModalLabel" aria-modal="true">
     <div class="modal-content">
-        <span class="close">&times;</span>
+        <span class="close" aria-label="Cerrar">&times;</span>
         <div class="register-message">
             <h2>REGÍSTRATE</h2>
         </div>
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" novalidate>
             <h2 class="text-center mb-4">Crea una Cuenta</h2>
             <div asp-validation-summary="ModelOnly" class="text-danger mb-3 text-center" role="alert"></div>
 
@@ -158,7 +238,7 @@
             <span asp-validation-for="Input.PhoneNumber" class="text-danger mb-2"></span>
 
             <button id="registerSubmit" type="submit"
-                class="btn btn-register w-100 py-2 shadow-sm">Registrarse</button>
+                class="btn btn-register w-100 py-3 shadow-sm" aria-label="Registrarse">Registrarse</button>
         </form>
         <div class="text-center mt-4">
             <p>¿Ya tienes una cuenta? <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Inicia sesión aquí</a></p>
@@ -184,11 +264,20 @@
 
         function togglePasswordVisibility(id) {
             var input = document.getElementById(id);
-            if (input.type === "password") {
-                input.type = "text";
-            } else {
-                input.type = "password";
-            }
+            input.type = input.type === "password" ? "text" : "password";
         }
+
+        // Añadir validación en tiempo real
+        const form = document.getElementById('registerForm');
+        form.addEventListener('input', function(event) {
+            const target = event.target;
+            if (target.checkValidity()) {
+                target.classList.remove('is-invalid');
+                target.classList.add('is-valid');
+            } else {
+                target.classList.remove('is-valid');
+                target.classList.add('is-invalid');
+            }
+        });
     </script>
 }
