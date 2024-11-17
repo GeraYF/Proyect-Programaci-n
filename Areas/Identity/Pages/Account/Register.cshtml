@@ -241,7 +241,7 @@
                 class="btn btn-register w-100 py-3 shadow-sm" aria-label="Registrarse">Registrarse</button>
         </form>
         <div class="text-center mt-4">
-            <p>¿Ya tienes una cuenta? <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Inicia sesión aquí</a></p>
+            <p>¿Ya tienes una cuenta? <a asp-area="Identity" asp-page="/Account/Login" asp-route-returnUrl="@Model.ReturnUrl">Inicia sesión aquí</a></p>
         </div>
     </div>
 </div>

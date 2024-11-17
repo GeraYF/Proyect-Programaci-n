@@ -90,7 +90,7 @@
         <div class="row mb-3">
             <label for="NumeroTarjeta" class="col-sm-4 col-form-label form-label">Número de Tarjeta</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="NumeroTarjeta" name="NumeroTarjeta" required pattern="\d{16}" maxlength="19" aria-required="true" aria-label="Número de Tarjeta" placeholder="1234 5678 9012 3456" />
+                <input type="text" class="form-control" id="NumeroTarjeta" name="NumeroTarjeta" required maxlength="19" aria-required="true" aria-label="Número de Tarjeta" placeholder="1234 5678 9012 3456" />
                 <small class="form-text text-muted">Ingrese 16 dígitos sin espacios.</small>
             </div>
         </div>
@@ -128,20 +128,13 @@
 
         document.getElementById('paymentForm').addEventListener('submit', function(event) {
             // Validación avanzada
-            const numeroTarjeta = document.getElementById('NumeroTarjeta').value.replace(/\s+/g, '');
             const fechaExpiracion = document.getElementById('FechaExpiracion').value;
             const cvv = document.getElementById('CVV').value;
-            const tarjetaRegex = /^\d{16}$/;
             const fechaRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
             const cvvRegex = /^\d{3,4}$/;
 
             let isValid = true;
             let errorMessage = '';
-
-            if (!tarjetaRegex.test(numeroTarjeta)) {
-                errorMessage += 'Por favor, ingrese un número de tarjeta válido de 16 dígitos.\n';
-                isValid = false;
-            }
 
             if (!fechaRegex.test(fechaExpiracion)) {
                 errorMessage += 'Por favor, ingrese una fecha de expiración válida en formato MM/AA.\n';

@@ -100,7 +100,7 @@
     }
 </style>
 
-<div class="container mt-5">
+<div class="container mt-5" data-aos="fade-up">
     <div class="row">
         <div class="col-lg-6 col-md-12 mb-4">
             <div class="card shadow-sm">
@@ -134,7 +134,7 @@
             <form asp-controller="Carrito" asp-action="AgregarAlCarrito" method="post" class="d-inline" id="addToCartForm">
                 @Html.AntiForgeryToken()
                 <input type="hidden" name="productoId" value="@Model.FormProducto.Id" />
-                <button type="submit" class="btn btn-success mt-3 btn-custom" aria-label="Agregar @Model.FormProducto.Nombre al carrito">
+                <button type="submit" class="btn btn-success mt-3 btn-custom shadow" aria-label="Agregar al carrito">
                     <i class="bi bi-cart-plus"></i> Agregar al Carrito
                 </button>
             </form>
@@ -226,9 +226,17 @@
 
 @section Scripts {
     <script>
-        document.getElementById('addToCartForm').addEventListener('submit', function(event) {
+        // Inicializar AOS para animaciones
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true,
+        });
+        // Mejoré la validación del formulario
+        $('#addToCartForm').on('submit', function(event) {
+            event.preventDefault();
             // Validación adicional si es necesario
-            // Por ejemplo, verificar stock disponible
+            this.submit();
         });
     </script>
 }
