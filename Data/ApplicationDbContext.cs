@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
 
-using Trabajo_Final.Models; 
+using Trabajo_Final.Models;
 namespace Trabajo_Final.Data;
 
 public class ApplicationDbContext : IdentityDbContext
@@ -22,6 +22,7 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Trabajo_Final.Models.DetalleCompra> DataDetalleCompra { get; set; }
     public DbSet<Trabajo_Final.Models.Comentario> DataComentario { get; set; }
     public DbSet<Trabajo_Final.Models.Suscripciones> DataSuscripciones { get; set; }
+    public DbSet<Trabajo_Final.Models.Perfil> DataPerfil { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

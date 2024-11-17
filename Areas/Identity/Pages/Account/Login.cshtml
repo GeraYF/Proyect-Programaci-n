@@ -197,10 +197,10 @@
 
         <div class="text-center mt-4">
             <p>¿No tienes una cuenta? ¡Qué esperas!</p>
-            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-secondary w-100 py-3 shadow-sm">Regístrate</a>
+            <a asp-area="Identity" asp-page="/Account/Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-secondary w-100 py-3 shadow-sm">Regístrate</a>
         </div>
         <div class="text-center mt-2">
-            <a asp-page="./ForgotPassword">¿Olvidaste tu contraseña?</a>
+            <a asp-area="Identity" asp-page="/Account/ForgotPassword">¿Olvidaste tu contraseña?</a>
         </div>
     </div>
 </div>
