@@ -1,0 +1,19 @@
+@model Microsoft.AspNetCore.Identity.IdentityUser
+
+@{
+    ViewData["Title"] = "Perfil de Usuario";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">@ViewData["Title"]</h2>
+    <div class="card">
+        <div class="card-header">
+            Información Personal
+        </div>
+        <div class="card-body">
+            <p><strong>Nombre de usuario:</strong> @Model.UserName</p>
+            <p><strong>Email:</strong> @Model.Email</p>
+            <!-- Puedes agregar más detalles aquí -->
+        </div>
+    </div>
+</div>
