@@ -1,20 +1,53 @@
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
 @model Microsoft.AspNetCore.Identity.IdentityUser
 
 @{
     ViewData["Title"] = "Perfil de Usuario";
+    var isAdmin = UserManager.IsInRoleAsync(Model, "Admin").Result; // Check if the user is an admin
+    Layout = isAdmin ? "_LayoutAdmin" : "_Layout"; // Set the layout based on the role
 }
 
-<div class="container mt-4">
-    <h2 class="mb-4">@ViewData["Title"]</h2>
-    <div class="card">
-        <div class="card-header">
-            Información Personal
+@if (isAdmin)
+{
+    <div class="container mt-4">
+        <h2 class="mb-4">Perfil de Administrador</h2>
+        <div class="card">
+            <div class="card-header">
+                Información Personal
+            </div>
+            <div class="card-body">
+                <p><strong>Nombre de usuario:</strong> @Model.UserName</p>
+                <p><strong>Email:</strong> @Model.Email</p>
+                <p><strong>Numero de Telefono:</strong> @Model.PhoneNumber</p>
+                <!-- Puedes agregar más detalles aquí -->
+            </div>
         </div>
-        <div class="card-body">
-            <p><strong>Nombre de usuario:</strong> @Model.UserName</p>
-            <p><strong>Email:</strong> @Model.Email</p>
-            <p><strong>Numero de Telefono:</strong> @Model.PhoneNumber</p>
-            <!-- Puedes agregar más detalles aquí -->
+        <div class="card mt-4">
+            <div class="card-header">
+                Opciones de Administración
+            </div>
+            <div class="card-body">
+                <p>Aquí puedes agregar opciones adicionales para el administrador.</p>
+            </div>
         </div>
     </div>
-</div>
+}
+else
+{
+    <div class="container mt-4">
+        <h2 class="mb-4">@ViewData["Title"]</h2>
+        <div class="card">
+            <div class="card-header">
+                Información Personal
+            </div>
+            <div class="card-body">
+                <p><strong>Nombre de usuario:</strong> @Model.UserName</p>
+                <p><strong>Email:</strong> @Model.Email</p>
+                <p><strong>Numero de Telefono:</strong> @Model.PhoneNumber</p>
+                <!-- Puedes agregar más detalles aquí -->
+            </div>
+        </div>
+    </div>
+}
