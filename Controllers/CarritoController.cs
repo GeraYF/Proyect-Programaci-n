@@ -85,7 +85,15 @@ namespace Trabajo_Final.Controllers
             }
 
             _context.SaveChanges();
-            return RedirectToAction("Index", new { mensaje = "Producto agregado correctamente." });
+
+            // Si es una petición AJAX, devolver un JSON
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                return Json(new { success = true });
+            }
+
+            // Redirigir a la página de productos para seguir comprando
+            return RedirectToAction("Index", "Catalogo");
         }
 
         public IActionResult ProcederAlPago()
