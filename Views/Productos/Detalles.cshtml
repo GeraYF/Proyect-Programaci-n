@@ -274,5 +274,24 @@
                 alert('Producto agregado al carrito con cantidad: ' + cantidad);
             });
         });
+
+        $(document).ready(function() {
+            $('#addToCartForm').on('submit', function(event) {
+                event.preventDefault();
+                var cantidad = $('#cantidad').val();
+                $.post('@Url.Action("AgregarAlCarrito", "Carrito")', {
+                    productoId: '@Model.FormProducto.Id',
+                    cantidad: cantidad,
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                }, function(response) {
+                    if (response.success) {
+                        // Mostrar mensaje de confirmación
+                        alert('Producto agregado al carrito.');
+                    } else {
+                        alert('Hubo un problema al agregar el producto al carrito.');
+                    }
+                });
+            });
+        });
     </script>
 }

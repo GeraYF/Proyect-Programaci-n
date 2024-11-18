@@ -2,8 +2,11 @@
     ViewData["Title"] = "Infocom";
 }
 @using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@using Trabajo_Final.Data
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@inject ApplicationDbContext _context
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,11 +65,61 @@
                             <a class="nav-link" asp-controller="HistorialCompras" asp-action="Index">Compras</a>
                         </li>
                         <!--Iconos de favoritos y bolsa-->
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Carrito" asp-action="Index">
+                        <li class="nav-item position-relative">
+                            <a class="nav-link position-relative" asp-controller="Carrito" asp-action="Index">
                                 <i class="fas fa-shopping-bag"></i>
                                 Carrito
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    var cartCount = _context.DataCarrito
+                                        .Where(c => c.UserName == User.Identity.Name)
+                                        .Sum(c => c.Cantidad);
+
+                                    if (cartCount > 0)
+                                    {
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            @cartCount
+                                            <span class="visually-hidden">productos en el carrito</span>
+                                        </span>
+                                    }
+                                }
                             </a>
+                            <div class="cart-preview position-absolute bg-white shadow p-3" style="display: none;">
+                                <h5>Carrito de Compras</h5>
+                                <ul class="list-group">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        var cartItems = _context.DataCarrito
+                                            .Where(c => c.UserName == User.Identity.Name)
+                                            .Include(c => c.Producto)
+                                            .ToList();
+
+                                        if (cartItems.Any())
+                                        {
+                                            foreach (var item in cartItems)
+                                            {
+                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                    @(item.Producto != null ? item.Producto.Nombre : "Producto no disponible")
+                                                    <span class="badge bg-primary rounded-pill">@item.Cantidad</span>
+                                                </li>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <li class="list-group-item">No hay productos en el carrito.</li>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <li class="list-group-item">Inicia sesión para ver tu carrito.</li>
+                                    }
+                                </ul>
+                                <div class="text-end mt-3">
+                                    <a href="@Url.Action("Index", "Carrito")" class="btn btn-primary btn-custom">
+                                        <i class="bi bi-cart"></i> Ver Carrito
+                                    </a>
+                                </div>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Nosotros" asp-action="Index">Nosotros</a>
@@ -162,6 +215,16 @@
             });
             // Inicializar tooltips
             $('[data-toggle="tooltip"]').tooltip();
+
+            // Mostrar preview del carrito al pasar el cursor
+            $('.nav-item.position-relative').hover(
+                function() {
+                    $(this).find('.cart-preview').stop(true, true).fadeIn();
+                },
+                function() {
+                    $(this).find('.cart-preview').stop(true, true).fadeOut();
+                }
+            );
         });
     </script>
     @await RenderSectionAsync("Scripts", required: false)
@@ -178,6 +241,36 @@
         to {
             opacity: 0;
         }
+    }
+
+    .nav-link {
+        position: relative;
+    }
+    .nav-link .badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        padding: 0.5em 0.7em;
+        border-radius: 50%;
+        background-color: red;
+        color: white;
+        font-size: 0.75em;
+        font-weight: bold;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        transform: scale(1.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.5em;
+        height: 1.5em;
+    }
+
+    .cart-preview {
+        width: 300px;
+        top: 100%;
+        right: 0;
+        z-index: 1000;
+        display: none;
     }
 </style>
 
