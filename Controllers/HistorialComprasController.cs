@@ -65,6 +65,26 @@ namespace Trabajo_Final.Controllers
             return View(compras);
         }
 
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> EliminarTodo()
+        {
+            string clienteId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var compras = await _context.DataCompra
+                .Where(c => c.ClienteId.Equals(clienteId))
+                .Include(c => c.Detalles)
+                .ToListAsync();
+
+            foreach (var compra in compras)
+            {
+                _context.DataDetalleCompra.RemoveRange(compra.Detalles);
+                _context.DataCompra.Remove(compra);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
         private async Task CrearDatosDePrueba()
         {
             List<Producto> productos = await _context.DataProducto.ToListAsync();
