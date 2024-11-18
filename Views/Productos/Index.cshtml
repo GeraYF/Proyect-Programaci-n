@@ -47,6 +47,9 @@
     .fade-in {
         animation: fadeIn 1s ease-in-out;
     }
+    .fade-out {
+        animation: fadeOut 1s ease-in-out;
+    }
     @@keyframes fadeIn {
         from { opacity: 0; }
         to { opacity: 1; }
@@ -60,6 +63,10 @@
             opacity: 1;
             transform: translateY(0);
         }
+    }
+    @@keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
     }
     @@media (max-width: 768px) {
         .card-form {
@@ -207,6 +214,7 @@
             table = document.getElementById("productTable");
             tr = table.getElementsByTagName("tr");
             for (i = 1; i < tr.length; i++) {
+                tr[i].classList.remove("fade-in", "fade-out");
                 tr[i].style.display = "none";
                 td = tr[i].getElementsByTagName("td");
                 for (var j = 0; j < td.length; j++) {
@@ -214,9 +222,13 @@
                         txtValue = td[j].textContent || td[j].innerText;
                         if (txtValue.toUpperCase().indexOf(filter) > -1) {
                             tr[i].style.display = "";
+                            tr[i].classList.add("fade-in");
                             break;
                         }
                     }
+                }
+                if (tr[i].style.display === "none") {
+                    tr[i].classList.add("fade-out");
                 }
             }
         }

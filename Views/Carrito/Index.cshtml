@@ -74,6 +74,22 @@
         .quantity-controls button:focus {
             outline: 2px solid #0056b3;
         }
+        .floating-cart {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: none;
+            width: 300px;
+        }
+        .floating-cart .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .floating-cart .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
     </style>
 </head>
 
@@ -139,6 +155,30 @@
                     </button>
                 </div>
             </form>
+            <div id="floatingCart" class="floating-cart">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Carrito de Compras</h5>
+                        <button type="button" class="btn-close" aria-label="Close" onclick="$('#floatingCart').hide();"></button>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            @foreach (var item in Model)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    @(item.Producto != null ? item.Producto.Nombre : "Producto no disponible")
+                                    <span class="badge bg-primary rounded-pill">@item.Cantidad</span>
+                                </li>
+                            }
+                        </ul>
+                        <div class="text-end mt-3">
+                            <a href="@Url.Action("Index", "Carrito")" class="btn btn-primary btn-custom">
+                                <i class="bi bi-cart"></i> Ver Carrito
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
     </div>
 
@@ -182,6 +222,14 @@
             buttons.forEach(button => {
                 button.setAttribute('aria-label', button.textContent.trim());
             });
+        });
+
+        $(document).ready(function() {
+            if (@Model.Any()) {
+                $('#floatingCart').show();
+            } else {
+                $('#floatingCart').hide();
+            }
         });
     </script>
 </body>

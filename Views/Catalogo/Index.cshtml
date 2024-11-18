@@ -46,6 +46,16 @@
         .text-danger {
             cursor: pointer;
         }
+        .fade-in-scroll {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .fade-in-scroll.visible {
+            opacity: 1;
+        }
+        .fade-in-scroll.hidden {
+            opacity: 0;
+        }
     </style>
 </head>
 
@@ -93,7 +103,7 @@
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 @foreach (var item in Model.ListProducto)
                 {
-                    <div class="col mb-5">
+                    <div class="col mb-5 fade-in-scroll">
                         <a asp-controller="Productos" asp-action="Detalles" asp-route-id="@item.Id" style="text-decoration: none; color: inherit;">
                             <div class="card h-100 card-custom">
                                 <!-- Product image-->
@@ -157,5 +167,24 @@
             icon.classList.toggle('bi-heart');
             // Opcional: enviar una solicitud al servidor para actualizar favoritos
         }
+
+        // Scroll-triggered fade-in and fade-out effect
+        function handleScroll() {
+            var elements = document.querySelectorAll('.fade-in-scroll');
+            var windowHeight = window.innerHeight;
+            elements.forEach(function(element) {
+                var position = element.getBoundingClientRect().top;
+                if (position < windowHeight - 100 && position > 0) {
+                    element.classList.add('visible');
+                    element.classList.remove('hidden');
+                } else {
+                    element.classList.remove('visible');
+                    element.classList.add('hidden');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll);
     </script>
 </body>

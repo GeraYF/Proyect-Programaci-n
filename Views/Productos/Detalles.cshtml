@@ -98,16 +98,23 @@
         width: 150px;
         display: inline-block;
     }
+    .fade-in-scroll {
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+    .fade-in-scroll.visible {
+        opacity: 1;
+    }
 </style>
 
 <div class="container mt-5" data-aos="fade-up">
     <div class="row">
-        <div class="col-lg-6 col-md-12 mb-4">
+        <div class="col-lg-6 col-md-12 mb-4 fade-in-scroll">
             <div class="card shadow-sm">
                 <img src="@Model.FormProducto.ImageURL" alt="Imagen del Producto" class="card-img-top img-fluid rounded" />
             </div>
         </div>
-        <div class="col-lg-6 col-md-12">
+        <div class="col-lg-6 col-md-12 fade-in-scroll">
             <h2 class="display-4">@Model.FormProducto.Nombre</h2>
             <p class="lead">@Model.FormProducto.Description</p>
             <ul class="list-group list-group-flush mb-3">
@@ -134,6 +141,10 @@
             <form asp-controller="Carrito" asp-action="AgregarAlCarrito" method="post" class="d-inline" id="addToCartForm">
                 @Html.AntiForgeryToken()
                 <input type="hidden" name="productoId" value="@Model.FormProducto.Id" />
+                <div class="form-group">
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" name="cantidad" id="cantidad" class="form-control" value="1" min="1" required />
+                </div>
                 <button type="submit" class="btn btn-success mt-3 btn-custom shadow" aria-label="Agregar al carrito">
                     <i class="bi bi-cart-plus"></i> Agregar al Carrito
                 </button>
@@ -143,7 +154,7 @@
     <div class="row mt-5">
         <div class="col-12">
             <h3 class="mb-4">Opiniones de los usuarios</h3>
-            <div class="card mb-3">
+            <div class="card mb-3 fade-in-scroll">
                 <div class="card-body">
                     <h5 class="card-title">Juan Pérez</h5>
                     <h6 class="card-subtitle mb-2 text-muted">
@@ -156,7 +167,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card mb-3">
+            <div class="card mb-3 fade-in-scroll">
                 <div class="card-body">
                     <h5 class="card-title">María López</h5>
                     <h6 class="card-subtitle mb-2 text-muted">
@@ -169,7 +180,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card mb-3">
+            <div class="card mb-3 fade-in-scroll">
                 <div class="card-body">
                     <h5 class="card-title">Carlos García</h5>
                     <h6 class="card-subtitle mb-2 text-muted">
@@ -185,7 +196,7 @@
         </div>
     </div>
     <div class="row mt-5">
-        <div class="col-12">
+        <div class="col-12 fade-in-scroll">
             <h3 class="mb-4">Agregar un comentario</h3>
             <form>
                 <div class="mb-3">
@@ -232,11 +243,36 @@
             easing: 'ease-in-out',
             once: true,
         });
+
+        // Scroll-triggered fade-in effect
+        function handleScroll() {
+            var elements = document.querySelectorAll('.fade-in-scroll');
+            var windowHeight = window.innerHeight;
+            elements.forEach(function(element) {
+                var position = element.getBoundingClientRect().top;
+                if (position < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll);
+
         // Mejoré la validación del formulario
         $('#addToCartForm').on('submit', function(event) {
             event.preventDefault();
+            var cantidad = $('#cantidad').val();
             // Validación adicional si es necesario
-            this.submit();
+            $.post('@Url.Action("AgregarAlCarrito", "Carrito")', {
+                productoId: '@Model.FormProducto.Id',
+                cantidad: cantidad,
+                __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+            }, function(response) {
+                // Actualizar el carrito de compras con la cantidad
+                // Aquí puedes agregar el código para actualizar el carrito en la interfaz de usuario
+                alert('Producto agregado al carrito con cantidad: ' + cantidad);
+            });
         });
     </script>
 }
