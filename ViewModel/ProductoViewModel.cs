@@ -11,6 +11,6 @@ namespace Trabajo_Final.ViewModel
         public IEnumerable<Categoria>? ListCategoria { get; set; }
         public IEnumerable<Producto>? ListProducto { get; set; }
         public Producto? FormProducto { get; set; }
-        public long? CategoriaId { get; set; }
+        public long CategoriaId { get; set; }
     }
 }
