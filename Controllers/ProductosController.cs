@@ -67,19 +67,20 @@ namespace Trabajo_Final.Controllers
         public IActionResult Editar(long Id)
         {
             var categorias = from o in _context.DataCategoria select o;
-            var producto = _context.DataProducto.Find(Id);
+            var producto = _context.DataProducto.Include(p => p.Categoria).FirstOrDefault(p => p.Id == Id);
+            if (producto == null)
+            {
+                return NotFound();
+            }
             var productos = from o in _context.DataProducto select o;
             var viewModel = new ProductoViewModel
             {
                 ListProducto = productos,
                 ListCategoria = categorias,
-                FormProducto = producto
+                FormProducto = producto,
+                CategoriaId = producto.Categoria?.Id ?? 0
             };
             ViewBag.Categorias = new SelectList(categorias, "Id", "Nombre");
-            if (producto == null)
-            {
-                return NotFound();
-            }
             ViewData["Action"] = "Actualizar";
             return View("~/Views/Productos/Index.cshtml", viewModel);
         }
@@ -87,15 +88,32 @@ namespace Trabajo_Final.Controllers
         [HttpPost]
         public IActionResult Actualizar(ProductoViewModel p)
         {
-            var categoria = _context.DataCategoria.Find(p.CategoriaId);
-            if (p.FormProducto.FechaLanzamiento.Kind == DateTimeKind.Unspecified)
+            if (ModelState.IsValid)
             {
-                p.FormProducto.FechaLanzamiento = DateTime.SpecifyKind(p.FormProducto.FechaLanzamiento, DateTimeKind.Utc);
+                var productoExistente = _context.DataProducto.Include(pr => pr.Categoria).FirstOrDefault(pr => pr.Id == p.FormProducto.Id);
+                if (productoExistente != null)
+                {
+                    productoExistente.Nombre = p.FormProducto.Nombre;
+                    productoExistente.Precio = p.FormProducto.Precio;
+                    productoExistente.FechaLanzamiento = p.FormProducto.FechaLanzamiento;
+                    productoExistente.Status = p.FormProducto.Status;
+                    productoExistente.ImageURL = p.FormProducto.ImageURL;
+
+                    var categoria = _context.DataCategoria.Find(p.CategoriaId);
+                    productoExistente.Categoria = categoria;
+
+                    _context.Update(productoExistente);
+                    _context.SaveChanges();
+                }
+                return RedirectToAction(nameof(Index));
             }
-            p.FormProducto.Categoria = categoria;
-            _context.DataProducto.Update(p.FormProducto);
-            _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            var categorias = from o in _context.DataCategoria select o;
+            var productos = from o in _context.DataProducto select o;
+            p.ListCategoria = categorias;
+            p.ListProducto = productos;
+            ViewBag.Categorias = new SelectList(categorias, "Id", "Nombre");
+            ViewData["Action"] = "Actualizar";
+            return View("~/Views/Productos/Index.cshtml", p);
         }
 
         [HttpGet]

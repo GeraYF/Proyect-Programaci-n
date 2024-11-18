@@ -149,29 +149,33 @@
             <h2 class="text-center text-secondary">ID: @Model.FormProducto.Id</h2>
             <form asp-action="Actualizar" method="post" class="card-form">
                 @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="FormProducto.Id" />
                 <div class="form-group">
-                    <label for="Nombre">Nombre</label>
-                    <input type="text" class="form-control" id="Nombre" name="Nombre" value="@Model.FormProducto.Nombre" required />
+                    <label asp-for="FormProducto.Nombre"></label>
+                    <input asp-for="FormProducto.Nombre" class="form-control" required />
                 </div>
                 <div class="form-group">
-                    <label for="Precio">Precio</label>
-                    <input type="number" class="form-control" id="Precio" name="Precio" value="@Model.FormProducto.Precio" required />
+                    <label asp-for="FormProducto.Precio"></label>
+                    <input asp-for="FormProducto.Precio" class="form-control" required />
                 </div>
                 <div class="form-group">
-                    <label for="FechaLanzamiento">Fecha de Lanzamiento</label>
-                    <input type="date" class="form-control" id="FechaLanzamiento" name="FechaLanzamiento" value="@Model.FormProducto.FechaLanzamiento.ToString("yyyy-MM-dd")" required />
+                    <label asp-for="FormProducto.FechaLanzamiento"></label>
+                    <input asp-for="FormProducto.FechaLanzamiento" class="form-control" type="date" required />
                 </div>
                 <div class="form-group">
-                    <label for="Status">Estado</label>
-                    <input type="text" class="form-control" id="Status" name="Status" value="@Model.FormProducto.Status" required />
+                    <label asp-for="FormProducto.Status"></label>
+                    <input asp-for="FormProducto.Status" class="form-control" required />
                 </div>
                 <div class="form-group">
-                    <label for="Categoria">Categoría</label>
-                    <input type="text" class="form-control" id="Categoria" name="Categoria" value="@Model.FormProducto.Categoria.Nombre" required />
+                    <label asp-for="CategoriaId">Categoría</label>
+                    <select asp-for="CategoriaId" class="form-control"
+                        asp-items="@(new SelectList(Model.ListCategoria, "Id", "Nombre", Model.CategoriaId))" required>
+                        <option value="">Seleccione una categoría</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="ImageURL">URL de la Imagen</label>
-                    <input type="text" class="form-control" id="ImageURL" name="ImageURL" value="@Model.FormProducto.ImageURL" required />
+                    <label asp-for="FormProducto.ImageURL"></label>
+                    <input asp-for="FormProducto.ImageURL" class="form-control" required />
                 </div>
                 <button type="submit" class="btn btn-primary btn-custom mt-3">Actualizar Producto</button>
             </form>
