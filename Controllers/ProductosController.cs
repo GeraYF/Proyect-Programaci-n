@@ -101,18 +101,20 @@ namespace Trabajo_Final.Controllers
         [HttpGet]
         public IActionResult Detalles(int id)
         {
+            // Retrieve the product by ID, including related entities if necessary
             var producto = _context.DataProducto
                 .Include(p => p.Categoria)
                 .FirstOrDefault(p => p.Id == id);
 
             if (producto == null)
             {
-                return NotFound("Producto no encontrado.");
+                return NotFound();
             }
 
             var viewModel = new ProductoViewModel
             {
                 FormProducto = producto
+                // ...additional properties if needed...
             };
 
             return View(viewModel);

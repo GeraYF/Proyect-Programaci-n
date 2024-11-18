@@ -138,17 +138,82 @@
     }
 </style>
 
+<!-- Include the shared CSS file -->
+<link rel="stylesheet" href="~/css/shared-form-styles.css" />
+
 <div class="container mt-5 fade-in">
     <div class="row justify-content-center">
         @if (ViewData["Action"].Equals("Actualizar"))
         {
             <h2 class="mb-4 text-center text-primary">Editar Producto: @Model.FormProducto.Nombre</h2>
             <h2 class="text-center text-secondary">ID: @Model.FormProducto.Id</h2>
+            <form asp-action="Actualizar" method="post" class="card-form">
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="Nombre">Nombre</label>
+                    <input type="text" class="form-control" id="Nombre" name="Nombre" value="@Model.FormProducto.Nombre" required />
+                </div>
+                <div class="form-group">
+                    <label for="Precio">Precio</label>
+                    <input type="number" class="form-control" id="Precio" name="Precio" value="@Model.FormProducto.Precio" required />
+                </div>
+                <div class="form-group">
+                    <label for="FechaLanzamiento">Fecha de Lanzamiento</label>
+                    <input type="date" class="form-control" id="FechaLanzamiento" name="FechaLanzamiento" value="@Model.FormProducto.FechaLanzamiento.ToString("yyyy-MM-dd")" required />
+                </div>
+                <div class="form-group">
+                    <label for="Status">Estado</label>
+                    <input type="text" class="form-control" id="Status" name="Status" value="@Model.FormProducto.Status" required />
+                </div>
+                <div class="form-group">
+                    <label for="Categoria">Categoría</label>
+                    <input type="text" class="form-control" id="Categoria" name="Categoria" value="@Model.FormProducto.Categoria.Nombre" required />
+                </div>
+                <div class="form-group">
+                    <label for="ImageURL">URL de la Imagen</label>
+                    <input type="text" class="form-control" id="ImageURL" name="ImageURL" value="@Model.FormProducto.ImageURL" required />
+                </div>
+                <button type="submit" class="btn btn-primary btn-custom mt-3">Actualizar Producto</button>
+            </form>
         }
         else
         {
             <h2 class="mb-4 text-center text-primary">Crear un nuevo producto</h2>
             <p class="text-center text-secondary">Complete el siguiente formulario para agregar un nuevo producto a la lista.</p>
+            <form asp-action="Crear" method="post" class="card-form">
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Nombre">Nombre</label>
+                            <input type="text" class="form-control form-control-lg" id="Nombre" name="Nombre" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="Precio">Precio</label>
+                            <input type="number" class="form-control form-control-lg" id="Precio" name="Precio" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="FechaLanzamiento">Fecha de Lanzamiento</label>
+                            <input type="date" class="form-control form-control-lg" id="FechaLanzamiento" name="FechaLanzamiento" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Status">Estado</label>
+                            <input type="text" class="form-control form-control-lg" id="Status" name="Status" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="Categoria">Categoría</label>
+                            <input type="text" class="form-control form-control-lg" id="Categoria" name="Categoria" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="ImageURL">URL de la Imagen</label>
+                            <input type="text" class="form-control form-control-lg" id="ImageURL" name="ImageURL" required />
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-custom mt-4 btn-block">Crear Producto</button>
+            </form>
         }
 
         <!-- Removed the commented-out Agregar al Carrito form -->
@@ -193,9 +258,7 @@
                                 <a asp-controller="Productos" asp-action="Editar" asp-route-id="@item.Id" class="btn btn-warning btn-custom" aria-label="Editar @item.Nombre">
                                     <i class="bi bi-pencil"></i> Editar
                                 </a>
-                                <a asp-controller="Productos" asp-action="Detalles" asp-route-id="@item.Id" class="btn btn-info btn-custom" aria-label="Ver detalles de @item.Nombre">
-                                    <i class="bi bi-eye"></i> Detalles
-                                </a>
+                                <!-- Removed the Detalles button -->
                             </div>
                         </td>
                     </tr>
