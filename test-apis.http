@@ -1,0 +1,4 @@
+# INTEGRANDO API
+GET https://currency-conversion-and-exchange-rates.p.rapidapi.com/
+convert?from=USD&to=EUR&amount=750 HTTP/1.1
+x-rapidapi-key: 4dc2b79d34msh82ca35a4f7793e3p1a6300jsn61100b1a5896
