@@ -4,35 +4,130 @@
 }
 
 <main>
-    <div class="container">
+    <div class="container my-5">
+        <!-- Header Section -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 text-center">
+                <h2 class="text-uppercase fw-bold">Lista de Administradores</h2>
+                <p class="text-muted">Administra los permisos y supervisa a los usuarios con privilegios administrativos.</p>
+                <hr class="w-50 mx-auto" style="border-top: 2px solid #ffc107;" />
+            </div>
+        </div>
+
+        <!-- Table Section -->
         <div class="row justify-content-center">
-            <div class="col-12">
-                <h2 class="text-center mb-4">Lista de Administradores</h2>
-                <table class="table table-striped table-bordered table-hover text-center">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Correo Electrónico</th>
-                            <th>Número de Teléfono</th>
-                            <th>Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+            <div class="col-lg-10">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover align-middle text-center">
+                        <thead class="bg-warning text-white">
                             <tr>
-                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                                <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
-                                <td>
-                                    <a asp-controller="AccionesAdmin" asp-action="Delete" asp-route-id="@item.Id"
-                                        class="btn btn-danger btn-sm">Revocar y Eliminar</a>
-                                </td>
+                                <th>Nombre</th>
+                                <th>Correo Electrónico</th>
+                                <th>Número de Teléfono</th>
+                                <th>Acción</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @if (!Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="4" class="text-center text-muted">No hay administradores registrados.</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                                        <td>
+                                            <a asp-controller="AccionesAdmin" asp-action="Delete" asp-route-id="@item.Id"
+                                               class="btn btn-danger btn-sm">
+                                                <i class="fas fa-user-times"></i> Revocar y Eliminar
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="row mt-4">
+            <div class="col text-center">
+                <button class="btn btn-primary btn-lg">
+                    <i class="fas fa-user-plus"></i> Agregar Nuevo Administrador
+                </button>
+                <button class="btn btn-secondary btn-lg">
+                    <i class="fas fa-list-alt"></i> Ver Reportes
+                </button>
             </div>
         </div>
     </div>
 </main>
+
+<!-- Optional Styles -->
+<style>
+    main {
+        font-family: 'Arial', sans-serif;
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    table {
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    thead {
+        border-bottom: 2px solid #333;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+    }
+
+    .btn-danger:hover {
+        background-color: #b02a37;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+    }
+
+    .btn-secondary:hover {
+        background-color: #565e64;
+    }
+
+    
+</style>
+
+<script>
+    // Alert before revoking access
+    document.querySelectorAll('.btn-danger').forEach(button => {
+        button.addEventListener('click', function (event) {
+            if (!confirm('¿Estás seguro de que deseas revocar el acceso y eliminar a este administrador?')) {
+                event.preventDefault();
+            }
+        });
+    });
+</script>
