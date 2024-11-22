@@ -17,7 +17,7 @@
             color: #333;
         }
 
-        /* Header con degradado y animación */
+        /* Header */
         .header {
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), 
                 url('https://img.freepik.com/fotos-premium/hombre-negocios-usando-dispositivos-tecnologia-e-iconos-interfaz-linea-delgada_117023-904.jpg') no-repeat center center/cover;
@@ -37,12 +37,9 @@
             padding: 20px 50px;
             border-radius: 10px;
             text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
-            animation: slideIn 2s ease;
         }
 
-       
-
-        /* Títulos de sección */
+        /* Sección Títulos */
         .section-title h2 {
             font-size: 36px;
             font-weight: 700;
@@ -74,101 +71,52 @@
             margin-right: auto;
         }
 
-        /* Tarjetas */
-        .card-principle .card {
+        /* Noticias */
+        .news-section {
+            padding: 50px 0;
+            background: #e9ecef;
+        }
+
+        .news-card {
             border: none;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
-            transition: all 0.4s ease;
-            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            background: #fff;
         }
 
-        .card-principle .card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-            background: linear-gradient(135deg, #ffc107, #ffd86c);
-            color: #fff;
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .card-body h5 {
-            font-size: 1.8rem;
+        .news-card img {
+            border-radius: 15px 15px 0 0;
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+        .news-card h5 {
+            font-size: 20px;
             font-weight: 600;
-            margin-bottom: 15px;
-            color: #ffc107;
         }
 
-        .card-body p {
-            font-size: 1rem;
-            color: #555;
-            line-height: 1.8;
+        /* Mapa */
+        .map-section {
+            padding: 50px 0;
+            text-align: center;
         }
 
-        .card:hover .card-body h5 {
-            color: #fff;
-        }
-
-        /* Botón personalizado */
-        .btn-primary {
-            background: linear-gradient(90deg, #b88e0d, #ff7700);
-            border: none;
-            border-radius: 50px;
-            padding: 12px 30px;
-            font-size: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            color: #fff;
-        }
-
-        .btn-primary:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Galería */
-        .image-gallery {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-        }
-
-        .image-gallery figure {
-            position: relative;
-            width: 320px;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .image-gallery figure:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .image-gallery img {
+        .map-container {
             width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-
-        .image-gallery figure:hover img {
-            transform: scale(1.1);
-        }
-
-        .image-gallery figcaption {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            padding: 10px 15px;
+            height: 400px;
+            border: 2px solid #ffc107;
             border-radius: 10px;
-            font-size: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
-        /* Pie de página */
+        /* Footer */
         footer {
             background: #ab840f;
             color: #fff;
@@ -207,7 +155,7 @@
         </div>
         <div class="row">
             <!-- Tarjeta 1 -->
-            <div class="col-md-4 card-principle">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                         <h5>Empoderamiento del equipo</h5>
@@ -217,7 +165,7 @@
                 </div>
             </div>
             <!-- Tarjeta 2 -->
-            <div class="col-md-4 card-principle">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                         <h5>Compromiso con el cliente</h5>
@@ -227,7 +175,7 @@
                 </div>
             </div>
             <!-- Tarjeta 3 -->
-            <div class="col-md-4 card-principle">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                         <h5>Innovación y mejora continua</h5>
@@ -239,26 +187,63 @@
         </div>
     </div>
 
-    <!-- Galería -->
-    <div class="container my-5">
-        <div class="section-title">
-            <h2>Nuestro impacto</h2>
+    <!-- Noticias -->
+    <section class="news-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Últimas Noticias</h2>
+                <p>Conoce las actualizaciones más recientes sobre nuestra organización y actividades.</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card news-card">
+                        <img src="https://thelogisticsworld.com/wp-content/uploads/2021/08/mechanized-industry-robot-arm-and-business-handshake-double-exposure-scaled-e1628891725505.jpg" alt="Noticia 1">
+                        <div class="card-body">
+                            <h5>Nueva colaboración estratégica</h5>
+                            <p>Nos hemos unido con una organización líder para expandir nuestros productos tecnologicos.</p>
+                            <a href="#" class="btn btn-primary">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card news-card">
+                        <img src="https://th.bing.com/th/id/OIP.xPKzBa_1pVPdumJF4PXOxAAAAA?rs=1&pid=ImgDetMain" alt="Noticia 2">
+                        <div class="card-body">
+                            <h5>Evento de innovación 2024</h5>
+                            <p>Descubre cómo estamos liderando el cambio en nuestro sector tecnologicos y los productos innovadores que traemos a nuestra tienda online.</p>
+                            <a href="#" class="btn btn-primary">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card news-card">
+                        <img src="https://th.bing.com/th?id=OIF.gJ8YYYllqpz7Uedx%2bzxkug&rs=1&pid=ImgDetMain" alt="Noticia 3">
+                        <div class="card-body">
+                            <h5>Convocatoria de personalizadas para delivery</h5>
+                            <p>Buscamos a personas con suma experiencia, enviar su CV a nuestro correo electronico, nosotros los llamaremos si cumplen con los requisitos de nuestra empresa. </p>
+                            <a href="#" class="btn btn-primary">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="image-gallery">
-            <figure>
-                <img src="https://th.bing.com/th/id/OIP.3uMQE7-3bO1KILYZ75CH-QHaEd?pid=ImgDet&rs=1" alt="Envíos Internacionales">
-                <figcaption>Envíos Internacionales</figcaption>
-            </figure>
-            <figure>
-                <img src="https://www.obsbusiness.school/sites/obsbusiness.school/files/images/istock-675661214.jpg" alt="Compras por Internet">
-                <figcaption>Compras por Internet</figcaption>
-            </figure>
-            <figure>
-                <img src="https://ccnadesdecero.es/wp-content/uploads/2023/07/Seguridad-para-compras-online.jpg" alt="Compras Online Seguras">
-                <figcaption>Compras Online Seguras</figcaption>
-            </figure>
+    </section>
+
+    <!-- Mapa -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Encuéntranos</h2>
+                <p>Estamos ubicados en Ilo, Arequipa. Ven a visitarnos o contáctanos para más información.</p>
+            </div>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3899.7742215736983!2d-71.3430638240209!3d-17.6399344816946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915d9ba462c0eecb%3A0x96b31ecf0135f065!2sIlo%2C%20Per%C3%BA!5e0!3m2!1ses!2ses!4v1692289955006!5m2!1ses!2ses" 
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -271,11 +256,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
