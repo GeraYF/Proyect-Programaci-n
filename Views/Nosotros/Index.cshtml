@@ -9,35 +9,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Principios de Liderazgo</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Actualizamos Bootstrap a la versión 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Añadimos AOS CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
+            background-color: #f0f2f5;
             color: #333;
+            text-align: center;
+            /* Centramos todo el contenido */
         }
 
         /* Header */
         .header {
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)),
                 url('https://img.freepik.com/fotos-premium/hombre-negocios-usando-dispositivos-tecnologia-e-iconos-interfaz-linea-delgada_117023-904.jpg') no-repeat center center/cover;
-            height: 450px;
+            height: 500px;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
             color: #fff;
             overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            text-align: center;
         }
 
         .header h1 {
-            font-size: 44px;
+            font-size: 48px;
             font-weight: 700;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 20px 50px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px 40px;
             border-radius: 10px;
             text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+            color: #ffc107;
+            /* Cambiamos el color del título a amarillo */
         }
 
         /* Sección Títulos */
@@ -45,6 +55,7 @@
             font-size: 36px;
             font-weight: 700;
             color: #ffc107;
+            /* Cambiamos el color del título a amarillo */
             text-transform: uppercase;
             margin-bottom: 15px;
             position: relative;
@@ -59,7 +70,8 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(90deg, #ffc107, #433509);
+            background: #ffc107;
+            /* Cambiamos el color de la línea a amarillo */
             border-radius: 2px;
         }
 
@@ -119,7 +131,7 @@
 
         /* Footer */
         footer {
-            background: #ab840f;
+            background: #343a40;
             color: #fff;
             padding: 40px 0;
             text-align: center;
@@ -131,13 +143,24 @@
         }
 
         footer a {
-            color: #fbff88;
+            color: #ffc107;
             text-decoration: none;
             font-weight: 600;
         }
 
         footer a:hover {
             text-decoration: underline;
+        }
+
+        .btn-primary {
+            background-color: #ffc107;
+            /* Cambiamos el color del botón a amarillo */
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #e0a800;
+            /* Cambiamos el color del botón al pasar el ratón a un tono más oscuro de amarillo */
         }
     </style>
 
@@ -146,19 +169,19 @@
 <body>
 
     <!-- Header -->
-    <div class="header">
+    <div class="header" data-aos="fade-down">
         <h1>Inspiramos, conectamos y transformamos a través del liderazgo.</h1>
     </div>
 
     <!-- Principios de liderazgo -->
     <div class="container my-5">
-        <div class="section-title">
+        <div class="section-title" data-aos="fade-up">
             <h2>Principios de Liderazgo</h2>
             <p>Nuestros valores nos guían para ser una organización que inspira confianza y genera impacto.</p>
         </div>
         <div class="row">
             <!-- Tarjeta 1 -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="card">
                     <div class="card-body">
                         <h5>Empoderamiento del equipo</h5>
@@ -169,7 +192,7 @@
                 </div>
             </div>
             <!-- Tarjeta 2 -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="card">
                     <div class="card-body">
                         <h5>Compromiso con el cliente</h5>
@@ -179,7 +202,7 @@
                 </div>
             </div>
             <!-- Tarjeta 3 -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                 <div class="card">
                     <div class="card-body">
                         <h5>Innovación y mejora continua</h5>
@@ -194,12 +217,12 @@
     <!-- Noticias -->
     <section class="news-section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>Últimas Noticias</h2>
                 <p>Conoce las actualizaciones más recientes sobre nuestra organización y actividades.</p>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
                     <div class="card news-card">
                         <img src="https://thelogisticsworld.com/wp-content/uploads/2021/08/mechanized-industry-robot-arm-and-business-handshake-double-exposure-scaled-e1628891725505.jpg"
                             alt="Noticia 1">
@@ -211,7 +234,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
                     <div class="card news-card">
                         <img src="https://th.bing.com/th/id/OIP.xPKzBa_1pVPdumJF4PXOxAAAAA?rs=1&pid=ImgDetMain"
                             alt="Noticia 2">
@@ -223,7 +246,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
                     <div class="card news-card">
                         <img src="https://th.bing.com/th?id=OIF.gJ8YYYllqpz7Uedx%2bzxkug&rs=1&pid=ImgDetMain"
                             alt="Noticia 3">
@@ -242,7 +265,7 @@
     <!-- Mapa -->
     <section class="map-section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>Encuéntranos</h2>
                 <p>Estamos ubicados en Ilo, Arequipa. Ven a visitarnos o contáctanos para más información.</p>
             </div>
@@ -262,8 +285,15 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Actualizamos jQuery y Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Añadimos AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Inicializamos AOS
+        AOS.init();
+    </script>
 
 </body>
 
