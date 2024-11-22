@@ -15,39 +15,46 @@
         <div class="row">
             <!-- Panel del Administrador -->
             <div class="col-md-8">
-                <h2 class="mb-4 text-primary">👨‍💼 Perfil de Administrador</h2>
-                <div class="card shadow-lg">
+                <h2 class="mb-4 text-primary"><i class="bi bi-person-circle"></i> Perfil de Administrador</h2>
+                <div class="card shadow-lg border-0">
                     <div class="card-header bg-primary text-white">
-                        Información Personal
+                        <h5><i class="bi bi-person-lines-fill"></i> Información Personal</h5>
                     </div>
                     <div class="card-body">
                         <p><strong>Nombre de usuario:</strong> @Model.UserName</p>
                         <p><strong>Email:</strong> @Model.Email</p>
                         <p><strong>Teléfono:</strong> @Model.PhoneNumber</p>
+                        <div class="mt-3">
+                            <a href="/Admin/EditarPerfil" class="btn btn-primary btn-sm">
+                                <i class="bi bi-pencil-square"></i> Editar Perfil
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Opciones adicionales -->
             <div class="col-md-4">
-                <h4 class="mb-4 text-primary">⚙ Opciones de Administración</h4>
-                <ul class="list-group shadow-lg">
-                    <li class="list-group-item">
+                <h4 class="mb-4 text-primary"><i class="bi bi-sliders"></i> Opciones de Administración</h4>
+                <ul class="list-group shadow-lg border-0">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a href="/Admin/Usuarios" class="text-decoration-none text-dark">
                             <i class="bi bi-people"></i> Gestión de Usuarios
                         </a>
+                        <span class="badge bg-primary rounded-pill">10</span>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a href="/Admin/Reportes" class="text-decoration-none text-dark">
                             <i class="bi bi-bar-chart"></i> Generar Reportes
                         </a>
+                        <span class="badge bg-success rounded-pill">3</span>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a href="/Admin/Configuraciones" class="text-decoration-none text-dark">
                             <i class="bi bi-gear"></i> Configuraciones del Sistema
                         </a>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a href="/Admin/Soporte" class="text-decoration-none text-dark">
                             <i class="bi bi-life-preserver"></i> Soporte Técnico
                         </a>
@@ -70,10 +77,10 @@ else
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <h2 class="mb-4 text-center text-secondary">👤 Mi Perfil</h2>
-                <div class="card shadow-lg">
+                <h2 class="mb-4 text-center text-secondary"><i class="bi bi-person-circle"></i> Mi Perfil</h2>
+                <div class="card shadow-lg border-0">
                     <div class="card-header bg-secondary text-white text-center">
-                        Información Personal
+                        <h5><i class="bi bi-info-circle"></i> Información Personal</h5>
                     </div>
                     <div class="card-body">
                         <p><strong>Nombre de usuario:</strong> @Model.UserName</p>
@@ -86,8 +93,12 @@ else
 
         <div class="row justify-content-center mt-4">
             <div class="col-md-6 text-center">
-                <a href="/Cuenta/Editar" class="btn btn-secondary me-2">Editar Perfil</a>
-                <a href="/Cuenta/CerrarSesion" class="btn btn-outline-secondary">Cerrar Sesión</a>
+                <a href="/Cuenta/Editar" class="btn btn-secondary me-2">
+                    <i class="bi bi-pencil-square"></i> Editar Perfil
+                </a>
+                <a href="/Cuenta/CerrarSesion" class="btn btn-outline-secondary">
+                    <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                </a>
             </div>
         </div>
     </div>
