@@ -1,6 +1,9 @@
 @{
     ViewData["Title"] = "Políticas y Condiciones de Uso";
 }
+@{
+    Layout = "_Layout";
+}
 
 <!DOCTYPE html>
 <html lang="es">
@@ -9,39 +12,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
             background-color: #f9f9f9;
             color: #333;
         }
 
-        h1, h2 {
-            color: #ffc107;
+        nav {
+            background-color: #ffc107;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+
+        nav .navbar-brand {
+            font-weight: bold;
+        }
+
+        nav .nav-link {
+            color: white !important;
+            font-weight: bold;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://static.vecteezy.com/system/resources/previews/002/768/985/large_2x/dark-yellow-gradient-blur-background-vector.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 150px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 20px;
         }
 
         .policy-section {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .policy-section h2 {
-            font-size: 24px;
+            color: #ffc107;
+            font-size: 28px;
             margin-bottom: 15px;
-            border-bottom: 2px solid #ffc107;
-            display: inline-block;
         }
 
-        .policy-section p {
-            margin-bottom: 15px;
+        .policy-section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .policy-section ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+
+        .policy-section ul li:before {
+            content: "\\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #ffc107;
         }
 
         footer {
-            background-color: #ffc107;
-            color: #fff;
-            padding: 20px 0;
+            background-color: #333;
+            color: white;
             text-align: center;
-            margin-top: 50px;
+            padding: 20px;
         }
 
         footer a {
@@ -52,71 +99,109 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        .faq-section {
+            background-color: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .faq-section h3 {
+            font-size: 22px;
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+
+        .faq-section p {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Políticas y Condiciones de Uso</h1>
+        <p>Conoce las reglas que hacen de nuestra plataforma un lugar seguro y confiable.</p>
+    </div>
 
+    <!-- Main Content -->
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Políticas y Condiciones de Uso</h1>
-
-        <!-- Sección de términos generales -->
-        <div class="policy-section">
-            <h2>Términos Generales</h2>
-            <p>Bienvenido a <strong>INFOCOM TECHNOLOGY</strong>. Al utilizar nuestra plataforma, aceptas cumplir con los términos y condiciones establecidos en este documento. Si no estás de acuerdo, por favor, no utilices nuestros servicios.</p>
-        </div>
-
-        <!-- Sección de privacidad -->
-        <div class="policy-section">
-            <h2>Privacidad</h2>
-            <p>Respetamos tu privacidad y protegemos tus datos personales. La información recopilada será utilizada únicamente para procesar tus pedidos, mejorar nuestros servicios y ofrecerte promociones personalizadas. Para más detalles, consulta nuestra <a href="#">Política de Privacidad</a>.</p>
-        </div>
-
-        <!-- Sección de uso permitido -->
-        <div class="policy-section">
-            <h2>Uso Permitido</h2>
-            <p>El acceso a nuestra plataforma está destinado exclusivamente para fines personales y no comerciales. Está prohibido:</p>
+        <!-- Terms Section -->
+        <div class="policy-section" id="terms">
+            <h2><i class="fas fa-file-contract"></i> Términos Generales</h2>
+            <p>El uso de nuestra plataforma está sujeto a las siguientes condiciones generales, las cuales deben ser respetadas por todos los usuarios. Al acceder a nuestros servicios, aceptas estas condiciones de manera íntegra.</p>
             <ul>
-                <li>Reproducir, duplicar o distribuir contenido sin autorización previa.</li>
-                <li>Intentar acceder a sistemas internos o manipular información.</li>
-                <li>Utilizar nuestra plataforma para actividades fraudulentas o ilegales.</li>
+                <li>El contenido de la plataforma está destinado exclusivamente a mayores de edad.</li>
+                <li>Es responsabilidad del usuario mantener la confidencialidad de sus credenciales de acceso.</li>
+                <li>Está prohibido el uso de la plataforma para promover actividades ilícitas o fraudulentas.</li>
+                <li>La empresa no se responsabiliza por el mal uso de las herramientas proporcionadas.</li>
             </ul>
         </div>
 
-        <!-- Sección de compras y devoluciones -->
-        <div class="policy-section">
-            <h2>Compras y Devoluciones</h2>
-            <p>Para realizar una compra en nuestra plataforma, asegúrate de proporcionar información válida y actualizada. Nuestras políticas de devolución están sujetas a las siguientes condiciones:</p>
+        <!-- Privacy Section -->
+        <div class="policy-section" id="privacy">
+            <h2><i class="fas fa-shield-alt"></i> Privacidad</h2>
+            <p>Respetamos y protegemos la privacidad de nuestros usuarios. Todos los datos recopilados están sujetos a altos estándares de seguridad y solo serán utilizados para mejorar tu experiencia en la plataforma.</p>
             <ul>
-                <li>Los productos deben estar sin usar y en su empaque original.</li>
-                <li>El plazo máximo para solicitar devoluciones es de 15 días hábiles desde la recepción del producto.</li>
-                <li>Consulta nuestra <a href="#">Política de Devoluciones</a> para más información.</li>
+                <li>Los datos personales se recopilan únicamente con fines de registro y personalización del servicio.</li>
+                <li>Implementamos tecnologías de cifrado para proteger la transferencia de datos sensibles.</li>
+                <li>Los usuarios tienen derecho a solicitar la eliminación de sus datos en cualquier momento.</li>
+            </ul>
+            <p>Consulta nuestra <a href="#">Política de Privacidad</a> para obtener más detalles.</p>
+        </div>
+
+        <!-- Intellectual Property Section -->
+        <div class="policy-section" id="intellectual-property">
+            <h2><i class="fas fa-lightbulb"></i> Derechos de Propiedad Intelectual</h2>
+            <p>Todo el contenido disponible en nuestra plataforma, incluyendo textos, imágenes, diseños, y logotipos, está protegido por derechos de autor y no puede ser copiado, distribuido ni utilizado sin autorización expresa de INFOCOM TECHNOLOGY.</p>
+            <ul>
+                <li>El uso indebido de contenido protegido dará lugar a acciones legales.</li>
+                <li>Queda prohibida la reproducción parcial o total de nuestro material sin permiso previo.</li>
+                <li>Los usuarios pueden reportar infracciones a: legal@infocomtech.com.</li>
             </ul>
         </div>
 
-        <!-- Sección de actualizaciones -->
-        <div class="policy-section">
-            <h2>Actualizaciones de las Políticas</h2>
-            <p>Nos reservamos el derecho de modificar estas políticas en cualquier momento. Los cambios serán notificados mediante publicaciones en nuestro sitio web. Te recomendamos revisar esta sección periódicamente.</p>
+        <!-- Sanctions Section -->
+        <div class="policy-section" id="sanctions">
+            <h2><i class="fas fa-gavel"></i> Sanciones por Incumplimientos</h2>
+            <p>El incumplimiento de nuestras políticas y condiciones de uso puede derivar en sanciones, tales como:</p>
+            <ul>
+                <li>Suspensión temporal o permanente de la cuenta.</li>
+                <li>Notificación a las autoridades correspondientes en caso de actividades ilegales.</li>
+                <li>Rescisión de acceso a servicios premium o exclusivos.</li>
+            </ul>
+            <p>Queremos garantizar un espacio seguro y justo para todos nuestros usuarios, por lo que estas medidas se aplicarán en casos de extrema gravedad o reincidencia.</p>
         </div>
 
-        <!-- Sección de contacto -->
-        <div class="policy-section">
-            <h2>Contacto</h2>
-            <p>Si tienes dudas o consultas sobre nuestras políticas, contáctanos a través de los siguientes medios:</p>
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h3>Preguntas Frecuentes (FAQ)</h3>
+            <p><strong>1. ¿Cómo puedo registrar una cuenta?</strong></p>
+            <p>Visita la página de registro, llena los campos requeridos y confirma tu correo electrónico.</p>
+            <p><strong>2. ¿Qué debo hacer si olvido mi contraseña?</strong></p>
+            <p>Haz clic en "Recuperar contraseña" y sigue las instrucciones enviadas a tu correo.</p>
+            <p><strong>3. ¿Cómo puedo eliminar mi cuenta?</strong></p>
+            <p>Entra en "Configuración" y selecciona la opción "Eliminar cuenta". Esto eliminará todos tus datos.</p>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="policy-section" id="contact">
+            <h2><i class="fas fa-envelope"></i> Contacto</h2>
+            <p>Si tienes preguntas adicionales o necesitas asistencia, no dudes en contactarnos:</p>
             <ul>
-                <li><strong>Email:</strong> soporte@infocomtech.com</li>
-                <li><strong>Teléfono:</strong> +51 987 654 321</li>
-                <li><strong>Dirección:</strong> Av. Tecnología, 123 - Ilo, Arequipa</li>
+                <li>Email: soporte@infocomtech.com</li>
+                <li>Teléfono: +51 987 654 321</li>
+                <li>Dirección: Av. Tecnología, 123 - Ilo, Arequipa</li>
             </ul>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 INFOCOM TECHNOLOGY. Todos los derechos reservados. | <a href="#">Términos de Uso</a></p>
+        <p>&copy; 2024 INFOCOM TECHNOLOGY | <a href="#">Política de Uso</a> | Diseñado con <i class="fas fa-heart text-danger"></i></p>
     </footer>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
