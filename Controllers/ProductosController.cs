@@ -95,6 +95,10 @@ namespace Trabajo_Final.Controllers
                 {
                     productoExistente.Nombre = p.FormProducto.Nombre;
                     productoExistente.Precio = p.FormProducto.Precio;
+                    if (p.FormProducto.FechaLanzamiento.Kind == DateTimeKind.Unspecified)
+                    {
+                        p.FormProducto.FechaLanzamiento = DateTime.SpecifyKind(p.FormProducto.FechaLanzamiento, DateTimeKind.Utc);
+                    }
                     productoExistente.FechaLanzamiento = p.FormProducto.FechaLanzamiento;
                     productoExistente.Status = p.FormProducto.Status;
                     productoExistente.ImageURL = p.FormProducto.ImageURL;
