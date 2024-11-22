@@ -6,14 +6,14 @@ using Trabajo_Final.Integration.CurrencyExchange.dto;
 
 namespace Trabajo_Final.Integration.CurrencyExchange
 {
-    public class CurrencyExchange
+    public class CurrencyExchangeIntegration
     {
-        private readonly ILogger<CurrencyExchange> _logger;
+        private readonly ILogger<CurrencyExchangeIntegration> _logger;
         private const string API_CONVERT_URL = " https://currency-conversion-and-exchange-rates.p.rapidapi.com/convert";
         private const string API_SYMBOLS_URL = "https://currency-conversion-and-exchange-rates.p.rapidapi.com/symbols";
-        private const string API_KEY = "0480f8b7a5mshe85c70b898a64c9p12b6eajsn98b3968305bb";
+        private const string API_KEY = "4dc2b79d34msh82ca35a4f7793e3p1a6300jsn61100b1a5896";
 
-        public CurrencyExchange(ILogger<CurrencyExchange> logger)
+        public CurrencyExchangeIntegration(ILogger<CurrencyExchangeIntegration> logger)
         {
             _logger = logger;
         }
