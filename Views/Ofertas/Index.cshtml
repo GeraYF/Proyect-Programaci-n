@@ -1,0 +1,196 @@
+@{
+    Layout = Layout;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofertas y Descuentos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        /* Encabezado */
+        .header {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)),
+                url('https://img.freepik.com/vector-gratis/compras-online-descuento-oferta-banner-promocion_1361-1807.jpg') no-repeat center center/cover;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 50px;
+            font-weight: 700;
+            text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Tarjetas de Oferta */
+        .offer-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .offer-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* Estilo de Contador */
+        .countdown-timer {
+            font-size: 22px;
+            color: #d9534f;
+            font-weight: bold;
+        }
+
+        /* Cupones */
+        .coupon {
+            background: linear-gradient(45deg, #ffc107, #ff9800);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            display: inline-block;
+            box-shadow: 0 5px 10px rgba(255, 152, 0, 0.5);
+        }
+
+        .coupon:hover {
+            background: linear-gradient(45deg, #ff9800, #e65100);
+            text-decoration: none;
+        }
+
+        .section-title {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Ofertas y Descuentos Exclusivos</h1>
+    </div>
+
+    <!-- Promociones Actuales -->
+    <section class="container">
+        <div class="section-title text-center" data-aos="fade-up">
+            <h2>Promociones Actuales</h2>
+            <p>¡No te pierdas nuestras ofertas en los productos más populares!</p>
+        </div>
+        <div class="row">
+            <!-- Oferta 1 -->
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card offer-card">
+                    <img src="https://th.bing.com/th/id/R.d6e77eadb5f4bab48ad602e5dc56f996?rik=7wPs2YofhHfuCQ&pid=ImgRaw&r=0" class="card-img-top" alt="Producto 1">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Impresoras - 20% Descuento</h5>
+                        <p>Obtén lo último en tecnología de impresión.</p>
+                        <a href="#" class="btn btn-primary btn-sm">Comprar ahora</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Oferta 2 -->
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card offer-card">
+                    <img src="https://th.bing.com/th/id/OIP.1dw2zSJxzcZ2PlTGHWUK9QHaEK?rs=1&pid=ImgDetMain" class="card-img-top" alt="Producto 2">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Monitores - 30% Descuento</h5>
+                        <p>Actualiza tu espacio de trabajo con un monitor nuevo.</p>
+                        <a href="#" class="btn btn-primary btn-sm">Comprar ahora</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Oferta 3 -->
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card offer-card">
+                    <img src="https://th.bing.com/th/id/R.77fb425a21056d7d4481554140e367e0?rik=OF6t%2fqu0zbRn0w&pid=ImgRaw&r=0" class="card-img-top" alt="Producto 3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Almacenamiento - 25% Descuento</h5>
+                        <p>Aumenta el rendimiento de tu equipo con descuentos exclusivos.</p>
+                        <a href="#" class="btn btn-primary btn-sm">Comprar ahora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contador Regresivo -->
+    <section class="text-center py-5 bg-light" data-aos="zoom-in">
+        <h3>¡Aprovecha! Esta oferta termina en:</h3>
+        <div id="countdown-timer" class="countdown-timer">00:00:00</div>
+    </section>
+
+    <!-- Cupones de Descuento -->
+    <section class="container my-5">
+        <div class="section-title text-center" data-aos="fade-up">
+            <h2>Cupones Exclusivos</h2>
+            <p>¡Ahorra más con estos códigos promocionales!</p>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <span class="coupon">DESCUENTO10</span>
+                <p>10% de descuento en compras mayores a $50.</p>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <span class="coupon">ENVIOGRATIS</span>
+                <p>Envío gratis en pedidos de más de $100.</p>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <span class="coupon">COMPRAHOY</span>
+                <p>15% de descuento en compras realizadas hoy.</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        const timerElement = document.getElementById('countdown-timer');
+        const targetDate = new Date().getTime() + (24 * 60 * 60 * 1000); // 24 horas desde ahora
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                timerElement.textContent = "Oferta finalizada";
+                return;
+            }
+
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            timerElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+
+</body>
+
+</html>
