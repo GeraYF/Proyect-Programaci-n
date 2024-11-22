@@ -28,20 +28,27 @@
             transform: scale(1.05);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-        .btn-detalles {
+        .btn-detalles, .btn-add-to-cart {
             border-radius: 20px;
-            padding: 8px 16px;
+            padding: 10px 20px;
             transition: background-color 0.3s ease, transform 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .btn-detalles i {
+        .btn-detalles i, .btn-add-to-cart i {
             margin-right: 6px;
         }
-        .btn-detalles:hover {
+        .btn-detalles:hover, .btn-add-to-cart:hover {
             transform: translateY(-3px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .btn-add-to-cart {
+            background-color: #ff6f61;
+            color: white;
+        }
+        .btn-add-to-cart:hover {
+            background-color: #e55e53;
         }
         .text-danger {
             cursor: pointer;
@@ -55,6 +62,29 @@
         }
         .fade-in-scroll.hidden {
             opacity: 0;
+        }
+        .news-section {
+            background-color: #f8f9fa;
+            padding: 50px 0;
+            margin-top: 50px;
+        }
+        .news-item {
+            margin-bottom: 30px;
+        }
+        .news-item h5 {
+            margin-bottom: 10px;
+        }
+        .news-item p {
+            color: #6c757d;
+        }
+        .news-section .section-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #343a40;
+            margin-bottom: 30px;
+        }
+        .section-title {
+            color: #007bff;
         }
     </style>
 </head>
@@ -97,7 +127,7 @@
             </div>
         </div>
     </header>
-    <!-- Section-->
+    <!-- Products Section-->
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -146,6 +176,9 @@
                                     <a asp-controller="Productos" asp-action="Detalles" asp-route-id="@item.Id" class="btn btn-info btn-detalles">
                                         <i class="bi bi-eye"></i> Detalles
                                     </a>
+                                    <a href="javascript:void(0);" class="btn btn-add-to-cart mt-2">
+                                        <i class="bi bi-cart-plus"></i> Añadir al carrito
+                                    </a>
                                 </div>
                             </div>
                         </a>
@@ -154,6 +187,31 @@
             </div>
         </div>
     </section>
+
+    <!-- News and Announcements Section-->
+    <section class="news-section">
+        <div class="container px-4 px-lg-5">
+            <div class="text-center mb-5">
+                <h2 class="section-heading text-uppercase">Noticias y Anuncios</h2>
+                <p class="text-muted">Mantente al tanto de las últimas noticias y promociones en INFOCOM TECHNOLOGY.</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 news-item">
+                    <h5 class="section-title">¡Gran descuento en laptops!</h5>
+                    <p>Consigue hasta un 30% de descuento en nuestras laptops de última generación. ¡Solo hasta fin de mes!</p>
+                </div>
+                <div class="col-md-4 news-item">
+                    <h5 class="section-title">Nuevo stock de impresoras</h5>
+                    <p>Recibimos nuevas unidades de impresoras. ¡Obtén la tuya ahora mismo!</p>
+                </div>
+                <div class="col-md-4 news-item">
+                    <h5 class="section-title">Promoción de accesorios</h5>
+                    <p>¡Compra más de 3 accesorios y obtén un 15% de descuento en el total de tu compra!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Bootstrap core JS-->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
