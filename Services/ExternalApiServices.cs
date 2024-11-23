@@ -3,10 +3,12 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Trabajo_Final.Models;
+using Trabajo_Final.Data;
 
 public class ExternalApiService
 {
     private readonly HttpClient _httpClient;
+    private readonly ApplicationDbContext _context;
 
     public ExternalApiService(HttpClient httpClient)
     {

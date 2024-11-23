@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Trabajo_Final.Data;
 using Trabajo_Final.Models; // Asegúrate de que esto esté aquí para acceder a ExternalApiService
 
@@ -22,6 +23,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<Trabajo_Final.Integration.CurrencyExchange.CurrencyExchangeIntegration>();
+builder.Services.AddScoped<Trabajo_Final.Services.ProductoService>();
+
 
 builder.Services.AddSession(options =>
 {
@@ -43,8 +46,15 @@ builder.Services.AddHttpClient<ExternalApiService>(client =>
 
 // Configuración de Swagger / OpenAPI
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "API",
+        Version = "v1",
+        Description = "API DE PRODUCTOS"
+    });
+});
 var app = builder.Build();
 
 // Configuración de pipeline
@@ -58,6 +68,13 @@ else
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+
+app.UseSwagger();
+
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
+});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

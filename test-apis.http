@@ -1,3 +1,27 @@
+POST https://dummyjson.com/todos/add HTTP/1.1
+Content-Type: application/json
+
+{
+    "todo": "Use DummyJSON in the project",
+    "completed": false,
+    "userId": 5
+}
+
+
+GET https://dummyjson.com/todos/ HTTP/1.1
+Accept: application/json
+
+
+GET https://dummyjson.com/todos/1 HTTP/1.1
+Accept: application/json
+
+GET https://dummyjson.com/todos/255 HTTP/1.1
+Accept: application/json
+
+GET http://localhost:5026/api/producto/2 HTTP/1.1
+Accept: application/json
+GET http://localhost:5026/api/producto HTTP/1.1
+Accept: application/json
 # INTEGRANDO API
 GET https://currency-conversion-and-exchange-rates.p.rapidapi.com/
 convert?from=USD&to=EUR&amount=750 HTTP/1.1

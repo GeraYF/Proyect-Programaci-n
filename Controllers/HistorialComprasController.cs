@@ -12,7 +12,6 @@ using System.Security.Claims;
 
 namespace Trabajo_Final.Controllers
 {
-    [Route("[controller]")]
     public class HistorialComprasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,7 +23,6 @@ namespace Trabajo_Final.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
         [Authorize]
         public async Task<IActionResult> Index(string categoria, string ordenar)
         {
