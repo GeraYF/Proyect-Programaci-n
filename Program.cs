@@ -6,10 +6,11 @@ using Trabajo_Final.Models; // Asegúrate de que esto esté aquí para acceder a
 var builder = WebApplication.CreateBuilder(args);
 
 // Configuración de la cadena de conexión
-var connectionString = builder.Configuration.GetConnectionString("PostgreSQLConnection") 
+var connectionString = builder.Configuration.GetConnectionString("PostgreSQLConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 // Configuración de Identity
@@ -19,6 +20,15 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 // Configuración de MVC
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<Trabajo_Final.Integration.CurrencyExchange.CurrencyExchangeIntegration>();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromHours(1500);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 // Configuración de HttpClient para ExternalApiService con URL base desde appsettings.json
 builder.Services.AddHttpClient<ExternalApiService>(client =>
@@ -52,8 +62,13 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseSession();
+
+
 app.UseAuthentication();
 app.UseAuthorization();
+
+
 
 app.MapControllerRoute(
     name: "default",
